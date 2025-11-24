@@ -1,0 +1,79 @@
+# This .gitignore file should be placed at the root of your Unity project directory
+# Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
+
+# ============= UNITY =============
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Uu]ser[Ss]ettings/
+[Mm]emoryCaptures/
+[Rr]ecordings/
+
+# Asset Store tools (optional)
+# /Assets/AssetStoreTools*
+
+# JetBrains Rider
+/Assets/Plugins/Editor/JetBrains*
+
+# ============= VISUAL STUDIO / VSCode =============
+.vs/
+.vscode/
+.vscode/*
+
+# Solution & project files
+ExportedObj/
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Generated meta files
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# Crash reports
+sysinfo.txt
+
+# ============= BUILDS =============
+*.apk
+*.aab
+*.unitypackage
+*.unitypackage.meta
+*.app
+
+# Crashlytics
+crashlytics-build.properties
+
+# ============= ADDRESSABLES =============
+/Assets/AddressableAssetsData/*/*.bin*
+
+# Android StreamingAssets auto-generated files
+/Assets/StreamingAssets/aa.meta
+/Assets/StreamingAssets/aa/*
+
+# ============= OTHER =============
+# Gradle
+.gradle/
+
+# Temporary system files
+.DS_Store
+Thumbs.db
+
+# Git LFS normalization is handled in .gitattributes
+# (Do NOT repeat here to avoid conflicts)
+
