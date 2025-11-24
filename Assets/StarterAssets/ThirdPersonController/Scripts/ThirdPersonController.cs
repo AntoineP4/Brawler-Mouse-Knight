@@ -162,6 +162,11 @@ namespace StarterAssets
         private const float LookSensMax = 1.5f;
         private const float DefaultSliderValue = 0.5f;
 
+        // ---- CAGE LOCK ----
+        private bool _movementLockedByCage = false;
+        private int _cageLayer = -1;
+        // --------------------
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -181,7 +186,6 @@ namespace StarterAssets
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
 
-            // Défaut : correspond à un slider à 0.7
             float defaultSens = Mathf.Lerp(LookSensMin, LookSensMax, DefaultSliderValue);
             LookSensitivity = defaultSens;
 
@@ -207,6 +211,9 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
             _apexTimer = 0f;
+
+            // récupérer l'index du layer "Cage" (si existe)
+            _cageLayer = LayerMask.NameToLayer("Cage");
         }
 
         private void Update()
@@ -375,7 +382,33 @@ namespace StarterAssets
 
         private void Move()
         {
-            bool canMove = CanMove;
+            // ----- LOCK DEPLACEMENT PAR CAGE -----
+            if (_cageLayer >= 0)
+            {
+                int cageMask = 1 << _cageLayer;
+                Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
+
+                bool cageContact = Physics.CheckSphere(
+                    spherePosition,
+                    GroundedRadius,
+                    cageMask,
+                    QueryTriggerInteraction.Ignore
+                );
+
+                if (cageContact)
+                {
+                    // on touche encore la cage : on verrouille
+                    _movementLockedByCage = true;
+                }
+                else if (Grounded && !cageContact)
+                {
+                    // on est à nouveau grounded mais plus sur la cage : on libère
+                    _movementLockedByCage = false;
+                }
+            }
+            // -------------------------------------
+
+            bool canMove = CanMove && !_movementLockedByCage;
 
             float targetSpeed = canMove ? (_input.sprint ? SprintSpeed : MoveSpeed) : 0.0f;
             if (canMove && _input.move == Vector2.zero) targetSpeed = 0.0f;

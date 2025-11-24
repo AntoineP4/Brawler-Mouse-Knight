@@ -4282,7 +4282,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cage
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 398042268724052301, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
+    - {fileID: 1383483776283638916, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
+    - {fileID: 3017124657872318395, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
+    - {fileID: 1786988624733300206, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
