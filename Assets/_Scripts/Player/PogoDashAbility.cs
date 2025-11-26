@@ -59,6 +59,12 @@ namespace StarterAssets
         public float cageShakeAmplitude = 0.08f;
         public bool cageDisableInsteadOfDestroy = true;
 
+        [Header("Gamepad Rumble")]
+        public bool enableRumble = true;
+        public float pogoRumbleLow = 0.4f;
+        public float pogoRumbleHigh = 0.8f;
+        public float pogoRumbleDuration = 0.12f;
+
         public bool IsDashing { get; private set; }
 
         CharacterController cc;
@@ -82,6 +88,7 @@ namespace StarterAssets
         Transform camTarget;
         Vector3 camTargetBaseLocalPos;
         Coroutine shakeCo;
+        Coroutine rumbleCo;
 
         [SerializeField] private bool pogoOnXLayout = false;
         bool kbPogoHeldLast;
@@ -137,6 +144,14 @@ namespace StarterAssets
             if (camTarget != null) camTarget.localPosition = camTargetBaseLocalPos;
             if (shakeCo != null) StopCoroutine(shakeCo);
             shakeCo = null;
+
+#if ENABLE_INPUT_SYSTEM
+            if (rumbleCo != null) StopCoroutine(rumbleCo);
+            rumbleCo = null;
+            var gamepad = Gamepad.current;
+            if (gamepad != null) gamepad.SetMotorSpeeds(0f, 0f);
+#endif
+
             if (ctrl != null) ctrl.LockGravityExternally = false;
         }
 
@@ -175,7 +190,7 @@ namespace StarterAssets
 
             if (!IsDashing && dashCooldownTimer <= 0f && DashPressed())
             {
-                if (ctrl.Grounded || airDashAvailable)
+                if (!ctrl.IsMovementLockedByCage && (ctrl.Grounded || airDashAvailable))
                 {
                     dashDir = ComputeDir();
                     StartDashForward();
@@ -210,27 +225,29 @@ namespace StarterAssets
                 {
                     float stepDist = step.magnitude;
 
-                    if (TryGetPogoHit(stepDist, out Collider enemyCol2, enemyLayers))
+                    if (TryGetPogoHit(stepDist, out Collider enemyCol2, enemyLayers, QueryTriggerInteraction.Collide))
                     {
                         ApplyDamage(enemyCol2, FIXED_POGO_DAMAGE);
                         ApplyEnemyKnockbackConstrained(enemyCol2);
-                        if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitHash, 0.05f, 0, 0f);
+                        if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                         TriggerScreenShake();
+                        TriggerPogoRumble();
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceHeight);
                         airDashAvailable = true;
                     }
-                    else if (TryGetPogoHit(stepDist, out Collider npCol2, mushroomLayers))
+                    else if (TryGetPogoHit(stepDist, out Collider npCol2, mushroomLayers, QueryTriggerInteraction.Ignore))
                     {
                         ApplyDamage(npCol2, FIXED_POGO_DAMAGE);
                         CustomEvent.Trigger(npCol2.gameObject, "OnHitReceived");
-                        if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitHash, 0.05f, 0, 0f);
+                        if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                         TriggerScreenShake();
+                        TriggerPogoRumble();
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceHeight);
                         airDashAvailable = true;
                     }
-                    else if (TryGetPogoHit(stepDist, out Collider cageCol2, cageLayers))
+                    else if (TryGetPogoHit(stepDist, out Collider cageCol2, cageLayers, QueryTriggerInteraction.Collide))
                     {
                         Transform cageTr = cageCol2.attachedRigidbody ? cageCol2.attachedRigidbody.transform : cageCol2.transform;
                         if (cageTr != null)
@@ -242,6 +259,7 @@ namespace StarterAssets
 
                             StartCoroutine(ShakeCageRoutine(cageTr, cageShakeDuration, cageShakeAmplitude));
                             TriggerScreenShake();
+                            TriggerPogoRumble();
                             ctrl.Bounce(pogoBounceHeight);
                             airDashAvailable = true;
                             StopDashInternal(false);
@@ -255,7 +273,7 @@ namespace StarterAssets
                                     Destroy(cageTr.gameObject);
                             }
 
-                            if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitHash, 0.05f, 0, 0f);
+                            if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                         }
                     }
                     else if (ctrl.Grounded ||
@@ -375,21 +393,21 @@ namespace StarterAssets
             return dir.normalized;
         }
 
-        bool TryGetPogoHit(float stepDist, out Collider enemyCol, LayerMask mask)
+        bool TryGetPogoHit(float stepDist, out Collider enemyCol, LayerMask mask, QueryTriggerInteraction triggerMode)
         {
             Vector3 origin = cc.bounds.center;
             Vector3 dir = Vector3.down;
             float ahead = Mathf.Max(pogoCheckAhead, stepDist);
             float radius = pogoCheckRadius;
 
-            if (Physics.SphereCast(origin, radius, dir, out RaycastHit hit, ahead, mask, QueryTriggerInteraction.Collide))
+            if (Physics.SphereCast(origin, radius, dir, out RaycastHit hit, ahead, mask, triggerMode))
             {
                 enemyCol = hit.collider;
                 return true;
             }
 
             Vector3 end = origin + dir * ahead;
-            var cols = Physics.OverlapSphere(end, radius, mask, QueryTriggerInteraction.Collide);
+            var cols = Physics.OverlapSphere(end, radius, mask, triggerMode);
             if (cols != null && cols.Length > 0)
             {
                 enemyCol = cols[0];
@@ -564,6 +582,17 @@ namespace StarterAssets
             shakeCo = StartCoroutine(ShakeRoutine());
         }
 
+        void TriggerPogoRumble()
+        {
+#if ENABLE_INPUT_SYSTEM
+            if (!enableRumble) return;
+            var gamepad = Gamepad.current;
+            if (gamepad == null) return;
+            if (rumbleCo != null) StopCoroutine(rumbleCo);
+            rumbleCo = StartCoroutine(RumbleRoutine(pogoRumbleLow, pogoRumbleHigh, pogoRumbleDuration));
+#endif
+        }
+
         IEnumerator ShakeRoutine()
         {
             float t = 0f;
@@ -587,6 +616,26 @@ namespace StarterAssets
 
             camTarget.localPosition = basePos;
             shakeCo = null;
+        }
+
+        IEnumerator RumbleRoutine(float low, float high, float duration)
+        {
+#if ENABLE_INPUT_SYSTEM
+            var gamepad = Gamepad.current;
+            if (gamepad == null) yield break;
+
+            gamepad.SetMotorSpeeds(low, high);
+            float t = 0f;
+            while (t < duration)
+            {
+                t += Time.deltaTime;
+                yield return null;
+            }
+            gamepad.SetMotorSpeeds(0f, 0f);
+            rumbleCo = null;
+#else
+            yield break;
+#endif
         }
 
         IEnumerator ShakeCageRoutine(Transform tr, float duration, float amplitude)
@@ -625,6 +674,16 @@ namespace StarterAssets
                 StopCoroutine(shakeCo);
                 shakeCo = null;
             }
+
+#if ENABLE_INPUT_SYSTEM
+            if (rumbleCo != null)
+            {
+                StopCoroutine(rumbleCo);
+                rumbleCo = null;
+            }
+            var gamepad = Gamepad.current;
+            if (gamepad != null) gamepad.SetMotorSpeeds(0f, 0f);
+#endif
         }
     }
 }

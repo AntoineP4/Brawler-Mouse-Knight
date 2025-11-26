@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Tuto
   m_EditorClassIdentifier: 
   lines:
-  - text: "Oh, petit chevalier, essaie de me sauter sur la t\xEAte !"
+  - text: "Oh, petit chevalier\u2026 tu as enfin r\xE9ussi \xE0 sortir de ta cage
+      !"
     duration: 3
-  - text: Je suis costaud, tu peux rebondir sur moi comme
+  - text: "Essaie de faire la m\xEAme chose avec ma t\xEAte."
     duration: 5

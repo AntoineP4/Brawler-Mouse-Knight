@@ -88,7 +88,7 @@ namespace StarterAssets
         [Tooltip("Master ON/OFF controlled by options menu")]
         public bool AutoCamGlobal = true;
 
-        [Tooltip("Per-profile auto cam enable (set by AutoCamProfile)")]
+        [Tooltip("Per-profile auto cam enable (set by AutoCamProfile")]
         public bool AutoCam = true;
 
         [Tooltip("Tilt speed (deg/sec) when going UP (in air)")]
@@ -162,10 +162,13 @@ namespace StarterAssets
         private const float LookSensMax = 1.5f;
         private const float DefaultSliderValue = 0.5f;
 
-        // ---- CAGE LOCK ----
-        private bool _movementLockedByCage = false;
-        private int _cageLayer = -1;
-        // --------------------
+        bool _movementLockedByCage = false;
+        int _cageLayer = -1;
+
+        public bool IsMovementLockedByCage
+        {
+            get { return _movementLockedByCage; }
+        }
 
         private bool IsCurrentDeviceMouse
         {
@@ -212,7 +215,6 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
             _apexTimer = 0f;
 
-            // récupérer l'index du layer "Cage" (si existe)
             _cageLayer = LayerMask.NameToLayer("Cage");
         }
 
@@ -284,7 +286,6 @@ namespace StarterAssets
                 float deltaTimeMultiplier = baseMultiplier * Mathf.Clamp(LookSensitivity, LookSensMin, LookSensMax);
 
                 bool hasLookInput = _input.look.sqrMagnitude >= _threshold;
-
                 bool useAutoCam = AutoCamGlobal && AutoCam;
 
                 if (hasLookInput)
@@ -382,7 +383,6 @@ namespace StarterAssets
 
         private void Move()
         {
-            // ----- LOCK DEPLACEMENT PAR CAGE -----
             if (_cageLayer >= 0)
             {
                 int cageMask = 1 << _cageLayer;
@@ -397,16 +397,13 @@ namespace StarterAssets
 
                 if (cageContact)
                 {
-                    // on touche encore la cage : on verrouille
                     _movementLockedByCage = true;
                 }
                 else if (Grounded && !cageContact)
                 {
-                    // on est à nouveau grounded mais plus sur la cage : on libère
                     _movementLockedByCage = false;
                 }
             }
-            // -------------------------------------
 
             bool canMove = CanMove && !_movementLockedByCage;
 
