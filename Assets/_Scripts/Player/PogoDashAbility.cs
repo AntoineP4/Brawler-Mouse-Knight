@@ -65,6 +65,10 @@ namespace StarterAssets
         public float pogoRumbleHigh = 0.8f;
         public float pogoRumbleDuration = 0.12f;
 
+        [Header("Dash / Pogo Trail")]
+        [Tooltip("GameObject enfant qui contient les TrailRenderer pour le pogo.")]
+        [SerializeField] private GameObject trailRoot;
+
         public bool IsDashing { get; private set; }
 
         CharacterController cc;
@@ -102,6 +106,8 @@ namespace StarterAssets
 
         bool dashStartedInAir;
 
+        TrailRenderer[] dashTrails;
+
         public bool AttackOnJump
         {
             get => !pogoOnXLayout;
@@ -124,6 +130,12 @@ namespace StarterAssets
             if (camTarget != null) camTargetBaseLocalPos = camTarget.localPosition;
 
             AttackOnJump = true;
+
+            if (trailRoot != null)
+            {
+                dashTrails = trailRoot.GetComponentsInChildren<TrailRenderer>(true);
+                SetTrailEmission(false);
+            }
         }
 
         void OnEnable()
@@ -140,6 +152,8 @@ namespace StarterAssets
             pogoSystemArmed = false;
             dashStartedInAir = false;
             if (ctrl != null) ctrl.LockGravityExternally = false;
+
+            SetTrailEmission(false);
         }
 
         void OnDisable()
@@ -156,6 +170,8 @@ namespace StarterAssets
 #endif
 
             if (ctrl != null) ctrl.LockGravityExternally = false;
+
+            SetTrailEmission(false);
         }
 
         void Update()
@@ -174,6 +190,7 @@ namespace StarterAssets
             {
                 airDashAvailable = true;
                 pogoCooldownTimer = 0f;
+                SetTrailEmission(false);
             }
 
             if (ctrl.Grounded)
@@ -317,6 +334,8 @@ namespace StarterAssets
             pogoCooldownTimer = Mathf.Max(pogoCooldownTimer, pogoCooldown);
             ctrl.SetVerticalVelocity(0f);
             ctrl.LockGravityExternally = false;
+
+            StartTrail();
         }
 
         void StopDashInternal(bool noAnimReset)
@@ -682,6 +701,21 @@ namespace StarterAssets
             var gamepad = Gamepad.current;
             if (gamepad != null) gamepad.SetMotorSpeeds(0f, 0f);
 #endif
+        }
+
+        void SetTrailEmission(bool emitting)
+        {
+            if (dashTrails == null) return;
+            for (int i = 0; i < dashTrails.Length; i++)
+            {
+                if (dashTrails[i] != null)
+                    dashTrails[i].emitting = emitting;
+            }
+        }
+
+        void StartTrail()
+        {
+            SetTrailEmission(true);
         }
     }
 }
