@@ -393,6 +393,10 @@ MonoBehaviour:
   cageShakeDuration: 0.4
   cageShakeAmplitude: 0.4
   cageDisableInsteadOfDestroy: 1
+  enableRumble: 1
+  pogoRumbleLow: 0.4
+  pogoRumbleHigh: 0.8
+  pogoRumbleDuration: 0.12
   pogoOnXLayout: 0
 --- !u!114 &2305071959269750051
 MonoBehaviour:

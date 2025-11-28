@@ -100,6 +100,8 @@ namespace StarterAssets
 
         Dictionary<Transform, int> cagePogoCounts = new Dictionary<Transform, int>();
 
+        bool dashStartedInAir;
+
         public bool AttackOnJump
         {
             get => !pogoOnXLayout;
@@ -136,6 +138,7 @@ namespace StarterAssets
             kbPogoHeldLast = false;
             airTime = 0f;
             pogoSystemArmed = false;
+            dashStartedInAir = false;
             if (ctrl != null) ctrl.LockGravityExternally = false;
         }
 
@@ -210,7 +213,7 @@ namespace StarterAssets
             {
                 Vector3 step = dashDir * speedThisDash * Time.deltaTime;
 
-                if (!ctrl.Grounded && !isPogoDown && airDashLiftPerSecond != 0f)
+                if (dashStartedInAir && !ctrl.Grounded && !isPogoDown && airDashLiftPerSecond != 0f)
                     step += Vector3.up * airDashLiftPerSecond * Time.deltaTime;
 
                 cc.Move(step);
@@ -250,35 +253,30 @@ namespace StarterAssets
                     else if (TryGetPogoHit(stepDist, out Collider cageCol2, cageLayers, QueryTriggerInteraction.Collide))
                     {
                         Transform cageTr = cageCol2.attachedRigidbody ? cageCol2.attachedRigidbody.transform : cageCol2.transform;
-                        if (cageTr != null)
+                        int count = 0;
+                        cagePogoCounts.TryGetValue(cageTr, out count);
+                        count++;
+                        cagePogoCounts[cageTr] = count;
+
+                        StartCoroutine(ShakeCageRoutine(cageTr, cageShakeDuration, cageShakeAmplitude));
+                        TriggerScreenShake();
+                        TriggerPogoRumble();
+                        ctrl.Bounce(pogoBounceHeight);
+                        airDashAvailable = true;
+                        StopDashInternal(false);
+
+                        if (count >= cagePogosToBreak)
                         {
-                            int count = 0;
-                            cagePogoCounts.TryGetValue(cageTr, out count);
-                            count++;
-                            cagePogoCounts[cageTr] = count;
-
-                            StartCoroutine(ShakeCageRoutine(cageTr, cageShakeDuration, cageShakeAmplitude));
-                            TriggerScreenShake();
-                            TriggerPogoRumble();
-                            ctrl.Bounce(pogoBounceHeight);
-                            airDashAvailable = true;
-                            StopDashInternal(false);
-
-                            if (count >= cagePogosToBreak)
-                            {
-                                cagePogoCounts.Remove(cageTr);
-                                if (cageDisableInsteadOfDestroy)
-                                    cageTr.gameObject.SetActive(false);
-                                else
-                                    Destroy(cageTr.gameObject);
-                            }
-
-                            if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
+                            cagePogoCounts.Remove(cageTr);
+                            if (cageDisableInsteadOfDestroy)
+                                cageTr.gameObject.SetActive(false);
+                            else
+                                Destroy(cageTr.gameObject);
                         }
+
+                        if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                     }
-                    else if (ctrl.Grounded ||
-                             (cc.collisionFlags & CollisionFlags.Below) != 0 ||
-                             CheckHitSurface(stepDist))
+                    else if (ctrl.Grounded || (cc.collisionFlags & CollisionFlags.Below) != 0 || CheckHitSurface(stepDist))
                     {
                         if (anim != null && pogoLandHash != 0)
                             anim.CrossFadeInFixedTime(pogoLandAnimState, 0.05f, 0, 0f);
@@ -297,6 +295,8 @@ namespace StarterAssets
             dashTime = dashDuration;
             dashCooldownTimer = dashCooldown;
             speedThisDash = dashSpeed;
+
+            dashStartedInAir = !ctrl.Grounded;
 
             if (!ctrl.Grounded)
             {
@@ -324,6 +324,7 @@ namespace StarterAssets
             IsDashing = false;
             isPogoDown = false;
             dashTime = 0f;
+            dashStartedInAir = false;
             ctrl.LockGravityExternally = false;
         }
 
@@ -396,17 +397,16 @@ namespace StarterAssets
         bool TryGetPogoHit(float stepDist, out Collider enemyCol, LayerMask mask, QueryTriggerInteraction triggerMode)
         {
             Vector3 origin = cc.bounds.center;
-            Vector3 dir = Vector3.down;
             float ahead = Mathf.Max(pogoCheckAhead, stepDist);
             float radius = pogoCheckRadius;
 
-            if (Physics.SphereCast(origin, radius, dir, out RaycastHit hit, ahead, mask, triggerMode))
+            if (Physics.SphereCast(origin, radius, Vector3.down, out RaycastHit hit, ahead, mask, triggerMode))
             {
                 enemyCol = hit.collider;
                 return true;
             }
 
-            Vector3 end = origin + dir * ahead;
+            Vector3 end = origin + Vector3.down * ahead;
             var cols = Physics.OverlapSphere(end, radius, mask, triggerMode);
             if (cols != null && cols.Length > 0)
             {
@@ -428,7 +428,6 @@ namespace StarterAssets
 
         void ApplyDamage(Collider enemyCol, int damage)
         {
-            if (enemyCol == null) return;
             var vs = Variables.Object(enemyCol.gameObject);
             int hp = 0;
 
@@ -446,7 +445,7 @@ namespace StarterAssets
 
         void ApplyEnemyKnockbackConstrained(Collider enemyCol)
         {
-            Transform tr = enemyCol ? (enemyCol.attachedRigidbody ? enemyCol.attachedRigidbody.transform : enemyCol.transform) : null;
+            Transform tr = enemyCol.attachedRigidbody ? enemyCol.attachedRigidbody.transform : enemyCol.transform;
             if (!tr) return;
 
             Vector3 back = -tr.forward;
@@ -474,7 +473,8 @@ namespace StarterAssets
 
         Bounds GetColliderBounds(Collider c)
         {
-            return c is CharacterController ch ? new Bounds(ch.bounds.center, ch.bounds.size) : c.bounds;
+            if (c is CharacterController ch) return new Bounds(ch.bounds.center, ch.bounds.size);
+            return c.bounds;
         }
 
         Vector3 ConstrainToNavmeshAndEnvironment(Vector3 start, Vector3 desired, Vector3 dirBack, float radius, NavMeshAgent agent)
@@ -604,9 +604,9 @@ namespace StarterAssets
                 float amp = shakeAmplitude * decay;
 
                 Vector3 jitter = new Vector3(
-                    (Random.value * 2f - 1f),
+                    Random.value * 2f - 1f,
                     (Random.value * 2f - 1f) * 0.5f,
-                    (Random.value * 2f - 1f)
+                    Random.value * 2f - 1f
                 );
 
                 camTarget.localPosition = basePos + jitter * amp;
@@ -640,20 +640,18 @@ namespace StarterAssets
 
         IEnumerator ShakeCageRoutine(Transform tr, float duration, float amplitude)
         {
-            if (!tr) yield break;
-
             float t = 0f;
             Vector3 baseLocalPos = tr.localPosition;
 
-            while (t < duration && tr)
+            while (t < duration)
             {
                 float decay = 1f - (t / Mathf.Max(0.0001f, duration));
                 float amp = amplitude * decay;
 
                 Vector3 jitter = new Vector3(
-                    (Random.value * 2f - 1f),
-                    (Random.value * 2f - 1f),
-                    (Random.value * 2f - 1f)
+                    Random.value * 2f - 1f,
+                    Random.value * 2f - 1f,
+                    Random.value * 2f - 1f
                 );
 
                 tr.localPosition = baseLocalPos + jitter * amp;
@@ -661,7 +659,7 @@ namespace StarterAssets
                 yield return null;
             }
 
-            if (tr) tr.localPosition = baseLocalPos;
+            tr.localPosition = baseLocalPos;
         }
 
         public void ForceStopScreenShake()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using TMPro;
@@ -11,7 +12,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float fadeDuration = 0.15f;
     [SerializeField] private float charactersPerSecond = 35f;
 
+    public event Action OnLineStarted;
+
     private Coroutine dialogueRoutine;
+    private Action onSequenceEnded;
 
     private void Awake()
     {
@@ -27,10 +31,12 @@ public class DialogueManager : MonoBehaviour
         subtitleText.text = string.Empty;
     }
 
-    public void PlaySequence(DialogueSequence sequence)
+    public void PlaySequence(DialogueSequence sequence, Action onEnded = null)
     {
         if (sequence == null || sequence.lines == null || sequence.lines.Length == 0)
             return;
+
+        onSequenceEnded = onEnded;
 
         if (dialogueRoutine != null)
             StopCoroutine(dialogueRoutine);
@@ -45,6 +51,7 @@ public class DialogueManager : MonoBehaviour
 
         for (int i = 0; i < sequence.lines.Length; i++)
         {
+            OnLineStarted?.Invoke();
             yield return PlayLine(sequence.lines[i]);
         }
 
@@ -52,6 +59,10 @@ public class DialogueManager : MonoBehaviour
         yield return FadeTo(0f);
         subtitleGroup.gameObject.SetActive(false);
         dialogueRoutine = null;
+
+        var callback = onSequenceEnded;
+        onSequenceEnded = null;
+        callback?.Invoke();
     }
 
     private IEnumerator PlayLine(DialogueSequence.Line line)

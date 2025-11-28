@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -51,6 +52,9 @@ namespace StarterAssets
         [Header("Camera")]
         [SerializeField] private CinemachineVirtualCamera menuCamera;
 
+        [Header("Camera Lock")]
+        [SerializeField] private float lookUnlockDelay = 1f;
+
         [Header("Gameplay Refs")]
         [SerializeField] private ThirdPersonController thirdPersonController;
         [SerializeField] private PogoDashAbility pogoDashAbility;
@@ -69,6 +73,8 @@ namespace StarterAssets
         private bool _inOptions;
         private bool _inQuitConfirm;
         private bool _inCredits;
+
+        private Coroutine _unlockLookCoroutine;
 
         private const float LookSensMin = 0.5f;
         private const float LookSensMax = 1.5f;
@@ -275,11 +281,23 @@ namespace StarterAssets
             }
 
             if (_moveAction != null) _moveAction.Enable();
-            if (_lookAction != null) _lookAction.Enable();
             if (_pauseAction != null) _pauseAction.Enable();
             if (_jumpAction != null) _jumpAction.Enable();
             if (_dashAction != null) _dashAction.Enable();
             if (_pogoAction != null) _pogoAction.Enable();
+            if (_lookAction != null) _lookAction.Disable();
+
+            if (_unlockLookCoroutine != null)
+                StopCoroutine(_unlockLookCoroutine);
+            _unlockLookCoroutine = StartCoroutine(UnlockLookAfterDelay());
+        }
+
+        private IEnumerator UnlockLookAfterDelay()
+        {
+            yield return new WaitForSeconds(lookUnlockDelay);
+            if (_lookAction != null)
+                _lookAction.Enable();
+            _unlockLookCoroutine = null;
         }
 
         private void OnOptionsClicked()
