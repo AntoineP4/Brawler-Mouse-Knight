@@ -12,6 +12,9 @@ public class LowHPPostProcessManager : MonoBehaviour
     [SerializeField] private Color normalColor = Color.black;
     [SerializeField] private float fadeDuration = 0.25f;
 
+    [Header("Transition d'activation")]
+    [SerializeField] private float activationFadeDuration = 0.8f;
+
     [Header("Pulsation (rythme cardiaque)")]
     [SerializeField] private float heartbeatFrequency = 0.8f;
     [SerializeField] private float firstBeatMultiplier = 0.25f;
@@ -28,14 +31,23 @@ public class LowHPPostProcessManager : MonoBehaviour
     private bool isLowHpState;
     private float heartbeatTimer;
 
+    private bool systemActive = false;
+
     private void Start()
     {
         RefreshVignetteReference();
 
+        if (vignette != null)
+        {
+            baseIntensity = normalIntensity;
+            currentColor = normalColor;
+            vignette.intensity.value = baseIntensity;
+            vignette.color.value = currentColor;
+        }
+
         if (TryGetCurrentHP(out int currentHP))
         {
             lastHP = currentHP;
-            SetLowHP(currentHP == 1);
         }
     }
 
@@ -43,6 +55,13 @@ public class LowHPPostProcessManager : MonoBehaviour
     {
         RefreshVignetteReference();
         if (vignette == null) return;
+
+        if (!systemActive)
+        {
+            vignette.intensity.value = baseIntensity;
+            vignette.color.value = currentColor;
+            return;
+        }
 
         if (TryGetCurrentHP(out int currentHP))
         {
@@ -84,8 +103,13 @@ public class LowHPPostProcessManager : MonoBehaviour
             if (v.profile != null && v.profile.TryGet(out Vignette found))
             {
                 vignette = found;
-                baseIntensity = vignette.intensity.value;
-                currentColor = vignette.color.value;
+
+                if (baseIntensity == 0f && currentColor == default)
+                {
+                    baseIntensity = vignette.intensity.value;
+                    currentColor = vignette.color.value;
+                }
+
                 return;
             }
         }
@@ -109,7 +133,7 @@ public class LowHPPostProcessManager : MonoBehaviour
         }
     }
 
-    private void SetLowHP(bool isLowHP)
+    private void SetLowHP(bool isLowHP, float? customFadeDuration = null)
     {
         if (vignette == null) return;
 
@@ -121,19 +145,29 @@ public class LowHPPostProcessManager : MonoBehaviour
 
         float targetIntensity = isLowHP ? lowHpIntensity : normalIntensity;
         Color targetColor = isLowHP ? lowHpColor : normalColor;
-        fadeRoutine = StartCoroutine(FadeVignette(targetIntensity, targetColor));
+
+        float durationToUse = customFadeDuration.HasValue ? customFadeDuration.Value : fadeDuration;
+        fadeRoutine = StartCoroutine(FadeVignette(targetIntensity, targetColor, durationToUse));
     }
 
-    private IEnumerator FadeVignette(float targetIntensity, Color targetColor)
+    private IEnumerator FadeVignette(float targetIntensity, Color targetColor, float duration)
     {
         float startIntensity = baseIntensity;
         Color startColor = currentColor;
         float t = 0f;
 
-        while (t < fadeDuration)
+        if (duration <= 0f)
+        {
+            baseIntensity = targetIntensity;
+            currentColor = targetColor;
+            fadeRoutine = null;
+            yield break;
+        }
+
+        while (t < duration)
         {
             t += Time.deltaTime;
-            float k = t / fadeDuration;
+            float k = t / duration;
 
             baseIntensity = Mathf.Lerp(startIntensity, targetIntensity, k);
             currentColor = Color.Lerp(startColor, targetColor, k);
@@ -144,5 +178,18 @@ public class LowHPPostProcessManager : MonoBehaviour
         baseIntensity = targetIntensity;
         currentColor = targetColor;
         fadeRoutine = null;
+    }
+
+    public void ActivateLowHpSystem()
+    {
+        if (systemActive) return;
+        systemActive = true;
+
+        if (TryGetCurrentHP(out int currentHP))
+        {
+            lastHP = currentHP;
+            bool low = currentHP == 1;
+            SetLowHP(low, activationFadeDuration);
+        }
     }
 }

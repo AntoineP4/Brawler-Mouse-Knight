@@ -52,13 +52,18 @@ namespace StarterAssets
         [Header("Camera")]
         [SerializeField] private CinemachineVirtualCamera menuCamera;
 
-        [Header("Camera Lock")]
-        [SerializeField] private float lookUnlockDelay = 1f;
+        [Header("Start Lock Timing")]
+        [SerializeField] private float startLockDuration = 1f;
 
         [Header("Gameplay Refs")]
         [SerializeField] private ThirdPersonController thirdPersonController;
         [SerializeField] private PogoDashAbility pogoDashAbility;
         [SerializeField] private StarterAssetsInputs starterInputs;
+        [SerializeField] private LowHPPostProcessManager lowHpManager;
+
+        [Header("Menu Player Anim")]
+        [SerializeField] private bool enableMenuLoopAnimation = true;
+        [SerializeField] private string menuLoopBoolName = "MenuLoop";
 
         private PlayerInput _playerInput;
         private InputAction _moveAction;
@@ -79,6 +84,9 @@ namespace StarterAssets
         private const float LookSensMin = 0.5f;
         private const float LookSensMax = 1.5f;
 
+        private Animator _playerAnimator;
+        private bool _menuLoopAlreadyPlayed = false;
+
         private void Awake()
         {
             if (gameplayUIRoot != null)
@@ -93,6 +101,11 @@ namespace StarterAssets
                 pogoDashAbility = FindFirstObjectByType<PogoDashAbility>();
             if (starterInputs == null)
                 starterInputs = FindFirstObjectByType<StarterAssetsInputs>();
+            if (lowHpManager == null)
+                lowHpManager = FindFirstObjectByType<LowHPPostProcessManager>();
+
+            if (thirdPersonController != null && _playerAnimator == null)
+                _playerAnimator = thirdPersonController.GetComponent<Animator>();
 
             if (_playerInput != null)
             {
@@ -154,6 +167,9 @@ namespace StarterAssets
 
             if (EventSystem.current != null && firstMainButton != null)
                 EventSystem.current.SetSelectedGameObject(firstMainButton.gameObject);
+
+            if (enableMenuLoopAnimation && !_gameStarted && !_menuLoopAlreadyPlayed && _playerAnimator != null && !string.IsNullOrEmpty(menuLoopBoolName))
+                _playerAnimator.SetBool(menuLoopBoolName, true);
         }
 
         private void OnDestroy()
@@ -259,6 +275,12 @@ namespace StarterAssets
             if (_gameStarted) return;
             _gameStarted = true;
 
+            if (enableMenuLoopAnimation && _playerAnimator != null && !string.IsNullOrEmpty(menuLoopBoolName))
+            {
+                _playerAnimator.SetBool(menuLoopBoolName, false);
+                _menuLoopAlreadyPlayed = true;
+            }
+
             if (gameplayUIRoot != null)
                 gameplayUIRoot.SetActive(true);
 
@@ -280,23 +302,32 @@ namespace StarterAssets
                 starterInputs.pogo = false;
             }
 
+            if (lowHpManager != null)
+                lowHpManager.ActivateLowHpSystem();
+
+            if (_moveAction != null) _moveAction.Disable();
+            if (_pauseAction != null) _pauseAction.Disable();
+            if (_jumpAction != null) _jumpAction.Disable();
+            if (_dashAction != null) _dashAction.Disable();
+            if (_pogoAction != null) _pogoAction.Disable();
+            if (_lookAction != null) _lookAction.Disable();
+
+            if (_unlockLookCoroutine != null)
+                StopCoroutine(_unlockLookCoroutine);
+            _unlockLookCoroutine = StartCoroutine(StartLockRoutine());
+        }
+
+        private IEnumerator StartLockRoutine()
+        {
+            yield return new WaitForSeconds(startLockDuration);
+
             if (_moveAction != null) _moveAction.Enable();
             if (_pauseAction != null) _pauseAction.Enable();
             if (_jumpAction != null) _jumpAction.Enable();
             if (_dashAction != null) _dashAction.Enable();
             if (_pogoAction != null) _pogoAction.Enable();
-            if (_lookAction != null) _lookAction.Disable();
+            if (_lookAction != null) _lookAction.Enable();
 
-            if (_unlockLookCoroutine != null)
-                StopCoroutine(_unlockLookCoroutine);
-            _unlockLookCoroutine = StartCoroutine(UnlockLookAfterDelay());
-        }
-
-        private IEnumerator UnlockLookAfterDelay()
-        {
-            yield return new WaitForSeconds(lookUnlockDelay);
-            if (_lookAction != null)
-                _lookAction.Enable();
             _unlockLookCoroutine = null;
         }
 

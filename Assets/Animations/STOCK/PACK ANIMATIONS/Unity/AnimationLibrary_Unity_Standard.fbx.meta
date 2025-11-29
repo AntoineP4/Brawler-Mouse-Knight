@@ -150,7 +150,7 @@ ModelImporter:
       name: Rig|Death01
       takeName: Rig|Death01
       internalID: 1038164469866789310
-      firstFrame: 0
+      firstFrame: 24
       lastFrame: 72
       wrapMode: 0
       orientationOffsetY: 0
@@ -161,7 +161,7 @@ ModelImporter:
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
-      loopBlendPositionY: 0
+      loopBlendPositionY: 1
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
       keepOriginalPositionY: 1

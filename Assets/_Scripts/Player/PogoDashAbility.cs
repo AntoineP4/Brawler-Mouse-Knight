@@ -24,7 +24,8 @@ namespace StarterAssets
         public float pogoDownSpeed = 18f;
         public float pogoCheckRadius = 0.6f;
         public float pogoCheckAhead = 1.0f;
-        public float pogoBounceHeight = 2.2f;
+        public float pogoBounceHeight = 4f;
+        public float pogoBounceMushroomHeight = 8f;
         public float pogoCooldown = 0.30f;
         public string pogoHitAnimState = "PogoHit";
         public string pogoLandAnimState = "PogoLand";
@@ -66,8 +67,13 @@ namespace StarterAssets
         public float pogoRumbleDuration = 0.12f;
 
         [Header("Dash / Pogo Trail")]
-        [Tooltip("GameObject enfant qui contient les TrailRenderer pour le pogo.")]
+        [Tooltip("GameObject enfant qui contient les TrailRenderer pour le pogo/dash.")]
         [SerializeField] private GameObject trailRoot;
+
+        [Header("Pogo VFX")]
+        public GameObject pogoHitVfxPrefab;
+        public GameObject cageBreakVfxPrefab;
+        public float cageBreakVfxYOffset = 0f;
 
         public bool IsDashing { get; private set; }
 
@@ -228,12 +234,18 @@ namespace StarterAssets
 
             if (IsDashing)
             {
+                Vector3 preCenter = cc.bounds.center;
+
                 Vector3 step = dashDir * speedThisDash * Time.deltaTime;
 
                 if (dashStartedInAir && !ctrl.Grounded && !isPogoDown && airDashLiftPerSecond != 0f)
                     step += Vector3.up * airDashLiftPerSecond * Time.deltaTime;
 
                 cc.Move(step);
+
+                Vector3 postCenter = cc.bounds.center;
+                float stepDist = (postCenter - preCenter).magnitude;
+                if (stepDist < 0.0001f) stepDist = step.magnitude;
 
                 if (!isPogoDown)
                 {
@@ -243,20 +255,23 @@ namespace StarterAssets
                 }
                 else
                 {
-                    float stepDist = step.magnitude;
+                    float castDownDist = Mathf.Max(pogoCheckAhead, stepDist);
 
-                    if (TryGetPogoHit(stepDist, out Collider enemyCol2, enemyLayers, QueryTriggerInteraction.Collide))
+                    if (TryGetPogoHitSegment(preCenter, postCenter, out Collider enemyCol2, enemyLayers, QueryTriggerInteraction.Collide) ||
+                        TryGetPogoHitDown(postCenter, castDownDist, out enemyCol2, enemyLayers, QueryTriggerInteraction.Collide))
                     {
                         ApplyDamage(enemyCol2, FIXED_POGO_DAMAGE);
                         ApplyEnemyKnockbackConstrained(enemyCol2);
                         if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                         TriggerScreenShake();
                         TriggerPogoRumble();
+                        SpawnPogoVfx(enemyCol2);
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceHeight);
                         airDashAvailable = true;
                     }
-                    else if (TryGetPogoHit(stepDist, out Collider npCol2, mushroomLayers, QueryTriggerInteraction.Ignore))
+                    else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider npCol2, mushroomLayers, QueryTriggerInteraction.Ignore) ||
+                             TryGetPogoHitDown(postCenter, castDownDist, out npCol2, mushroomLayers, QueryTriggerInteraction.Ignore))
                     {
                         ApplyDamage(npCol2, FIXED_POGO_DAMAGE);
                         CustomEvent.Trigger(npCol2.gameObject, "OnHitReceived");
@@ -264,10 +279,11 @@ namespace StarterAssets
                         TriggerScreenShake();
                         TriggerPogoRumble();
                         StopDashInternal(false);
-                        ctrl.Bounce(pogoBounceHeight);
+                        ctrl.Bounce(pogoBounceMushroomHeight);
                         airDashAvailable = true;
                     }
-                    else if (TryGetPogoHit(stepDist, out Collider cageCol2, cageLayers, QueryTriggerInteraction.Collide))
+                    else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider cageCol2, cageLayers, QueryTriggerInteraction.Collide) ||
+                             TryGetPogoHitDown(postCenter, castDownDist, out cageCol2, cageLayers, QueryTriggerInteraction.Collide))
                     {
                         Transform cageTr = cageCol2.attachedRigidbody ? cageCol2.attachedRigidbody.transform : cageCol2.transform;
                         int count = 0;
@@ -278,12 +294,14 @@ namespace StarterAssets
                         StartCoroutine(ShakeCageRoutine(cageTr, cageShakeDuration, cageShakeAmplitude));
                         TriggerScreenShake();
                         TriggerPogoRumble();
+                        SpawnPogoVfx(cageCol2);
                         ctrl.Bounce(pogoBounceHeight);
                         airDashAvailable = true;
                         StopDashInternal(false);
 
                         if (count >= cagePogosToBreak)
                         {
+                            SpawnCageBreakVfx();
                             cagePogoCounts.Remove(cageTr);
                             if (cageDisableInsteadOfDestroy)
                                 cageTr.gameObject.SetActive(false);
@@ -319,6 +337,7 @@ namespace StarterAssets
             {
                 ctrl.SetVerticalVelocity(0f);
                 ctrl.LockGravityExternally = true;
+                StartTrail();
             }
 
             if (anim != null && dashHash != 0)
@@ -413,10 +432,31 @@ namespace StarterAssets
             return dir.normalized;
         }
 
-        bool TryGetPogoHit(float stepDist, out Collider enemyCol, LayerMask mask, QueryTriggerInteraction triggerMode)
+        bool TryGetPogoHitSegment(Vector3 start, Vector3 end, out Collider col, LayerMask mask, QueryTriggerInteraction triggerMode)
         {
-            Vector3 origin = cc.bounds.center;
-            float ahead = Mathf.Max(pogoCheckAhead, stepDist);
+            Vector3 dir = end - start;
+            float dist = dir.magnitude;
+            if (dist < 0.0001f)
+            {
+                col = null;
+                return false;
+            }
+
+            dir /= dist;
+
+            if (Physics.SphereCast(start, pogoCheckRadius, dir, out RaycastHit hit, dist, mask, triggerMode))
+            {
+                col = hit.collider;
+                return true;
+            }
+
+            col = null;
+            return false;
+        }
+
+        bool TryGetPogoHitDown(Vector3 origin, float distance, out Collider enemyCol, LayerMask mask, QueryTriggerInteraction triggerMode)
+        {
+            float ahead = distance;
             float radius = pogoCheckRadius;
 
             if (Physics.SphereCast(origin, radius, Vector3.down, out RaycastHit hit, ahead, mask, triggerMode))
@@ -716,6 +756,21 @@ namespace StarterAssets
         void StartTrail()
         {
             SetTrailEmission(true);
+        }
+
+        void SpawnPogoVfx(Collider col)
+        {
+            if (pogoHitVfxPrefab == null || col == null) return;
+            Vector3 origin = cc != null ? cc.bounds.center : transform.position;
+            Vector3 hitPos = col.ClosestPoint(origin);
+            Instantiate(pogoHitVfxPrefab, hitPos, Quaternion.identity);
+        }
+
+        void SpawnCageBreakVfx()
+        {
+            if (cageBreakVfxPrefab == null) return;
+            Vector3 pos = transform.position + Vector3.up * cageBreakVfxYOffset;
+            Instantiate(cageBreakVfxPrefab, pos, Quaternion.identity);
         }
     }
 }

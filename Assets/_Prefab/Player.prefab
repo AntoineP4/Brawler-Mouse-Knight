@@ -912,9 +912,10 @@ MonoBehaviour:
   dashAnimState: Roll
   airDashLiftPerSecond: 4
   pogoDownSpeed: 44
-  pogoCheckRadius: 0.5
-  pogoCheckAhead: 0.8
-  pogoBounceHeight: 6
+  pogoCheckRadius: 1
+  pogoCheckAhead: 1
+  pogoBounceHeight: 4
+  pogoBounceMushroomHeight: 7
   pogoCooldown: 0.5
   pogoHitAnimState: PogoHit
   pogoLandAnimState: PogoLand
@@ -948,6 +949,9 @@ MonoBehaviour:
   pogoRumbleHigh: 0.8
   pogoRumbleDuration: 0.12
   trailRoot: {fileID: 5600992658178160809}
+  pogoHitVfxPrefab: {fileID: 3042519775331041172, guid: 841004c4c6a39e244abe2257394de913, type: 3}
+  cageBreakVfxPrefab: {fileID: 6813416509558619124, guid: 3b7f2c753d435d647a80f1f047a113e3, type: 3}
+  cageBreakVfxYOffset: 2
   pogoOnXLayout: 0
 --- !u!114 &2305071959269750051
 MonoBehaviour:
