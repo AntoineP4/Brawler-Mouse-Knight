@@ -26,6 +26,13 @@ namespace StarterAssets
         public float pogoCheckAhead = 1.0f;
         public float pogoBounceHeight = 4f;
         public float pogoBounceMushroomHeight = 8f;
+
+        [Header("Cage Pogo Overrides")]
+        public float pogoBounceCageHeight = 4f;
+        public float pogoDownSpeedCage = 18f;
+        public float pogoCheckRadiusCage = 0.6f;
+        public float pogoCheckAheadCage = 1.0f;
+
         public float pogoCooldown = 0.30f;
         public string pogoHitAnimState = "PogoHit";
         public string pogoLandAnimState = "PogoLand";
@@ -67,13 +74,15 @@ namespace StarterAssets
         public float pogoRumbleDuration = 0.12f;
 
         [Header("Dash / Pogo Trail")]
-        [Tooltip("GameObject enfant qui contient les TrailRenderer pour le pogo/dash.")]
         [SerializeField] private GameObject trailRoot;
 
         [Header("Pogo VFX")]
         public GameObject pogoHitVfxPrefab;
         public GameObject cageBreakVfxPrefab;
         public float cageBreakVfxYOffset = 0f;
+
+        [Header("Cage Pogo Tutorial")]
+        public CagePogoTutorial cagePogoTutorial;
 
         public bool IsDashing { get; private set; }
 
@@ -114,11 +123,17 @@ namespace StarterAssets
 
         TrailRenderer[] dashTrails;
 
+        float currentPogoDownSpeed;
+        float currentPogoCheckRadius;
+        float currentPogoCheckAhead;
+
         public bool AttackOnJump
         {
             get => !pogoOnXLayout;
             set => pogoOnXLayout = !value;
         }
+
+        public bool UseXLayout => pogoOnXLayout;
 
         void Awake()
         {
@@ -136,6 +151,10 @@ namespace StarterAssets
             if (camTarget != null) camTargetBaseLocalPos = camTarget.localPosition;
 
             AttackOnJump = true;
+
+            currentPogoDownSpeed = pogoDownSpeed;
+            currentPogoCheckRadius = pogoCheckRadius;
+            currentPogoCheckAhead = pogoCheckAhead;
 
             if (trailRoot != null)
             {
@@ -158,6 +177,10 @@ namespace StarterAssets
             pogoSystemArmed = false;
             dashStartedInAir = false;
             if (ctrl != null) ctrl.LockGravityExternally = false;
+
+            currentPogoDownSpeed = pogoDownSpeed;
+            currentPogoCheckRadius = pogoCheckRadius;
+            currentPogoCheckAhead = pogoCheckAhead;
 
             SetTrailEmission(false);
         }
@@ -184,13 +207,6 @@ namespace StarterAssets
         {
             if (dashCooldownTimer > 0f) dashCooldownTimer -= Time.deltaTime;
             if (pogoCooldownTimer > 0f) pogoCooldownTimer -= Time.deltaTime;
-
-#if ENABLE_INPUT_SYSTEM
-            if (Gamepad.current != null && Gamepad.current.dpad.right.wasPressedThisFrame)
-            {
-                pogoOnXLayout = !pogoOnXLayout;
-            }
-#endif
 
             if (ctrl.Grounded && !wasGrounded)
             {
@@ -255,7 +271,7 @@ namespace StarterAssets
                 }
                 else
                 {
-                    float castDownDist = Mathf.Max(pogoCheckAhead, stepDist);
+                    float castDownDist = Mathf.Max(currentPogoCheckAhead, stepDist);
 
                     if (TryGetPogoHitSegment(preCenter, postCenter, out Collider enemyCol2, enemyLayers, QueryTriggerInteraction.Collide) ||
                         TryGetPogoHitDown(postCenter, castDownDist, out enemyCol2, enemyLayers, QueryTriggerInteraction.Collide))
@@ -269,6 +285,9 @@ namespace StarterAssets
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceHeight);
                         airDashAvailable = true;
+
+                        if (cagePogoTutorial != null)
+                            cagePogoTutorial.OnPogoPerformed();
                     }
                     else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider npCol2, mushroomLayers, QueryTriggerInteraction.Ignore) ||
                              TryGetPogoHitDown(postCenter, castDownDist, out npCol2, mushroomLayers, QueryTriggerInteraction.Ignore))
@@ -281,6 +300,9 @@ namespace StarterAssets
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceMushroomHeight);
                         airDashAvailable = true;
+
+                        if (cagePogoTutorial != null)
+                            cagePogoTutorial.OnPogoPerformed();
                     }
                     else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider cageCol2, cageLayers, QueryTriggerInteraction.Collide) ||
                              TryGetPogoHitDown(postCenter, castDownDist, out cageCol2, cageLayers, QueryTriggerInteraction.Collide))
@@ -295,9 +317,12 @@ namespace StarterAssets
                         TriggerScreenShake();
                         TriggerPogoRumble();
                         SpawnPogoVfx(cageCol2);
-                        ctrl.Bounce(pogoBounceHeight);
+                        ctrl.Bounce(pogoBounceCageHeight);
                         airDashAvailable = true;
                         StopDashInternal(false);
+
+                        if (cagePogoTutorial != null)
+                            cagePogoTutorial.OnPogoPerformed();
 
                         if (count >= cagePogosToBreak)
                         {
@@ -307,6 +332,9 @@ namespace StarterAssets
                                 cageTr.gameObject.SetActive(false);
                             else
                                 Destroy(cageTr.gameObject);
+
+                            if (cagePogoTutorial != null)
+                                cagePogoTutorial.OnCageBroken();
                         }
 
                         if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
@@ -346,13 +374,29 @@ namespace StarterAssets
 
         void StartPogoDown()
         {
+            if (ctrl != null && ctrl.IsMovementLockedByCage)
+            {
+                currentPogoDownSpeed = pogoDownSpeedCage;
+                currentPogoCheckRadius = pogoCheckRadiusCage;
+                currentPogoCheckAhead = pogoCheckAheadCage;
+            }
+            else
+            {
+                currentPogoDownSpeed = pogoDownSpeed;
+                currentPogoCheckRadius = pogoCheckRadius;
+                currentPogoCheckAhead = pogoCheckAhead;
+            }
+
             IsDashing = true;
             isPogoDown = true;
             dashDir = Vector3.down;
-            speedThisDash = pogoDownSpeed;
+            speedThisDash = currentPogoDownSpeed;
             pogoCooldownTimer = Mathf.Max(pogoCooldownTimer, pogoCooldown);
             ctrl.SetVerticalVelocity(0f);
             ctrl.LockGravityExternally = false;
+
+            if (cagePogoTutorial != null)
+                cagePogoTutorial.OnPogoInput();
 
             StartTrail();
         }
@@ -444,7 +488,7 @@ namespace StarterAssets
 
             dir /= dist;
 
-            if (Physics.SphereCast(start, pogoCheckRadius, dir, out RaycastHit hit, dist, mask, triggerMode))
+            if (Physics.SphereCast(start, currentPogoCheckRadius, dir, out RaycastHit hit, dist, mask, triggerMode))
             {
                 col = hit.collider;
                 return true;
@@ -457,7 +501,7 @@ namespace StarterAssets
         bool TryGetPogoHitDown(Vector3 origin, float distance, out Collider enemyCol, LayerMask mask, QueryTriggerInteraction triggerMode)
         {
             float ahead = distance;
-            float radius = pogoCheckRadius;
+            float radius = currentPogoCheckRadius;
 
             if (Physics.SphereCast(origin, radius, Vector3.down, out RaycastHit hit, ahead, mask, triggerMode))
             {
@@ -482,7 +526,7 @@ namespace StarterAssets
             Vector3 origin = cc.bounds.center;
             float ahead = Mathf.Max(0.2f, stepDist + 0.1f);
             int mask = ~LayerMask.GetMask(LayerMask.LayerToName(gameObject.layer));
-            return Physics.SphereCast(origin, pogoCheckRadius, Vector3.down, out _, ahead, mask, QueryTriggerInteraction.Ignore);
+            return Physics.SphereCast(origin, currentPogoCheckRadius, Vector3.down, out _, ahead, mask, QueryTriggerInteraction.Ignore);
         }
 
         void ApplyDamage(Collider enemyCol, int damage)
