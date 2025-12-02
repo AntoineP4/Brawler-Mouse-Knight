@@ -484,7 +484,7 @@ MonoBehaviour:
   _data:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
-    - {fileID: 11400000, guid: 4ad9e5ec7af6f114ab36045e5f95bc0d, type: 2}
+    - {fileID: 11400000, guid: ef0d8909d4e5b374d9948080d92dfce5, type: 2}
 --- !u!135 &6669079051628329315
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -518,7 +518,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b75d2268fe3534d8fc424d27885d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 152c4d61bc842f640a67fb2138f1049e, type: 2}
+  dialogue: {fileID: 11400000, guid: 16d00361bfd825c4eadb09f557315b36, type: 2}
+  animator: {fileID: 8922427951348126611}
+  talkingBoolName: IsTalking
+  talkVariantParamName: TalkVariant
+  talkVariantsCount: 3
 --- !u!1 &754087576821537492
 GameObject:
   m_ObjectHideFlags: 0
