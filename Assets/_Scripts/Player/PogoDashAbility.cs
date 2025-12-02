@@ -84,6 +84,9 @@ namespace StarterAssets
         [Header("Cage Pogo Tutorial")]
         public CagePogoTutorial cagePogoTutorial;
 
+        [Header("Cage Candle")]
+        [SerializeField] private GameObject candleToDisable;
+
         public bool IsDashing { get; private set; }
 
         CharacterController cc;
@@ -126,6 +129,8 @@ namespace StarterAssets
         float currentPogoDownSpeed;
         float currentPogoCheckRadius;
         float currentPogoCheckAhead;
+
+        bool cageFirstPogoDone;
 
         public bool AttackOnJump
         {
@@ -320,6 +325,13 @@ namespace StarterAssets
                         ctrl.Bounce(pogoBounceCageHeight);
                         airDashAvailable = true;
                         StopDashInternal(false);
+
+                        if (!cageFirstPogoDone)
+                        {
+                            cageFirstPogoDone = true;
+                            if (candleToDisable != null)
+                                candleToDisable.SetActive(false);
+                        }
 
                         if (cagePogoTutorial != null)
                             cagePogoTutorial.OnPogoPerformed();

@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 namespace StarterAssets
 {
@@ -82,6 +84,11 @@ namespace StarterAssets
         [SerializeField] private bool enableMenuLoopAnimation = true;
         [SerializeField] private string menuLoopBoolName = "MenuLoop";
 
+        [Header("Menu Visual Overrides")]
+        [SerializeField] private Renderer menuShadowRenderer;          // Mesh / SkinnedMesh du player
+        [SerializeField] private GameObject menuDecalProjectorObject;  // Decal projector parent
+        [SerializeField] private Camera mainGameplayCamera;            // Main camera URP
+
         private PlayerInput _playerInput;
         private InputAction _moveAction;
         private InputAction _lookAction;
@@ -110,6 +117,20 @@ namespace StarterAssets
 
         private GameObject _currentPanel;
         private CanvasGroup _currentPanelCanvasGroup;
+
+        // Cache pour les overrides visuels du menu
+        private bool _menuVisualsConfigured;
+
+        private bool _hadMeshShadowData;
+        private ShadowCastingMode _originalShadowCastingMode;
+        private bool _originalReceiveShadows;
+
+        private bool _hadDecalObject;
+        private bool _decalOriginalActive;
+
+        private bool _hadCameraData;
+        private AntialiasingMode _originalAAMode;
+        private AntialiasingQuality _originalAAQuality;
 
         private void Awake()
         {
@@ -256,6 +277,8 @@ namespace StarterAssets
 
             if (enableMenuLoopAnimation && !_gameStarted && !_menuLoopAlreadyPlayed && _playerAnimator != null && !string.IsNullOrEmpty(menuLoopBoolName))
                 _playerAnimator.SetBool(menuLoopBoolName, true);
+
+            ApplyMenuVisualOverrides();
         }
 
         private void OnDestroy()
@@ -276,20 +299,11 @@ namespace StarterAssets
             if (mainAttackOnJumpToggle != null) mainAttackOnJumpToggle.onValueChanged.RemoveListener(OnMainAttackOnJumpChanged);
         }
 
-        private void OnEnable()
-        {
-            if (_backAction != null)
-                _backAction.performed += OnBackPerformed;
-        }
-
-        private void OnDisable()
-        {
-            if (_backAction != null)
-                _backAction.performed -= OnBackPerformed;
-        }
-
         private bool BackPressedThisFrame()
         {
+            if (_panelTransitionCoroutine != null)
+                return false;
+
             bool gamepadBack = _backAction != null && _backAction.triggered;
             bool keyboardEsc = Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame;
             return gamepadBack || keyboardEsc;
@@ -344,16 +358,6 @@ namespace StarterAssets
             if (btn == null) return;
 
             btn.onClick.Invoke();
-        }
-
-        private void OnBackPerformed(InputAction.CallbackContext ctx)
-        {
-            if (_inOptions)
-                OnMainOptionsBackClicked();
-            else if (_inCredits)
-                OnMainCreditsBackClicked();
-            else if (_inQuitConfirm)
-                OnMainQuitNoClicked();
         }
 
         private void OnStartClicked()
@@ -472,6 +476,9 @@ namespace StarterAssets
             {
                 if (mainMenuRoot != null)
                     mainMenuRoot.SetActive(false);
+
+                RestoreMenuVisualOverrides();
+
                 _startFadeCoroutine = null;
                 yield break;
             }
@@ -492,6 +499,8 @@ namespace StarterAssets
 
             if (mainMenuRoot != null)
                 mainMenuRoot.SetActive(false);
+
+            RestoreMenuVisualOverrides();
 
             _startFadeCoroutine = null;
         }
@@ -525,12 +534,12 @@ namespace StarterAssets
 
         private void TransitionToPanel(GameObject targetPanel, CanvasGroup targetCanvasGroup, bool inOptions, bool inCredits, bool inQuitConfirm, GameObject firstSelected)
         {
+            if (_panelTransitionCoroutine != null)
+                return;
+
             _inOptions = inOptions;
             _inCredits = inCredits;
             _inQuitConfirm = inQuitConfirm;
-
-            if (_panelTransitionCoroutine != null)
-                StopCoroutine(_panelTransitionCoroutine);
 
             _panelTransitionCoroutine = StartCoroutine(PanelTransitionRoutine(targetPanel, targetCanvasGroup, firstSelected));
         }
@@ -764,6 +773,75 @@ namespace StarterAssets
         {
             if (pogoDashAbility == null) return;
             pogoDashAbility.AttackOnJump = isOn;
+        }
+
+        private void ApplyMenuVisualOverrides()
+        {
+            if (_menuVisualsConfigured) return;
+
+            if (menuShadowRenderer != null)
+            {
+                _hadMeshShadowData = true;
+                _originalShadowCastingMode = menuShadowRenderer.shadowCastingMode;
+                _originalReceiveShadows = menuShadowRenderer.receiveShadows;
+
+                // Menu ON : on force les ombres ON, quel que soit l'état initial
+                menuShadowRenderer.shadowCastingMode = ShadowCastingMode.On;
+                menuShadowRenderer.receiveShadows = true;
+            }
+
+            if (menuDecalProjectorObject != null)
+            {
+                _hadDecalObject = true;
+                _decalOriginalActive = menuDecalProjectorObject.activeSelf;
+
+                // Menu actif : decal OFF
+                if (_decalOriginalActive)
+                    menuDecalProjectorObject.SetActive(false);
+            }
+
+            if (mainGameplayCamera != null)
+            {
+                var camData = mainGameplayCamera.GetComponent<UniversalAdditionalCameraData>();
+                if (camData != null)
+                {
+                    _hadCameraData = true;
+                    _originalAAMode = camData.antialiasing;
+                    _originalAAQuality = camData.antialiasingQuality;
+
+                    // Menu actif : TAA
+                    camData.antialiasing = AntialiasingMode.TemporalAntiAliasing;
+                }
+            }
+
+            _menuVisualsConfigured = true;
+        }
+
+        private void RestoreMenuVisualOverrides()
+        {
+            if (!_menuVisualsConfigured) return;
+
+            if (_hadMeshShadowData && menuShadowRenderer != null)
+            {
+                // Retour EXACT à l’état d’origine (dans ton cas : ombre OFF)
+                menuShadowRenderer.shadowCastingMode = _originalShadowCastingMode;
+                menuShadowRenderer.receiveShadows = _originalReceiveShadows;
+            }
+
+            if (_hadDecalObject && menuDecalProjectorObject != null)
+            {
+                menuDecalProjectorObject.SetActive(_decalOriginalActive);
+            }
+
+            if (_hadCameraData && mainGameplayCamera != null)
+            {
+                var camData = mainGameplayCamera.GetComponent<UniversalAdditionalCameraData>();
+                if (camData != null)
+                {
+                    camData.antialiasing = _originalAAMode;
+                    camData.antialiasingQuality = _originalAAQuality;
+                }
+            }
         }
     }
 }
