@@ -12,17 +12,9 @@ namespace StarterAssets
     public class ThirdPersonController : MonoBehaviour
     {
         [Header("Player")]
-        [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
-
-        [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
-
-        [Tooltip("How fast the character turns to face movement direction")]
-        [Range(0.0f, 0.3f)]
-        public float RotationSmoothTime = 0.12f;
-
-        [Tooltip("Acceleration and deceleration")]
+        [Range(0.0f, 0.3f)] public float RotationSmoothTime = 0.12f;
         public float SpeedChangeRate = 10.0f;
 
         public AudioClip LandingAudioClip;
@@ -30,11 +22,11 @@ namespace StarterAssets
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
         [Space(10)]
-        [Tooltip("The height the player can jump")]
         public float JumpHeight = 1.2f;
-
-        [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
         public float Gravity = -15.0f;
+
+        [Header("Cage Jump")]
+        public float CageJumpHeight = 1.2f;
 
         [Header("Apex Float")]
         public float ApexThreshold = 1.0f;
@@ -42,132 +34,100 @@ namespace StarterAssets
         [Range(0.01f, 1f)] public float ApexGravityScale = 0.25f;
 
         [Space(10)]
-        [Tooltip("Time required to pass before being able to jump again. Set to 0f to instantly jump again")]
         public float JumpTimeout = 0.50f;
-
-        [Tooltip("Time required to pass before entering the fall state. Useful for walking down stairs")]
         public float FallTimeout = 0.15f;
 
         [Header("Player Grounded")]
-        [Tooltip("If the character is grounded or not. Not part of the CharacterController built in grounded check")]
         public bool Grounded = true;
-
-        [Tooltip("Useful for rough ground")]
         public float GroundedOffset = -0.14f;
-
-        [Tooltip("The radius of the grounded check. Should match the radius of the CharacterController")]
         public float GroundedRadius = 0.28f;
-
-        [Tooltip("What layers the character uses as ground")]
         public LayerMask GroundLayers;
 
         [Header("Cinemachine")]
-        [Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
         public GameObject CinemachineCameraTarget;
-
-        [Tooltip("How far in degrees can you move the camera up")]
         public float TopClamp = 70.0f;
-
-        [Tooltip("How far in degrees can you move the camera down")]
         public float BottomClamp = -30.0f;
-
-        [Tooltip("Additional degress to override the camera. Useful for fine tuning camera position when locked")]
         public float CameraAngleOverride = 0.0f;
-
-        [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
         [Header("Camera Input")]
-        [Tooltip("Sensitivity multiplier for look input (sera mappé par le slider)")]
         public float LookSensitivity = 1.0f;
-
-        [Tooltip("Invert vertical look axis")]
         public bool InvertY = false;
 
         [Header("Auto Cam")]
-        [Tooltip("Master ON/OFF controlled by options menu")]
         public bool AutoCamGlobal = true;
-
-        [Tooltip("Per-profile auto cam enable (set by AutoCamProfile)")]
         public bool AutoCam = true;
-
-        [Tooltip("Tilt speed (deg/sec) when going UP (in air)")]
         public float AirTiltSpeedUp = 60f;
-
-        [Tooltip("Tilt speed (deg/sec) when going DOWN (on ground)")]
         public float AirTiltSpeedDown = 40f;
-
-        [Tooltip("Degrees where auto cam vertical movement slows near its target (up and down)")]
         public float AutoCamTopSlowdownRange = 10f;
-
-        [Tooltip("Time to ease in downward auto cam after ground contact")]
         public float AutoCamDownEaseInTime = 0.25f;
-
-        [Tooltip("Minimum time in air before auto cam starts (seconds)")]
         public float AutoCamMinAirTime = 0.1f;
-
-        [Tooltip("Delay after landing before auto cam recenters (seconds)")]
         public float AutoCamGroundDelay = 0.2f;
 
         [Header("External Locks")]
-        [Tooltip("If false, horizontal movement from the left stick is disabled (used by recoil/dash, etc.)")]
         public bool CanMove = true;
-
-        [Tooltip("If true, external abilities temporarily cancel gravity while in air.")]
         public bool LockGravityExternally = false;
 
-        private float _cinemachineTargetYaw;
-        private float _cinemachineTargetPitch;
+        [Header("Cage Pogo Tutorial")]
+        public CagePogoTutorial cagePogoTutorial;
 
-        private float _speed;
-        private float _animationBlend;
-        private float _targetRotation = 0.0f;
-        private float _rotationVelocity;
-        private float _verticalVelocity;
-        private float _terminalVelocity = 53.0f;
+        float _cinemachineTargetYaw;
+        float _cinemachineTargetPitch;
 
-        private float _jumpTimeoutDelta;
-        private float _fallTimeoutDelta;
+        float _speed;
+        float _animationBlend;
+        float _targetRotation = 0.0f;
+        float _rotationVelocity;
+        float _verticalVelocity;
+        float _terminalVelocity = 53.0f;
 
-        private int _animIDSpeed;
-        private int _animIDGrounded;
-        private int _animIDJump;
-        private int _animIDFreeFall;
-        private int _animIDMotionSpeed;
+        float _jumpTimeoutDelta;
+        float _fallTimeoutDelta;
+
+        int _animIDSpeed;
+        int _animIDGrounded;
+        int _animIDJump;
+        int _animIDFreeFall;
+        int _animIDMotionSpeed;
 
 #if ENABLE_INPUT_SYSTEM
-        private PlayerInput _playerInput;
+        PlayerInput _playerInput;
 #endif
-        private Animator _animator;
-        private CharacterController _controller;
-        private StarterAssetsInputs _input;
-        private GameObject _mainCamera;
+        Animator _animator;
+        CharacterController _controller;
+        StarterAssetsInputs _input;
+        GameObject _mainCamera;
 
-        private const float _threshold = 0.01f;
+        const float _threshold = 0.01f;
 
-        private bool _hasAnimator;
+        bool _hasAnimator;
 
-        private float _apexTimer;
+        float _apexTimer;
 
-        private float _autoTiltOffset = 0f;
-        private float _timeSinceUngrounded = 0f;
-        private float _timeSinceGrounded = 0f;
-        private bool _autoCamActive = false;
-        private bool _autoCamEligibleThisAir = false;
-        private bool _wasGrounded = true;
+        float _autoTiltOffset = 0f;
+        float _timeSinceUngrounded = 0f;
+        float _timeSinceGrounded = 0f;
+        bool _autoCamActive = false;
+        bool _autoCamEligibleThisAir = false;
+        bool _wasGrounded = true;
 
-        private bool _externalBounceRequested = false;
+        bool _externalBounceRequested = false;
 
-        private const float LookSensMin = 0.5f;
-        private const float LookSensMax = 1.5f;
-        private const float DefaultSliderValue = 0.5f;
+        const float LookSensMin = 0.5f;
+        const float LookSensMax = 1.5f;
+        const float DefaultSliderValue = 0.5f;
 
-        // ---- CAGE LOCK ----
-        private bool _movementLockedByCage = false;
-        private int _cageLayer = -1;
-        // --------------------
+        bool _movementLockedByCage = false;
+        int _cageLayer = -1;
+        bool _groundedOnCage = false;
+        bool _wasGroundedOnCage = false;
 
-        private bool IsCurrentDeviceMouse
+        public bool IsMovementLockedByCage
+        {
+            get { return _movementLockedByCage; }
+        }
+
+        bool IsCurrentDeviceMouse
         {
             get
             {
@@ -179,7 +139,7 @@ namespace StarterAssets
             }
         }
 
-        private void Awake()
+        void Awake()
         {
             if (_mainCamera == null)
             {
@@ -193,7 +153,7 @@ namespace StarterAssets
             AutoCamGlobal = true;
         }
 
-        private void Start()
+        void Start()
         {
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
 
@@ -212,11 +172,10 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
             _apexTimer = 0f;
 
-            // récupérer l'index du layer "Cage" (si existe)
             _cageLayer = LayerMask.NameToLayer("Cage");
         }
 
-        private void Update()
+        void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
 
@@ -225,12 +184,12 @@ namespace StarterAssets
             Move();
         }
 
-        private void LateUpdate()
+        void LateUpdate()
         {
             CameraRotation();
         }
 
-        private void AssignAnimationIDs()
+        void AssignAnimationIDs()
         {
             _animIDSpeed = Animator.StringToHash("Speed");
             _animIDGrounded = Animator.StringToHash("Grounded");
@@ -239,7 +198,7 @@ namespace StarterAssets
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
         }
 
-        private void GroundedCheck()
+        void GroundedCheck()
         {
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z);
             Grounded = Physics.CheckSphere(spherePosition, GroundedRadius, GroundLayers, QueryTriggerInteraction.Ignore);
@@ -250,7 +209,7 @@ namespace StarterAssets
             }
         }
 
-        private void CameraRotation()
+        void CameraRotation()
         {
             if (Grounded)
             {
@@ -284,7 +243,6 @@ namespace StarterAssets
                 float deltaTimeMultiplier = baseMultiplier * Mathf.Clamp(LookSensitivity, LookSensMin, LookSensMax);
 
                 bool hasLookInput = _input.look.sqrMagnitude >= _threshold;
-
                 bool useAutoCam = AutoCamGlobal && AutoCam;
 
                 if (hasLookInput)
@@ -380,9 +338,10 @@ namespace StarterAssets
                 Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
         }
 
-        private void Move()
+        void Move()
         {
-            // ----- LOCK DEPLACEMENT PAR CAGE -----
+            _groundedOnCage = false;
+
             if (_cageLayer >= 0)
             {
                 int cageMask = 1 << _cageLayer;
@@ -395,18 +354,25 @@ namespace StarterAssets
                     QueryTriggerInteraction.Ignore
                 );
 
-                if (cageContact)
+                bool groundedOnCageNow = Grounded && cageContact;
+
+                if (groundedOnCageNow)
                 {
-                    // on touche encore la cage : on verrouille
                     _movementLockedByCage = true;
                 }
                 else if (Grounded && !cageContact)
                 {
-                    // on est à nouveau grounded mais plus sur la cage : on libère
                     _movementLockedByCage = false;
                 }
+
+                if (groundedOnCageNow && !_wasGroundedOnCage && cagePogoTutorial != null)
+                {
+                    cagePogoTutorial.OnLandedBackOnCage();
+                }
+
+                _groundedOnCage = groundedOnCageNow;
+                _wasGroundedOnCage = groundedOnCageNow;
             }
-            // -------------------------------------
 
             bool canMove = CanMove && !_movementLockedByCage;
 
@@ -452,7 +418,7 @@ namespace StarterAssets
             }
         }
 
-        private void JumpAndGravity()
+        void JumpAndGravity()
         {
             bool handleAsGrounded = Grounded && !_externalBounceRequested;
 
@@ -473,7 +439,13 @@ namespace StarterAssets
 
                 if (_input.jump && _jumpTimeoutDelta <= 0.0f)
                 {
-                    _verticalVelocity = Mathf.Sqrt(JumpHeight * -2f * Gravity);
+                    float usedJumpHeight = _groundedOnCage ? CageJumpHeight : JumpHeight;
+                    _verticalVelocity = Mathf.Sqrt(usedJumpHeight * -2f * Gravity);
+
+                    if (_groundedOnCage && cagePogoTutorial != null)
+                    {
+                        cagePogoTutorial.StartFirstJumpSequence();
+                    }
 
                     if (_hasAnimator)
                     {
@@ -536,17 +508,22 @@ namespace StarterAssets
                 }
             }
 
+            if (cagePogoTutorial != null)
+            {
+                cagePogoTutorial.UpdateMovementState(_verticalVelocity, Grounded);
+            }
+
             _externalBounceRequested = false;
         }
 
-        private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
+        static float ClampAngle(float lfAngle, float lfMin, float lfMax)
         {
             if (lfAngle < -360f) lfAngle += 360f;
             if (lfAngle > 360f) lfAngle -= 360f;
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
 
-        private void OnDrawGizmosSelected()
+        void OnDrawGizmosSelected()
         {
             Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
             Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
@@ -556,7 +533,7 @@ namespace StarterAssets
             Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
         }
 
-        private void OnFootstep(AnimationEvent animationEvent)
+        void OnFootstep(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
@@ -568,7 +545,7 @@ namespace StarterAssets
             }
         }
 
-        private void OnLand(AnimationEvent animationEvent)
+        void OnLand(AnimationEvent animationEvent)
         {
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
