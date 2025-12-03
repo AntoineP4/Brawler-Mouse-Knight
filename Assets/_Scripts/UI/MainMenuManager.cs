@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
@@ -49,6 +49,7 @@ namespace StarterAssets
         [SerializeField] private Toggle mainInvertYToggle;
         [SerializeField] private Toggle mainAutoCamToggle;
         [SerializeField] private Toggle mainAttackOnJumpToggle;
+        [SerializeField] private Toggle mainRumbleToggle;
 
         [Header("Quit Confirm")]
         [SerializeField] private Button firstMainQuitConfirmButton;
@@ -88,6 +89,11 @@ namespace StarterAssets
         [SerializeField] private Renderer menuShadowRenderer;          // Mesh / SkinnedMesh du player
         [SerializeField] private GameObject menuDecalProjectorObject;  // Decal projector parent
         [SerializeField] private Camera mainGameplayCamera;            // Main camera URP
+
+        [Header("Selection Juice")]
+        [SerializeField] private float selectedScaleMultiplier = 1.06f;
+        [SerializeField] private float unselectedScaleMultiplier = 0.97f;
+        [SerializeField] private float scaleLerpSpeed = 12f;
 
         private PlayerInput _playerInput;
         private InputAction _moveAction;
@@ -131,6 +137,12 @@ namespace StarterAssets
         private bool _hadCameraData;
         private AntialiasingMode _originalAAMode;
         private AntialiasingQuality _originalAAQuality;
+
+        private GameObject _pendingSelection;
+
+        private Selectable[] _allSelectables;
+        private Transform[] _selectableTransforms;
+        private Vector3[] _selectableBaseScales;
 
         private void Awake()
         {
@@ -269,6 +281,7 @@ namespace StarterAssets
             if (mainInvertYToggle != null) mainInvertYToggle.onValueChanged.AddListener(OnMainInvertYChanged);
             if (mainAutoCamToggle != null) mainAutoCamToggle.onValueChanged.AddListener(OnMainAutoCamChanged);
             if (mainAttackOnJumpToggle != null) mainAttackOnJumpToggle.onValueChanged.AddListener(OnMainAttackOnJumpChanged);
+            if (mainRumbleToggle != null) mainRumbleToggle.onValueChanged.AddListener(OnMainRumbleChanged);
 
             RefreshMainOptionsUI();
 
@@ -279,6 +292,24 @@ namespace StarterAssets
                 _playerAnimator.SetBool(menuLoopBoolName, true);
 
             ApplyMenuVisualOverrides();
+
+            if (mainMenuRoot != null)
+            {
+                _allSelectables = mainMenuRoot.GetComponentsInChildren<Selectable>(true);
+                if (_allSelectables != null)
+                {
+                    int n = _allSelectables.Length;
+                    _selectableTransforms = new Transform[n];
+                    _selectableBaseScales = new Vector3[n];
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (_allSelectables[i] == null) continue;
+                        Transform t = _allSelectables[i].transform;
+                        _selectableTransforms[i] = t;
+                        _selectableBaseScales[i] = t.localScale;
+                    }
+                }
+            }
         }
 
         private void OnDestroy()
@@ -297,6 +328,7 @@ namespace StarterAssets
             if (mainInvertYToggle != null) mainInvertYToggle.onValueChanged.RemoveListener(OnMainInvertYChanged);
             if (mainAutoCamToggle != null) mainAutoCamToggle.onValueChanged.RemoveListener(OnMainAutoCamChanged);
             if (mainAttackOnJumpToggle != null) mainAttackOnJumpToggle.onValueChanged.RemoveListener(OnMainAttackOnJumpChanged);
+            if (mainRumbleToggle != null) mainRumbleToggle.onValueChanged.RemoveListener(OnMainRumbleChanged);
         }
 
         private bool BackPressedThisFrame()
@@ -309,6 +341,7 @@ namespace StarterAssets
             return gamepadBack || keyboardEsc;
         }
 
+        // ðŸ”§ ICI : nouvelle version de Update() qui Ã©vite le flash sur Start
         private void Update()
         {
             if (_gameStarted) return;
@@ -317,34 +350,100 @@ namespace StarterAssets
             if (Keyboard.current != null && Keyboard.current.enterKey.wasPressedThisFrame)
                 ExecuteCurrentButton();
 
+            bool canAutoSelect = _panelTransitionCoroutine == null && _pendingSelection == null;
+
             if (_inQuitConfirm)
             {
-                if (EventSystem.current.currentSelectedGameObject == null && firstMainQuitConfirmButton != null)
+                if (canAutoSelect &&
+                    EventSystem.current.currentSelectedGameObject == null &&
+                    firstMainQuitConfirmButton != null)
+                {
                     EventSystem.current.SetSelectedGameObject(firstMainQuitConfirmButton.gameObject);
+                }
 
                 if (BackPressedThisFrame())
                     OnMainQuitNoClicked();
             }
             else if (_inOptions)
             {
-                if (EventSystem.current.currentSelectedGameObject == null && firstMainOptionsButton != null)
+                if (canAutoSelect &&
+                    EventSystem.current.currentSelectedGameObject == null &&
+                    firstMainOptionsButton != null)
+                {
                     EventSystem.current.SetSelectedGameObject(firstMainOptionsButton.gameObject);
+                }
 
                 if (BackPressedThisFrame())
                     OnMainOptionsBackClicked();
             }
             else if (_inCredits)
             {
-                if (EventSystem.current.currentSelectedGameObject == null && firstMainCreditsButton != null)
+                if (canAutoSelect &&
+                    EventSystem.current.currentSelectedGameObject == null &&
+                    firstMainCreditsButton != null)
+                {
                     EventSystem.current.SetSelectedGameObject(firstMainCreditsButton.gameObject);
+                }
 
                 if (BackPressedThisFrame())
                     OnMainCreditsBackClicked();
             }
             else
             {
-                if (EventSystem.current.currentSelectedGameObject == null && firstMainButton != null)
+                if (canAutoSelect &&
+                    EventSystem.current.currentSelectedGameObject == null &&
+                    firstMainButton != null)
+                {
                     EventSystem.current.SetSelectedGameObject(firstMainButton.gameObject);
+                }
+            }
+
+            if (_pendingSelection != null)
+            {
+                EventSystem.current.SetSelectedGameObject(null);
+                EventSystem.current.SetSelectedGameObject(_pendingSelection);
+                _pendingSelection = null;
+            }
+
+            UpdateSelectionJuice();
+        }
+
+        private void QueueSelection(GameObject target)
+        {
+            if (target == null) return;
+            if (EventSystem.current == null) return;
+            _pendingSelection = target;
+        }
+
+        private void UpdateSelectionJuice()
+        {
+            if (_selectableTransforms == null || _selectableBaseScales == null)
+                return;
+
+            GameObject selected = null;
+            if (EventSystem.current != null)
+                selected = EventSystem.current.currentSelectedGameObject;
+
+            float dt = Time.unscaledDeltaTime;
+            float lerpFactor = 1f - Mathf.Exp(-scaleLerpSpeed * dt);
+
+            for (int i = 0; i < _selectableTransforms.Length; i++)
+            {
+                Transform t = _selectableTransforms[i];
+                if (t == null) continue;
+
+                Vector3 baseScale = _selectableBaseScales[i];
+
+                bool isSelected = false;
+                if (selected != null)
+                {
+                    if (t.gameObject == selected || t == selected.transform || t.IsChildOf(selected.transform))
+                        isSelected = true;
+                }
+
+                float mul = isSelected ? selectedScaleMultiplier : unselectedScaleMultiplier;
+                Vector3 targetScale = baseScale * mul;
+                t.localScale = Vector3.Lerp(t.localScale, targetScale, lerpFactor);
             }
         }
 
@@ -554,8 +653,10 @@ namespace StarterAssets
 
             if (targetPanel == _currentPanel)
             {
-                if (EventSystem.current != null && firstSelected != null)
-                    EventSystem.current.SetSelectedGameObject(firstSelected);
+                if (firstSelected != null)
+                    QueueSelection(firstSelected);
+
+
                 _panelTransitionCoroutine = null;
                 yield break;
             }
@@ -580,8 +681,8 @@ namespace StarterAssets
                     targetCanvasGroup.blocksRaycasts = true;
                 }
 
-                if (EventSystem.current != null && firstSelected != null)
-                    EventSystem.current.SetSelectedGameObject(firstSelected);
+                if (firstSelected != null)
+                    QueueSelection(firstSelected);
 
                 _panelTransitionCoroutine = null;
                 yield break;
@@ -607,6 +708,15 @@ namespace StarterAssets
 
             if (_currentPanelCanvasGroup != null)
                 _currentPanelCanvasGroup.alpha = 0f;
+
+            if (EventSystem.current != null)
+            {
+                var currentSel = EventSystem.current.currentSelectedGameObject;
+                if (currentSel != null && _currentPanel != null && currentSel.transform.IsChildOf(_currentPanel.transform))
+                {
+                    EventSystem.current.SetSelectedGameObject(null);
+                }
+            }
 
             if (_currentPanel != null && _currentPanel != targetPanel)
                 _currentPanel.SetActive(false);
@@ -643,8 +753,8 @@ namespace StarterAssets
             _currentPanel = targetPanel;
             _currentPanelCanvasGroup = targetCanvasGroup;
 
-            if (EventSystem.current != null && firstSelected != null)
-                EventSystem.current.SetSelectedGameObject(firstSelected);
+            if (firstSelected != null)
+                QueueSelection(firstSelected);
 
             _panelTransitionCoroutine = null;
         }
@@ -749,6 +859,9 @@ namespace StarterAssets
 
             if (pogoDashAbility != null && mainAttackOnJumpToggle != null)
                 mainAttackOnJumpToggle.isOn = pogoDashAbility.AttackOnJump;
+
+            if (mainRumbleToggle != null)
+                mainRumbleToggle.isOn = GameRumbleSettings.RumbleEnabled;
         }
 
         private void OnMainSensitivityChanged(float value)
@@ -775,6 +888,11 @@ namespace StarterAssets
             pogoDashAbility.AttackOnJump = isOn;
         }
 
+        private void OnMainRumbleChanged(bool isOn)
+        {
+            GameRumbleSettings.SetRumbleEnabled(isOn);
+        }
+
         private void ApplyMenuVisualOverrides()
         {
             if (_menuVisualsConfigured) return;
@@ -785,7 +903,7 @@ namespace StarterAssets
                 _originalShadowCastingMode = menuShadowRenderer.shadowCastingMode;
                 _originalReceiveShadows = menuShadowRenderer.receiveShadows;
 
-                // Menu ON : on force les ombres ON, quel que soit l'état initial
+                // Menu ON : on force les ombres ON
                 menuShadowRenderer.shadowCastingMode = ShadowCastingMode.On;
                 menuShadowRenderer.receiveShadows = true;
             }
@@ -823,7 +941,6 @@ namespace StarterAssets
 
             if (_hadMeshShadowData && menuShadowRenderer != null)
             {
-                // Retour EXACT à l’état d’origine (dans ton cas : ombre OFF)
                 menuShadowRenderer.shadowCastingMode = _originalShadowCastingMode;
                 menuShadowRenderer.receiveShadows = _originalReceiveShadows;
             }
@@ -842,6 +959,36 @@ namespace StarterAssets
                     camData.antialiasingQuality = _originalAAQuality;
                 }
             }
+        }
+    }
+
+    public static class GameRumbleSettings
+    {
+        private const string PrefKey = "RumbleEnabled";
+        private static bool _rumbleEnabled = true;
+        private static bool _loaded;
+
+        public static bool RumbleEnabled
+        {
+            get
+            {
+                EnsureLoaded();
+                return _rumbleEnabled;
+            }
+        }
+
+        private static void EnsureLoaded()
+        {
+            if (_loaded) return;
+            _rumbleEnabled = PlayerPrefs.GetInt(PrefKey, 1) == 1; // par dÃ©faut ON
+            _loaded = true;
+        }
+
+        public static void SetRumbleEnabled(bool enabled)
+        {
+            EnsureLoaded();
+            _rumbleEnabled = enabled;
+            PlayerPrefs.SetInt(PrefKey, enabled ? 1 : 0);
         }
     }
 }

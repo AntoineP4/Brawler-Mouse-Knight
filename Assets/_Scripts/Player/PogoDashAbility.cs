@@ -701,6 +701,7 @@ namespace StarterAssets
         {
 #if ENABLE_INPUT_SYSTEM
             if (!enableRumble) return;
+            if (!GameRumbleSettings.RumbleEnabled) return;
             var gamepad = Gamepad.current;
             if (gamepad == null) return;
             if (rumbleCo != null) StopCoroutine(rumbleCo);
