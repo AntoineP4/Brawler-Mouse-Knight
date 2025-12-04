@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a454b94b8912c26448575eed5ed0a477, type: 3}
-  m_Name: Tuto
+  m_Name: Pogoni
   m_EditorClassIdentifier: 
-  TopClamp: 80
-  BottomClamp: -44
-  AutoCam: 0
+  TopClamp: 50
+  BottomClamp: -25
+  AutoCamTopClamp: 70
+  AutoCamBottomClamp: -40
+  AutoCam: 1
   AirTiltSpeedUp: 70
   AirTiltSpeedDown: 44.44
   AutoCamTopSlowdownRange: 3
