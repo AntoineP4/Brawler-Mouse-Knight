@@ -7,7 +7,6 @@ public class DialogueManager : MonoBehaviour
 {
     public static DialogueManager Instance { get; private set; }
 
-    [SerializeField] private CanvasGroup subtitleGroup;
     [SerializeField] private TextMeshProUGUI subtitleText;
     [SerializeField] private float fadeDuration = 0.15f;
     [SerializeField] private float charactersPerSecond = 35f;
@@ -26,9 +25,12 @@ public class DialogueManager : MonoBehaviour
         }
 
         Instance = this;
-        subtitleGroup.alpha = 0f;
-        subtitleGroup.gameObject.SetActive(false);
+
+        subtitleText.gameObject.SetActive(false);
         subtitleText.text = string.Empty;
+        Color c = subtitleText.color;
+        c.a = 0f;
+        subtitleText.color = c;
     }
 
     public void PlaySequence(DialogueSequence sequence, Action onEnded = null)
@@ -46,7 +48,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator RunSequence(DialogueSequence sequence)
     {
-        subtitleGroup.gameObject.SetActive(true);
+        subtitleText.gameObject.SetActive(true);
         yield return FadeTo(1f);
 
         for (int i = 0; i < sequence.lines.Length; i++)
@@ -57,7 +59,8 @@ public class DialogueManager : MonoBehaviour
 
         subtitleText.text = string.Empty;
         yield return FadeTo(0f);
-        subtitleGroup.gameObject.SetActive(false);
+        subtitleText.gameObject.SetActive(false);
+
         dialogueRoutine = null;
 
         var callback = onSequenceEnded;
@@ -97,18 +100,22 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator FadeTo(float targetAlpha)
     {
-        float startAlpha = subtitleGroup.alpha;
+        float startAlpha = subtitleText.color.a;
         float t = 0f;
 
         while (t < fadeDuration)
         {
             t += Time.deltaTime;
             float lerp = t / fadeDuration;
-            subtitleGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, lerp);
+            Color c = subtitleText.color;
+            c.a = Mathf.Lerp(startAlpha, targetAlpha, lerp);
+            subtitleText.color = c;
             yield return null;
         }
 
-        subtitleGroup.alpha = targetAlpha;
+        Color finalColor = subtitleText.color;
+        finalColor.a = targetAlpha;
+        subtitleText.color = finalColor;
     }
 
     public bool IsPlaying
