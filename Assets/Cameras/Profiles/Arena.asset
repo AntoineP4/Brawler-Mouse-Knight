@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arena
   m_EditorClassIdentifier: 
   TopClamp: 50
-  BottomClamp: 10
+  BottomClamp: -4
   AutoCamTopClamp: 50
   AutoCamBottomClamp: 10
   AutoCam: 1
