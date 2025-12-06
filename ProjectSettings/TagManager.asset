@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - ennemy_attack
+  - Spawner Preview
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - Mushroom
   - Cage
   - Wall
-  - 
-  - 
+  - Cam don't collide ground
+  - Cam don't collide wall
   - 
   - 
   - 

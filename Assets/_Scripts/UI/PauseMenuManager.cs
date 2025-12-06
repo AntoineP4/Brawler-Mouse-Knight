@@ -17,6 +17,9 @@ namespace StarterAssets
         [SerializeField] private GameObject optionsPanel;
         [SerializeField] private GameObject quitConfirmPanel;
 
+        [Header("Quit Target Scene")]
+        [SerializeField] private string quitSceneName;
+
         [Header("Pause Menu Root CanvasGroup")]
         [SerializeField] private CanvasGroup pauseMenuRootCanvasGroup;
         [SerializeField] private float panelFadeDuration = 0.25f;
@@ -530,7 +533,6 @@ namespace StarterAssets
                 if (firstSelected != null)
                     QueueSelection(firstSelected);
 
-
                 _panelTransitionCoroutine = null;
                 yield break;
             }
@@ -788,8 +790,7 @@ namespace StarterAssets
             if (pauseMenuRoot != null)
                 pauseMenuRoot.SetActive(false);
 
-            var scene = SceneManager.GetActiveScene();
-            SceneManager.LoadScene(scene.buildIndex, LoadSceneMode.Single);
+            SceneManager.LoadScene(quitSceneName, LoadSceneMode.Single);
         }
 
         private void RefreshOptionsUI()

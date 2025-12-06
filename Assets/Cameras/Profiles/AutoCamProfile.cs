@@ -1,21 +1,31 @@
 using UnityEngine;
 
-namespace StarterAssets
+[CreateAssetMenu(fileName = "AutoCamProfile", menuName = "Camera/Auto Cam Profile")]
+public class AutoCamProfile : ScriptableObject
 {
-    [CreateAssetMenu(menuName = "Camera/AutoCamProfile")]
-    public class AutoCamProfile : ScriptableObject
-    {
-        public float TopClamp = 70.0f;
-        public float BottomClamp = -30.0f;
+    [Header("Manual Camera Clamp")]
+    public float TopClamp = 70f;
+    public float BottomClamp = -30f;
 
-        public bool AutoCam = true;
-        public float AirTiltSpeedUp = 60f;
-        public float AirTiltSpeedDown = 40f;
-        public float AutoCamTopSlowdownRange = 10f;
-        public float AutoCamDownEaseInTime = 0.25f;
-        public float AutoCamMinAirTime = 0.1f;
-        public float AutoCamGroundDelay = 0.2f;
+    [Header("Auto Cam Clamp")]
+    public float AutoCamTopClamp = 70f;
+    public float AutoCamBottomClamp = -30f;
 
-        public float CameraAngleOverride = 0.0f;
-    }
+    [Header("Auto Cam Toggle")]
+    public bool AutoCam = true;
+
+    [Header("Auto Cam Movement Speeds")]
+    public float AirTiltSpeedUp = 70f;
+    public float AirTiltSpeedDown = 44f;
+
+    [Header("Air Slowdown Near Clamp")]
+    public float AutoCamTopSlowdownRange = 3f;
+
+    [Header("Ground Transition Timing")]
+    public float AutoCamDownEaseInTime = 0.25f;
+    public float AutoCamMinAirTime = 0.1f;
+    public float AutoCamGroundDelay = 0.4444f;
+
+    [Header("Rotation Override")]
+    public float CameraAngleOverride = 0f;
 }

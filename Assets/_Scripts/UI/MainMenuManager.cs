@@ -86,9 +86,11 @@ namespace StarterAssets
         [SerializeField] private string menuLoopBoolName = "MenuLoop";
 
         [Header("Menu Visual Overrides")]
-        [SerializeField] private Renderer menuShadowRenderer;          // Mesh / SkinnedMesh du player
-        [SerializeField] private GameObject menuDecalProjectorObject;  // Decal projector parent
-        [SerializeField] private Camera mainGameplayCamera;            // Main camera URP
+        [SerializeField] private Renderer menuShadowRenderer;
+        [SerializeField] private GameObject menuDecalProjectorObject;
+        [SerializeField] private Camera mainGameplayCamera;
+        [SerializeField] private Color menuAmbientColor = new Color(60f / 255f, 60f / 255f, 60f / 255f, 1f);
+        [SerializeField] private float ambientColorLerpDuration = 0.6f;
 
         [Header("Selection Juice")]
         [SerializeField] private float selectedScaleMultiplier = 1.06f;
@@ -124,7 +126,6 @@ namespace StarterAssets
         private GameObject _currentPanel;
         private CanvasGroup _currentPanelCanvasGroup;
 
-        // Cache pour les overrides visuels du menu
         private bool _menuVisualsConfigured;
 
         private bool _hadMeshShadowData;
@@ -137,6 +138,10 @@ namespace StarterAssets
         private bool _hadCameraData;
         private AntialiasingMode _originalAAMode;
         private AntialiasingQuality _originalAAQuality;
+
+        private bool _hadAmbientColor;
+        private Color _originalAmbientColor;
+        private Coroutine _ambientLerpCoroutine;
 
         private GameObject _pendingSelection;
 
@@ -341,7 +346,6 @@ namespace StarterAssets
             return gamepadBack || keyboardEsc;
         }
 
-        // 🔧 ICI : nouvelle version de Update() qui évite le flash sur Start
         private void Update()
         {
             if (_gameStarted) return;
@@ -656,7 +660,6 @@ namespace StarterAssets
                 if (firstSelected != null)
                     QueueSelection(firstSelected);
 
-
                 _panelTransitionCoroutine = null;
                 yield break;
             }
@@ -903,7 +906,6 @@ namespace StarterAssets
                 _originalShadowCastingMode = menuShadowRenderer.shadowCastingMode;
                 _originalReceiveShadows = menuShadowRenderer.receiveShadows;
 
-                // Menu ON : on force les ombres ON
                 menuShadowRenderer.shadowCastingMode = ShadowCastingMode.On;
                 menuShadowRenderer.receiveShadows = true;
             }
@@ -913,7 +915,6 @@ namespace StarterAssets
                 _hadDecalObject = true;
                 _decalOriginalActive = menuDecalProjectorObject.activeSelf;
 
-                // Menu actif : decal OFF
                 if (_decalOriginalActive)
                     menuDecalProjectorObject.SetActive(false);
             }
@@ -927,10 +928,13 @@ namespace StarterAssets
                     _originalAAMode = camData.antialiasing;
                     _originalAAQuality = camData.antialiasingQuality;
 
-                    // Menu actif : TAA
                     camData.antialiasing = AntialiasingMode.TemporalAntiAliasing;
                 }
             }
+
+            _hadAmbientColor = true;
+            _originalAmbientColor = RenderSettings.ambientLight;
+            RenderSettings.ambientLight = menuAmbientColor;
 
             _menuVisualsConfigured = true;
         }
@@ -959,6 +963,37 @@ namespace StarterAssets
                     camData.antialiasingQuality = _originalAAQuality;
                 }
             }
+
+            if (_hadAmbientColor)
+            {
+                if (_ambientLerpCoroutine != null)
+                    StopCoroutine(_ambientLerpCoroutine);
+                _ambientLerpCoroutine = StartCoroutine(LerpAmbientColor(_originalAmbientColor));
+            }
+        }
+
+        private IEnumerator LerpAmbientColor(Color targetColor)
+        {
+            Color startColor = RenderSettings.ambientLight;
+
+            if (ambientColorLerpDuration <= 0f)
+            {
+                RenderSettings.ambientLight = targetColor;
+                _ambientLerpCoroutine = null;
+                yield break;
+            }
+
+            float elapsed = 0f;
+            while (elapsed < ambientColorLerpDuration)
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.Clamp01(elapsed / ambientColorLerpDuration);
+                RenderSettings.ambientLight = Color.Lerp(startColor, targetColor, t);
+                yield return null;
+            }
+
+            RenderSettings.ambientLight = targetColor;
+            _ambientLerpCoroutine = null;
         }
     }
 
@@ -980,7 +1015,7 @@ namespace StarterAssets
         private static void EnsureLoaded()
         {
             if (_loaded) return;
-            _rumbleEnabled = PlayerPrefs.GetInt(PrefKey, 1) == 1; // par défaut ON
+            _rumbleEnabled = PlayerPrefs.GetInt(PrefKey, 1) == 1;
             _loaded = true;
         }
 
