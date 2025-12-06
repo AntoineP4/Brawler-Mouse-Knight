@@ -134,15 +134,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.98
+      value: 36.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.91
+      value: -1.08
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6.52
+      value: -15.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
       propertyPath: m_LocalRotation.w
@@ -549,7 +549,8 @@ MonoBehaviour:
       tag damage","value":{"$content":["Player_attack"],"$type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"arena","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 5294735158103687634, guid: 95fb2701351cc0344bb1703ca072ce83, type: 3}
 --- !u!114 &5785128187774382779

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31682144dcef41a45a70ba6f8345bcd1, type: 3}
+  m_Name: Tuto
+  m_EditorClassIdentifier: 
+  lines:
+  - text: "H\xE9 ! Doucement\u2026 on est dehors, c\u2019est d\xE9j\xE0 assez risqu\xE9
+      comme \xE7a."
+    duration: 4
+  - text: "Si t\u2019as r\xE9ussi \xE0 briser ta cage, tu devrais pouvoir t\u2019occuper
+      des gardes avec la m\xEAme technique..."
+    duration: 4
+  - text: "Allez, frappe-moi pour t\u2019\xE9chauffer ! Je suis un vrai dur, moi
+      !"
+    duration: 5
