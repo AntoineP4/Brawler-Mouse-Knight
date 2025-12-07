@@ -292,6 +292,10 @@ PrefabInstance:
       propertyPath: EmissionModule.enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1639934426193915572, guid: 86e6c7d81766295418601bcd9d9ae6b9, type: 3}
+      propertyPath: RotationModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1701651844273063355, guid: 86e6c7d81766295418601bcd9d9ae6b9, type: 3}
       propertyPath: prewarm
       value: 0
