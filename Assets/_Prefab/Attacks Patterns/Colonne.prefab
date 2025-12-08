@@ -48,7 +48,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4508546395354371807}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -140,7 +140,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5294735158103687634}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -385,7 +385,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 811341319723546406, guid: 012a39d402a562b4682fbe2028cc1274, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2405776118969034995, guid: 012a39d402a562b4682fbe2028cc1274, type: 3}
       propertyPath: m_Name
@@ -393,7 +393,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2405776118969034995, guid: 012a39d402a562b4682fbe2028cc1274, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3830856962485847482, guid: 012a39d402a562b4682fbe2028cc1274, type: 3}
       propertyPath: m_PropertySheet.m_Float.m_Array.Array.size

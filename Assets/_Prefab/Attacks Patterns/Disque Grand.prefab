@@ -54,7 +54,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882530276527751879}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -367,7 +367,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9178424646042719160}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -500,6 +500,10 @@ PrefabInstance:
     - target: {fileID: 6547965365630005983, guid: a5f2e1a561eda814091741bf454dd28c, type: 3}
       propertyPath: m_Name
       value: FX_Weapon Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 6547965365630005983, guid: a5f2e1a561eda814091741bf454dd28c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6593137769438789637, guid: a5f2e1a561eda814091741bf454dd28c, type: 3}
       propertyPath: startDelay.scalar

@@ -102,7 +102,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6954675458567521457}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -193,7 +193,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7972412514107675265}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -371,6 +371,10 @@ PrefabInstance:
     - target: {fileID: 4230533699123781479, guid: 86e6c7d81766295418601bcd9d9ae6b9, type: 3}
       propertyPath: m_Name
       value: FX_Magic Door_Gold
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230533699123781479, guid: 86e6c7d81766295418601bcd9d9ae6b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4968951243140369456, guid: 86e6c7d81766295418601bcd9d9ae6b9, type: 3}
       propertyPath: m_IsActive
