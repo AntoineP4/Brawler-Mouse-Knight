@@ -1071,6 +1071,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 2520396502078413508, guid: 407828a94da77744d87f212526f33ab4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520396502078413508, guid: 407828a94da77744d87f212526f33ab4, type: 3}
+      propertyPath: m_Center.y
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8072679806919254950, guid: 407828a94da77744d87f212526f33ab4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.21
