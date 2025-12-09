@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a454b94b8912c26448575eed5ed0a477, type: 3}
   m_Name: Jump
   m_EditorClassIdentifier: 
-  TopClamp: 70
-  BottomClamp: -25
-  AutoCamTopClamp: 70
+  TopClamp: 44
+  BottomClamp: -30
+  AutoCamTopClamp: 44
   AutoCamBottomClamp: -30
-  AutoCam: 0
+  AutoCam: 1
   AirTiltSpeedUp: 70
   AirTiltSpeedDown: 44.44
   AutoCamTopSlowdownRange: 3
