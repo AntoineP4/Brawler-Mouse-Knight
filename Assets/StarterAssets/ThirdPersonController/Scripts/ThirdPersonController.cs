@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -63,6 +64,8 @@ namespace StarterAssets
         public float AutoCamDownEaseInTime = 0.25f;
         public float AutoCamMinAirTime = 0.1f;
         public float AutoCamGroundDelay = 0.2f;
+        public float AutoCamTopClamp = 70.0f;
+        public float AutoCamBottomClamp = -30.0f;
 
         [Header("External Locks")]
         public bool CanMove = true;
@@ -122,6 +125,12 @@ namespace StarterAssets
         bool _groundedOnCage = false;
         bool _wasGroundedOnCage = false;
 
+        float _currentTopClamp;
+        float _currentBottomClamp;
+
+        AutoCamProfile _pendingProfile;
+        bool _hasPendingProfile;
+
         public bool IsMovementLockedByCage
         {
             get { return _movementLockedByCage; }
@@ -173,6 +182,9 @@ namespace StarterAssets
             _apexTimer = 0f;
 
             _cageLayer = LayerMask.NameToLayer("Cage");
+
+            _currentTopClamp = TopClamp;
+            _currentBottomClamp = BottomClamp;
         }
 
         void Update()
@@ -181,6 +193,12 @@ namespace StarterAssets
 
             JumpAndGravity();
             GroundedCheck();
+
+            if (Grounded && _hasPendingProfile)
+            {
+                ApplyAutoCamProfileNow();
+            }
+
             Move();
         }
 
@@ -276,19 +294,26 @@ namespace StarterAssets
                         if (_autoCamActive)
                         {
                             float speedUp = AirTiltSpeedUp;
+                            float targetTop = AutoCamTopClamp;
 
-                            if (AutoCamTopSlowdownRange > 0f)
+                            float distanceToTop = targetTop - _cinemachineTargetPitch;
+
+                            if (distanceToTop <= 0f)
                             {
-                                float distanceToTop = TopClamp - _cinemachineTargetPitch;
-                                if (distanceToTop <= AutoCamTopSlowdownRange)
-                                {
-                                    float t = Mathf.Clamp01(distanceToTop / AutoCamTopSlowdownRange);
-                                    float slowFactor = Mathf.Lerp(0.1f, 1f, t);
-                                    speedUp *= slowFactor;
-                                }
+                                speedUp = 0f;
+                            }
+                            else if (AutoCamTopSlowdownRange > 0f && distanceToTop <= AutoCamTopSlowdownRange)
+                            {
+                                float t = Mathf.Clamp01(distanceToTop / AutoCamTopSlowdownRange);
+                                float slowFactor = Mathf.Lerp(0.1f, 1f, t);
+                                speedUp *= slowFactor;
                             }
 
                             float delta = speedUp * Time.deltaTime;
+
+                            if (delta > distanceToTop)
+                                delta = distanceToTop;
+
                             _cinemachineTargetPitch += delta;
                             _autoTiltOffset += delta;
                         }
@@ -332,7 +357,17 @@ namespace StarterAssets
             }
 
             _cinemachineTargetYaw = ClampAngle(_cinemachineTargetYaw, float.MinValue, float.MaxValue);
-            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
+            _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, _currentBottomClamp, _currentTopClamp);
+
+            if (_currentTopClamp > TopClamp && _cinemachineTargetPitch <= TopClamp)
+            {
+                _currentTopClamp = TopClamp;
+            }
+
+            if (_currentBottomClamp < BottomClamp && _cinemachineTargetPitch >= BottomClamp)
+            {
+                _currentBottomClamp = BottomClamp;
+            }
 
             CinemachineCameraTarget.transform.rotation =
                 Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
@@ -570,12 +605,31 @@ namespace StarterAssets
             _verticalVelocity = value;
         }
 
-        public void SetAutoCamProfile(AutoCamProfile profile)
+        public void ResetCameraAfterTeleport()
         {
-            if (profile == null) return;
+            _cinemachineTargetYaw = transform.eulerAngles.y;
+            _cinemachineTargetPitch = 0f;
+
+            if (CinemachineCameraTarget != null)
+            {
+                CinemachineCameraTarget.transform.rotation =
+                    Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
+            }
+        }
+
+        void ApplyAutoCamProfileNow()
+        {
+            if (_pendingProfile == null) return;
+
+            AutoCamProfile profile = _pendingProfile;
+            _hasPendingProfile = false;
+            _pendingProfile = null;
 
             TopClamp = profile.TopClamp;
             BottomClamp = profile.BottomClamp;
+
+            AutoCamTopClamp = profile.AutoCamTopClamp;
+            AutoCamBottomClamp = profile.AutoCamBottomClamp;
 
             AutoCam = profile.AutoCam;
             AirTiltSpeedUp = profile.AirTiltSpeedUp;
@@ -586,6 +640,37 @@ namespace StarterAssets
             AutoCamGroundDelay = profile.AutoCamGroundDelay;
 
             CameraAngleOverride = profile.CameraAngleOverride;
+
+            if (_cinemachineTargetPitch > TopClamp)
+            {
+                _currentTopClamp = _cinemachineTargetPitch;
+            }
+            else
+            {
+                _currentTopClamp = TopClamp;
+            }
+
+            if (_cinemachineTargetPitch < BottomClamp)
+            {
+                _currentBottomClamp = _cinemachineTargetPitch;
+            }
+            else
+            {
+                _currentBottomClamp = BottomClamp;
+            }
+        }
+
+        public void SetAutoCamProfile(AutoCamProfile profile)
+        {
+            if (profile == null) return;
+
+            _pendingProfile = profile;
+            _hasPendingProfile = true;
+
+            if (Grounded)
+            {
+                ApplyAutoCamProfileNow();
+            }
         }
     }
 }

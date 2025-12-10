@@ -13,8 +13,12 @@ MonoBehaviour:
   m_Name: Tuto
   m_EditorClassIdentifier: 
   lines:
-  - text: "Oh, petit chevalier\u2026 tu as enfin r\xE9ussi \xE0 sortir de ta cage
+  - text: "H\xE9 ! Doucement\u2026 on est dehors, c\u2019est d\xE9j\xE0 assez risqu\xE9
+      comme \xE7a."
+    duration: 4
+  - text: "Si t\u2019as r\xE9ussi \xE0 briser ta cage, tu devrais pouvoir t\u2019occuper
+      des gardes avec la m\xEAme technique..."
+    duration: 4
+  - text: "Allez, frappe-moi pour t\u2019\xE9chauffer ! Je suis un vrai dur, moi
       !"
-    duration: 3
-  - text: "Essaie de faire la m\xEAme chose avec ma t\xEAte."
     duration: 5
