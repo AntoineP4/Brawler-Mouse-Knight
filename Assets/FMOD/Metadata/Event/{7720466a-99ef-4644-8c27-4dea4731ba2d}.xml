@@ -161,6 +161,9 @@
 	<object class="MixerBusFader" id="{cde3c863-0ad0-4fd2-8b4f-d0f499b195f5}" />
 	<object class="SpatialiserEffect" id="{a4665ad1-a8a7-44aa-a8d3-60f876ee0b6b}" />
 	<object class="MultibandEqEffect" id="{fa304309-f688-450c-9758-08f76f4ff3c9}">
+		<property name="bypass">
+			<value>true</value>
+		</property>
 		<property name="filterTypeB">
 			<value>4</value>
 		</property>
