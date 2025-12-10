@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{55008e36-9e3d-4f74-a460-cc06761a5829}">
 		<property name="assetPath">
-			<value>mus_PrisonBreak.ogg</value>
+			<value>Musiques/mus_PrisonBreak.ogg</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
