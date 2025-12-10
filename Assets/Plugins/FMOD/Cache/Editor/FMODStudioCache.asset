@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7100127812582198387
+--- !u!114 &-8167547686868178756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/AMB
+  m_Name: event:/Musics/Opening
   m_EditorClassIdentifier: 
-  Path: event:/AMB
+  Path: event:/Musics/Opening
   Guid:
-    Data1: 234528003
-    Data2: 1239375835
-    Data3: 1523204773
-    Data4: -819722611
+    Data1: 984473137
+    Data2: 1144717898
+    Data3: 1249478804
+    Data4: 880948401
   Banks:
   - {fileID: 4167315505889625860}
-  IsStream: 0
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 138000
 --- !u!114 &-4012502559381150740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42,10 +42,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638997144979406616
+  lastModified: 639009879001392143
   FileSizes:
   - Name: Desktop
-    Value: 812
+    Value: 776
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -63,15 +63,14 @@ MonoBehaviour:
   - {fileID: -4012502559381150740}
   - {fileID: 4167315505889625860}
   EditorEvents:
-  - {fileID: -7100127812582198387}
-  - {fileID: 4563603575949275215}
+  - {fileID: -8167547686868178756}
   EditorParameters: []
   MasterBanks:
   - {fileID: 4167315505889625860}
   StringsBanks:
   - {fileID: -4012502559381150740}
   cacheVersion: 131857
-  cacheTime: 638997144979406616
+  cacheTime: 639009879001392143
   SerializableEventsDict:
   - key: event:/AMB
     index: 0
@@ -92,35 +91,8 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638997144979395212
+  lastModified: 639009879001382135
   FileSizes:
   - Name: Desktop
-    Value: 1889920
+    Value: 1888992
   Exists: 1
---- !u!114 &4563603575949275215
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MUSIC
-  m_EditorClassIdentifier: 
-  Path: event:/MUSIC
-  Guid:
-    Data1: 984473137
-    Data2: 1144717898
-    Data3: 1249478804
-    Data4: 880948401
-  Banks:
-  - {fileID: 4167315505889625860}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 141000
