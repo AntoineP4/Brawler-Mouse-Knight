@@ -206,7 +206,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -7495179517482950798}
   cacheVersion: 131857
-  cacheTime: 639009902011512318
+  cacheTime: 639009939059297817
   SerializableEventsDict:
   - key: event:/Musics/Opening
     index: 0
@@ -311,7 +311,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Musics.bank
   Name: Musics
   StudioPath: bank:/Musics
-  lastModified: 639009902011512318
+  lastModified: 639009939059297817
   FileSizes:
   - Name: Desktop
     Value: 6654432
