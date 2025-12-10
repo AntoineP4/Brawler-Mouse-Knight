@@ -279,7 +279,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dadf670319a304e4bb5793f073a56d4d, type: 2}
+  - {fileID: 2100000, guid: cbd6a594a15c22441af4cd1362e624aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -752,9 +752,9 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c2dff983e051c4245b812ebc8bff9c56, type: 2}
-  - {fileID: 2100000, guid: 3695ec6e8ee60104298db916f6386b67, type: 2}
-  - {fileID: 2100000, guid: df53bc6f2a7ee9b4887d56311ffe56a5, type: 2}
+  - {fileID: 2100000, guid: cbd6a594a15c22441af4cd1362e624aa, type: 2}
+  - {fileID: 2100000, guid: 2f299cdd4fc7e3d4da6577cb3ac079cd, type: 2}
+  - {fileID: 2100000, guid: b7b2abba7577d294a82933d11cf64f4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1563,7 +1563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Player_Detection","value":{"$content":22.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"Player_Detection","value":{"$content":50.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Attack_Range","value":{"$content":3.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"CurrentIndex","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Patterns","value":{"$content":[0],"$type":"System.Collections.Generic.List`1[[UnityEngine.GameObject,
@@ -1761,7 +1761,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df53bc6f2a7ee9b4887d56311ffe56a5, type: 2}
+  - {fileID: 2100000, guid: b7b2abba7577d294a82933d11cf64f4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2431,7 +2431,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df53bc6f2a7ee9b4887d56311ffe56a5, type: 2}
+  - {fileID: 2100000, guid: b7b2abba7577d294a82933d11cf64f4b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2654,7 +2654,7 @@ Transform:
   m_GameObject: {fileID: 4345705316109662865}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.07, y: 0.88, z: 3.5}
+  m_LocalPosition: {x: 0, y: 0.88, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3032,8 +3032,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df53bc6f2a7ee9b4887d56311ffe56a5, type: 2}
-  - {fileID: 2100000, guid: c2dff983e051c4245b812ebc8bff9c56, type: 2}
+  - {fileID: 2100000, guid: b7b2abba7577d294a82933d11cf64f4b, type: 2}
+  - {fileID: 2100000, guid: cbd6a594a15c22441af4cd1362e624aa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3859,7 +3859,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3695ec6e8ee60104298db916f6386b67, type: 2}
+  - {fileID: 2100000, guid: 2f299cdd4fc7e3d4da6577cb3ac079cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4783,7 +4783,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3695ec6e8ee60104298db916f6386b67, type: 2}
+  - {fileID: 2100000, guid: 2f299cdd4fc7e3d4da6577cb3ac079cd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
