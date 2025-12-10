@@ -1,46 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8598885863941320467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
-  m_EditorClassIdentifier: 
-  Path: ../2025_2026_ms2_workshopunity-chatgpt/FMOD/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 639004576613680375
-  FileSizes:
-  - Name: Desktop
-    Value: 1074
-  Exists: 1
---- !u!114 &-7730713431401459512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: ../2025_2026_ms2_workshopunity-chatgpt/FMOD/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 639004576613700378
-  FileSizes:
-  - Name: Desktop
-    Value: 724
-  Exists: 1
---- !u!114 &-7100127812582198387
+--- !u!114 &-9102675709957848637
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/AMB
+  m_Name: event:/SFXs/Footsteps
   m_EditorClassIdentifier: 
-  Path: event:/AMB
+  Path: event:/SFXs/Footsteps
   Guid:
-    Data1: 234528003
-    Data2: 1239375835
-    Data3: 1523204773
-    Data4: -819722611
+    Data1: 1507586635
+    Data2: 1275618492
+    Data3: 843367318
+    Data4: -617506243
   Banks:
-  - {fileID: 4167315505889625860}
+  - {fileID: -1187502192736260583}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -67,7 +27,34 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
---- !u!114 &-4012502559381150740
+--- !u!114 &-8534892975868963621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFXs/Pogo
+  m_EditorClassIdentifier: 
+  Path: event:/SFXs/Pogo
+  Guid:
+    Data1: -295615328
+    Data2: 1093554589
+    Data3: -1245215086
+    Data4: -689794711
+  Banks:
+  - {fileID: -1187502192736260583}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-7495179517482950798
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,12 +69,12 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638997089507052719
+  lastModified: 639009954422772708
   FileSizes:
   - Name: Desktop
-    Value: 812
+    Value: 1194
   Exists: 1
---- !u!114 &11400000
+--- !u!114 &-5280935835851456453
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,22 +83,80 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
-  m_Name: FMODStudioCache
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Musics/Castle
   m_EditorClassIdentifier: 
-  EditorBanks:
-  - {fileID: -7730713431401459512}
-  - {fileID: -8598885863941320467}
-  EditorEvents: []
-  EditorParameters: []
-  MasterBanks:
-  - {fileID: -8598885863941320467}
-  StringsBanks:
-  - {fileID: -7730713431401459512}
-  cacheVersion: 131857
-  cacheTime: 639004576613700378
-  SerializableEventsDict: []
---- !u!114 &4167315505889625860
+  Path: event:/Musics/Castle
+  Guid:
+    Data1: -849298860
+    Data2: 1118775722
+    Data3: -144397655
+    Data4: 669980845
+  Banks:
+  - {fileID: -1187502192736260583}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters:
+  - {fileID: 8091813571171023559}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 135428
+--- !u!114 &-3305944187092947679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Musics/Prison
+  m_EditorClassIdentifier: 
+  Path: event:/Musics/Prison
+  Guid:
+    Data1: 1287865456
+    Data2: 1076527674
+    Data3: 59672738
+    Data4: -79790929
+  Banks:
+  - {fileID: -1187502192736260583}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 117000
+--- !u!114 &-1449920804130752121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFXs/Character_Talk
+  m_EditorClassIdentifier: 
+  Path: event:/SFXs/Character_Talk
+  Guid:
+    Data1: -487613436
+    Data2: 1321411202
+    Data3: -1890050412
+    Data4: -759350168
+  Banks:
+  - {fileID: -1187502192736260583}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
+--- !u!114 &-1187502192736260583
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,12 +171,59 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638997089507042733
+  lastModified: 639009954422645832
   FileSizes:
   - Name: Desktop
-    Value: 2114
+    Value: 6657536
   Exists: 1
---- !u!114 &4563603575949275215
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
+  m_Name: FMODStudioCache
+  m_EditorClassIdentifier: 
+  EditorBanks:
+  - {fileID: -7495179517482950798}
+  - {fileID: -1187502192736260583}
+  - {fileID: 6084994527752790307}
+  - {fileID: 3870447489898266223}
+  EditorEvents:
+  - {fileID: 5168298624964499940}
+  - {fileID: -5280935835851456453}
+  - {fileID: -3305944187092947679}
+  - {fileID: 3717069827505323809}
+  - {fileID: -1449920804130752121}
+  - {fileID: -9102675709957848637}
+  - {fileID: -8534892975868963621}
+  EditorParameters: []
+  MasterBanks:
+  - {fileID: -1187502192736260583}
+  StringsBanks:
+  - {fileID: -7495179517482950798}
+  cacheVersion: 131857
+  cacheTime: 639009954422772708
+  SerializableEventsDict:
+  - key: event:/Musics/Opening
+    index: 0
+  - key: event:/Musics/Castle
+    index: 1
+  - key: event:/Musics/Prison
+    index: 2
+  - key: event:/Musics/Village
+    index: 3
+  - key: event:/SFXs/Character_Talk
+    index: 4
+  - key: event:/SFXs/Footsteps
+    index: 5
+  - key: event:/SFXs/Pogo
+    index: 6
+--- !u!114 &3717069827505323809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,20 +233,111 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/MUSIC
+  m_Name: event:/Musics/Village
   m_EditorClassIdentifier: 
-  Path: event:/MUSIC
+  Path: event:/Musics/Village
+  Guid:
+    Data1: 1601047235
+    Data2: 1169485236
+    Data3: 1547072698
+    Data4: 233633470
+  Banks:
+  - {fileID: -1187502192736260583}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 112500
+--- !u!114 &3870447489898266223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFXs.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/Build/Desktop/SFXs.bank
+  Name: SFXs
+  StudioPath: bank:/SFXs
+  lastModified: 639009951974512616
+  FileSizes:
+  - Name: Desktop
+    Value: 506
+  Exists: 1
+--- !u!114 &5168298624964499940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Musics/Opening
+  m_EditorClassIdentifier: 
+  Path: event:/Musics/Opening
   Guid:
     Data1: 984473137
     Data2: 1144717898
     Data3: 1249478804
     Data4: 880948401
   Banks:
-  - {fileID: 4167315505889625860}
-  IsStream: 0
+  - {fileID: -1187502192736260583}
+  IsStream: 1
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 138000
+--- !u!114 &6084994527752790307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Musics.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/FMOD/Build/Desktop/Musics.bank
+  Name: Musics
+  StudioPath: bank:/Musics
+  lastModified: 639009951974259151
+  FileSizes:
+  - Name: Desktop
+    Value: 506
+  Exists: 1
+--- !u!114 &8091813571171023559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Castle/isFilter
+  m_EditorClassIdentifier: 
+  Name: isFilter
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 4245117358
+    data2: 3767812354
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1

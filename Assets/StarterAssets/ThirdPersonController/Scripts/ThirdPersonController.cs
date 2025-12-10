@@ -605,6 +605,18 @@ namespace StarterAssets
             _verticalVelocity = value;
         }
 
+        public void ResetCameraAfterTeleport()
+        {
+            _cinemachineTargetYaw = transform.eulerAngles.y;
+            _cinemachineTargetPitch = 0f;
+
+            if (CinemachineCameraTarget != null)
+            {
+                CinemachineCameraTarget.transform.rotation =
+                    Quaternion.Euler(_cinemachineTargetPitch + CameraAngleOverride, _cinemachineTargetYaw, 0.0f);
+            }
+        }
+
         void ApplyAutoCamProfileNow()
         {
             if (_pendingProfile == null) return;

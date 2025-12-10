@@ -1618,6 +1618,7 @@ GameObject:
   - component: {fileID: 2305071959269750051}
   - component: {fileID: 6809806756402130492}
   - component: {fileID: 7061669382337741457}
+  - component: {fileID: 9070912061917076339}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -2044,6 +2045,24 @@ MonoBehaviour:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
     - {fileID: 11400000, guid: 232edfec69895b34a8531825f4a89ef3, type: 2}
+--- !u!114 &9070912061917076339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8025475783741466956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da502b725fe25884893582a008008988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCanvasGroup: {fileID: 0}
+  fadeOutDuration: 3
+  blackScreenDuration: 1
+  fadeInDuration: 1
+  deathAnimationName: Death
+  deathEndEventName: DeathReload
 --- !u!1 &8171442435062974757
 GameObject:
   m_ObjectHideFlags: 0
