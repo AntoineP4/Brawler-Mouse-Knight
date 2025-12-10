@@ -52818,6 +52818,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2344114, guid: eda319de497b2a4449c2ab39265a3ac5, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -82946,6 +82950,18 @@ PrefabInstance:
       propertyPath: targetCamera
       value: 
       objectReference: {fileID: 1280056179}
+    - target: {fileID: 6809806756402130492, guid: 3578114ef6531344ea6b50613af00142, type: 3}
+      propertyPath: _data._json
+      value: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809806756402130492, guid: 3578114ef6531344ea6b50613af00142, type: 3}
+      propertyPath: _data._objectReferences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809806756402130492, guid: 3578114ef6531344ea6b50613af00142, type: 3}
+      propertyPath: '_data._objectReferences.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c40cf3c13064e5447afbb2f90f0766bf, type: 2}
     - target: {fileID: 8025475783741466956, guid: 3578114ef6531344ea6b50613af00142, type: 3}
       propertyPath: m_Name
       value: Player
