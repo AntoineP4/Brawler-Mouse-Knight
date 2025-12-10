@@ -69,10 +69,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639009942198264648
+  lastModified: 639009953627071213
   FileSizes:
   - Name: Desktop
-    Value: 1144
+    Value: 1194
   Exists: 1
 --- !u!114 &-5280935835851456453
 MonoBehaviour:
@@ -97,7 +97,8 @@ MonoBehaviour:
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
-  Parameters: []
+  Parameters:
+  - {fileID: 8091813571171023559}
   MinDistance: 1
   MaxDistance: 20
   Length: 135428
@@ -170,10 +171,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639009942198264648
+  lastModified: 639009953627061177
   FileSizes:
   - Name: Desktop
-    Value: 6656480
+    Value: 6657536
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -206,7 +207,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -7495179517482950798}
   cacheVersion: 131857
-  cacheTime: 639009942198310503
+  cacheTime: 639009953627071213
   SerializableEventsDict:
   - key: event:/Musics/Opening
     index: 0
@@ -315,4 +316,28 @@ MonoBehaviour:
   FileSizes:
   - Name: Desktop
     Value: 506
+  Exists: 1
+--- !u!114 &8091813571171023559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Castle/isFilter
+  m_EditorClassIdentifier: 
+  Name: isFilter
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 4245117358
+    data2: 3767812354
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1

@@ -132,3 +132,15 @@
 [LOG] SoundI::release                          : mus__OnceUponATime (00000206134D7E38)
 [LOG] SoundI::release                          :     mus__OnceUponATime (00000206561571F8)
 [LOG] SoundI::release                          :     mus__OnceUponATime (00000206134D74D8)
+[LOG] SoundI::release                          : mus__OnceUponATime (000002063134F4C8)
+[LOG] SoundI::release                          :     mus__OnceUponATime (00000206561583F8)
+[LOG] SoundI::release                          :     mus__OnceUponATime (0000020631353CA8)
+[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
+[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
+[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
+[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 6
+[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
+[LOG] BankLoader::serializeBank                : fileversion = 146, compatVersion = 146 (oldest = 44, newest = 146)
