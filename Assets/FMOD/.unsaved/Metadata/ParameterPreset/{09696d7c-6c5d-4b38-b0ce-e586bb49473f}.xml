@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{09696d7c-6c5d-4b38-b0ce-e586bb49473f}">
+		<property name="name">
+			<value>Jump repeat</value>
+		</property>
+		<relationship name="folder">
+			<destination>{28d7e34b-a457-4f13-911f-4622a0318e78}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{db2b2bd4-ba3a-418f-8d9c-34130d470572}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{db2b2bd4-ba3a-418f-8d9c-34130d470572}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
