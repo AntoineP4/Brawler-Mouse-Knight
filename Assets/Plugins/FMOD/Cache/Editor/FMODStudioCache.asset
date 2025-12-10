@@ -19,7 +19,7 @@ MonoBehaviour:
     Data3: 843367318
     Data4: -617506243
   Banks:
-  - {fileID: 3870447489898266223}
+  - {fileID: -1187502192736260583}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -46,7 +46,7 @@ MonoBehaviour:
     Data3: -1245215086
     Data4: -689794711
   Banks:
-  - {fileID: 3870447489898266223}
+  - {fileID: -1187502192736260583}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -69,7 +69,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639009893639459212
+  lastModified: 639009942198264648
   FileSizes:
   - Name: Desktop
     Value: 1144
@@ -93,7 +93,7 @@ MonoBehaviour:
     Data3: -144397655
     Data4: 669980845
   Banks:
-  - {fileID: 6084994527752790307}
+  - {fileID: -1187502192736260583}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
     Data3: 59672738
     Data4: -79790929
   Banks:
-  - {fileID: 6084994527752790307}
+  - {fileID: -1187502192736260583}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -147,7 +147,7 @@ MonoBehaviour:
     Data3: -1890050412
     Data4: -759350168
   Banks:
-  - {fileID: 3870447489898266223}
+  - {fileID: -1187502192736260583}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -170,10 +170,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639009893639449164
+  lastModified: 639009942198264648
   FileSizes:
   - Name: Desktop
-    Value: 1074
+    Value: 6656480
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -206,7 +206,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -7495179517482950798}
   cacheVersion: 131857
-  cacheTime: 639009939059297817
+  cacheTime: 639009942198310503
   SerializableEventsDict:
   - key: event:/Musics/Opening
     index: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
     Data3: 1547072698
     Data4: 233633470
   Banks:
-  - {fileID: 6084994527752790307}
+  - {fileID: -1187502192736260583}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -264,10 +264,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFXs.bank
   Name: SFXs
   StudioPath: bank:/SFXs
-  lastModified: 639009893639489255
+  lastModified: 639009942198310503
   FileSizes:
   - Name: Desktop
-    Value: 2062
+    Value: 506
   Exists: 1
 --- !u!114 &5168298624964499940
 MonoBehaviour:
@@ -288,7 +288,7 @@ MonoBehaviour:
     Data3: 1249478804
     Data4: 880948401
   Banks:
-  - {fileID: 6084994527752790307}
+  - {fileID: -1187502192736260583}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -311,8 +311,8 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Musics.bank
   Name: Musics
   StudioPath: bank:/Musics
-  lastModified: 639009939059297817
+  lastModified: 639009942198300459
   FileSizes:
   - Name: Desktop
-    Value: 6654432
+    Value: 506
   Exists: 1
