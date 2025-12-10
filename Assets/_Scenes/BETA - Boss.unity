@@ -81345,6 +81345,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f254722ebe9eae4894b314862051820, type: 3}
+--- !u!225 &1038772920125294311 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 8167561323317157516, guid: 5f254722ebe9eae4894b314862051820, type: 3}
+  m_PrefabInstance: {fileID: 1038772920125294310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3557085121027174705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81566,6 +81571,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9070912061917076339, guid: 3578114ef6531344ea6b50613af00142, type: 3}
+      propertyPath: fadeCanvasGroup
+      value: 
+      objectReference: {fileID: 1038772920125294311}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
