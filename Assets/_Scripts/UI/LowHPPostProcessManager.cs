@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using Unity.VisualScripting;
@@ -21,8 +21,15 @@ public class LowHPPostProcessManager : MonoBehaviour
     [SerializeField] private float secondBeatMultiplier = 0.15f;
     [SerializeField] private float pulseAmplitude = 0.25f;
 
+    [Header("Damage Flash")]
+    [SerializeField] private float damageFlashDuration = 0.08f;
+    [SerializeField] private float damageFlashIntensityMultiplier = 1.22f;
+    [SerializeField] private Color damageFlashColor = new Color(0f, 0f, 0f, 0.65f);
+
     private Vignette vignette;
     private Coroutine fadeRoutine;
+    private Coroutine damageFlashRoutine;
+
     private int lastHP = int.MinValue;
     private const string HpVariableName = "PV player";
 
@@ -49,6 +56,8 @@ public class LowHPPostProcessManager : MonoBehaviour
         {
             lastHP = currentHP;
         }
+
+        ActivateLowHpSystem();
     }
 
     private void Update()
@@ -67,7 +76,18 @@ public class LowHPPostProcessManager : MonoBehaviour
         {
             if (currentHP != lastHP)
             {
+                bool lostHP = currentHP < lastHP;
+
                 lastHP = currentHP;
+
+                if (lostHP)
+                {
+                    if (damageFlashRoutine != null)
+                        StopCoroutine(damageFlashRoutine);
+
+                    damageFlashRoutine = StartCoroutine(DamageFlash());
+                }
+
                 SetLowHP(currentHP == 1);
             }
         }
@@ -97,7 +117,7 @@ public class LowHPPostProcessManager : MonoBehaviour
     {
         if (vignette != null) return;
 
-        Volume[] volumes = FindObjectsOfType<Volume>();
+        Volume[] volumes = FindObjectsByType<Volume>(FindObjectsSortMode.None);
         foreach (var v in volumes)
         {
             if (v.profile != null && v.profile.TryGet(out Vignette found))
@@ -178,6 +198,42 @@ public class LowHPPostProcessManager : MonoBehaviour
         baseIntensity = targetIntensity;
         currentColor = targetColor;
         fadeRoutine = null;
+    }
+
+    private IEnumerator DamageFlash()
+    {
+        float flashDuration = damageFlashDuration;
+        float flashIntensity = baseIntensity * damageFlashIntensityMultiplier;
+        Color flashColor = damageFlashColor;
+
+        float originalIntensity = baseIntensity;
+        Color originalColor = currentColor;
+
+        float t = 0f;
+
+        if (flashDuration <= 0f)
+        {
+            baseIntensity = originalIntensity;
+            currentColor = originalColor;
+            damageFlashRoutine = null;
+            yield break;
+        }
+
+        while (t < flashDuration)
+        {
+            t += Time.deltaTime;
+            float k = t / flashDuration;
+
+            baseIntensity = Mathf.Lerp(flashIntensity, originalIntensity, k);
+            currentColor = Color.Lerp(flashColor, originalColor, k);
+
+            yield return null;
+        }
+
+        baseIntensity = originalIntensity;
+        currentColor = originalColor;
+
+        damageFlashRoutine = null;
     }
 
     public void ActivateLowHpSystem()
