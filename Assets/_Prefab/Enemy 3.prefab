@@ -870,6 +870,7 @@ GameObject:
   - component: {fileID: 2843352527636821565}
   - component: {fileID: 4106206821324771523}
   - component: {fileID: -7529452871473791157}
+  - component: {fileID: -884345607816591172}
   m_Layer: 3
   m_Name: Enemy 3
   m_TagString: Untagged
@@ -974,10 +975,13 @@ MonoBehaviour:
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"arena","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"death
+      sound","value":{"$content":2,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 1882530276527751879, guid: d5cb45532f27a164fa1397270df70f0c, type: 3}
     - {fileID: 1396391933384642280}
+    - {fileID: 0}
 --- !u!114 &8206853864085124988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1056,37 @@ MonoBehaviour:
       Data3: -1928600422
       Data4: 846736804
     Path: event:/SFX/Enemies/Gollum/G_attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
+--- !u!114 &-884345607816591172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534543919426143247}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: -1327275063
+      Data2: 1099895299
+      Data3: -2019259749
+      Data4: 358859541
+    Path: event:/SFX/Enemies/Gollum/G_death
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
