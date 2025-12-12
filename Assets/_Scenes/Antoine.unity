@@ -2785,8 +2785,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 2146125696}
     m_Modifications:
     - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: globalVolumeName
+      value: Night URP Volume
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
       propertyPath: damageFlashColor.a
       value: 0.23529412
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: lowHpHeartbeatEvent.Path
+      value: event:/SFX/Player/Player_lowhealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: lowHpHeartbeatEvent.Guid.Data1
+      value: -552714986
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: lowHpHeartbeatEvent.Guid.Data2
+      value: 1147254057
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: lowHpHeartbeatEvent.Guid.Data3
+      value: 1354808738
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: lowHpHeartbeatEvent.Guid.Data4
+      value: -740582516
       objectReference: {fileID: 0}
     - target: {fileID: 3140265457261719009, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
       propertyPath: m_LocalPosition.x

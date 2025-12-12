@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using System.Collections;
 using FMODUnity;
 using FMOD.Studio;
+using UnityEngine.SceneManagement;
 
 public class LowHPPostProcessManager : MonoBehaviour
 {
@@ -31,9 +32,13 @@ public class LowHPPostProcessManager : MonoBehaviour
     [Header("FMOD")]
     [SerializeField] private EventReference lowHpHeartbeatEvent;
 
+    [Header("Auto")]
+    [SerializeField] private bool autoActivateOnStart = true;
+
     private Vignette vignette;
     private Coroutine fadeRoutine;
     private Coroutine damageFlashRoutine;
+    private Coroutine delayedActivateRoutine;
 
     private int lastHP = int.MinValue;
     private const string HpVariableName = "PV player";
@@ -48,10 +53,22 @@ public class LowHPPostProcessManager : MonoBehaviour
     private EventInstance lowHpHeartbeatInstance;
     private bool lowHpHeartbeatPlaying = false;
 
+    private Scene cachedActiveScene;
+
+    private void OnEnable()
+    {
+        SceneManager.activeSceneChanged += OnActiveSceneChanged;
+        cachedActiveScene = SceneManager.GetActiveScene();
+        ForceRefreshSceneBindings();
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnActiveSceneChanged;
+    }
+
     private void Start()
     {
-        RefreshVignetteReference();
-
         if (vignette != null)
         {
             baseIntensity = normalIntensity;
@@ -61,15 +78,19 @@ public class LowHPPostProcessManager : MonoBehaviour
         }
 
         if (TryGetCurrentHP(out int currentHP))
-        {
             lastHP = currentHP;
-        }
+
+        if (autoActivateOnStart)
+            ActivateLowHpSystem();
     }
 
     private void Update()
     {
-        RefreshVignetteReference();
-        if (vignette == null) return;
+        if (vignette == null)
+        {
+            RefreshVignetteReference();
+            if (vignette == null) return;
+        }
 
         if (!systemActive)
         {
@@ -83,7 +104,6 @@ public class LowHPPostProcessManager : MonoBehaviour
             if (currentHP != lastHP)
             {
                 bool lostHP = currentHP < lastHP;
-
                 lastHP = currentHP;
 
                 if (lostHP)
@@ -124,23 +144,57 @@ public class LowHPPostProcessManager : MonoBehaviour
         StopLowHpHeartbeat();
     }
 
+    private void OnActiveSceneChanged(Scene oldScene, Scene newScene)
+    {
+        cachedActiveScene = newScene;
+        ForceRefreshSceneBindings();
+
+        if (systemActive && TryGetCurrentHP(out int currentHP))
+        {
+            lastHP = currentHP;
+            SetLowHP(currentHP == 1, activationFadeDuration);
+        }
+    }
+
+    private void ForceRefreshSceneBindings()
+    {
+        vignette = null;
+
+        if (fadeRoutine != null)
+        {
+            StopCoroutine(fadeRoutine);
+            fadeRoutine = null;
+        }
+
+        if (damageFlashRoutine != null)
+        {
+            StopCoroutine(damageFlashRoutine);
+            damageFlashRoutine = null;
+        }
+
+        RefreshVignetteReference();
+    }
+
     private void RefreshVignetteReference()
     {
         if (vignette != null) return;
 
+        Scene active = GetActiveSceneSafe();
         Volume[] volumes = FindObjectsByType<Volume>(FindObjectsSortMode.None);
-        foreach (var v in volumes)
+
+        for (int i = 0; i < volumes.Length; i++)
         {
+            var v = volumes[i];
+            if (v == null) continue;
+
+            bool inActiveScene = v.gameObject.scene == active;
+            bool global = v.isGlobal;
+
+            if (!inActiveScene && !global) continue;
+
             if (v.profile != null && v.profile.TryGet(out Vignette found))
             {
                 vignette = found;
-
-                if (baseIntensity == 0f && currentColor == default)
-                {
-                    baseIntensity = vignette.intensity.value;
-                    currentColor = vignette.color.value;
-                }
-
                 return;
             }
         }
@@ -150,7 +204,8 @@ public class LowHPPostProcessManager : MonoBehaviour
     {
         hp = 0;
 
-        var sceneVars = Variables.Scene(gameObject.scene);
+        Scene active = GetActiveSceneSafe();
+        var sceneVars = Variables.Scene(active);
         if (sceneVars == null || !sceneVars.IsDefined(HpVariableName)) return false;
 
         try
@@ -164,6 +219,13 @@ public class LowHPPostProcessManager : MonoBehaviour
         }
     }
 
+    private Scene GetActiveSceneSafe()
+    {
+        if (cachedActiveScene.IsValid())
+            return cachedActiveScene;
+        return SceneManager.GetActiveScene();
+    }
+
     private void SetLowHP(bool isLowHP, float? customFadeDuration = null)
     {
         if (vignette == null) return;
@@ -172,14 +234,8 @@ public class LowHPPostProcessManager : MonoBehaviour
         isLowHpState = isLowHP;
         heartbeatTimer = 0f;
 
-        if (!wasLowHp && isLowHpState)
-        {
-            StartLowHpHeartbeat();
-        }
-        else if (wasLowHp && !isLowHpState)
-        {
-            StopLowHpHeartbeat();
-        }
+        if (!wasLowHp && isLowHpState) StartLowHpHeartbeat();
+        else if (wasLowHp && !isLowHpState) StopLowHpHeartbeat();
 
         if (fadeRoutine != null)
             StopCoroutine(fadeRoutine);
@@ -265,9 +321,32 @@ public class LowHPPostProcessManager : MonoBehaviour
         if (TryGetCurrentHP(out int currentHP))
         {
             lastHP = currentHP;
-            bool low = currentHP == 1;
-            SetLowHP(low, activationFadeDuration);
+            SetLowHP(currentHP == 1, activationFadeDuration);
         }
+    }
+
+    public void DisableAutoActivate()
+    {
+        autoActivateOnStart = false;
+    }
+
+    public void ActivateLowHpSystemAfterDelay(float delay)
+    {
+        DisableAutoActivate();
+
+        if (delayedActivateRoutine != null)
+            StopCoroutine(delayedActivateRoutine);
+
+        delayedActivateRoutine = StartCoroutine(DelayedActivate(delay));
+    }
+
+    private IEnumerator DelayedActivate(float delay)
+    {
+        if (delay > 0f)
+            yield return new WaitForSeconds(delay);
+
+        ActivateLowHpSystem();
+        delayedActivateRoutine = null;
     }
 
     private void StartLowHpHeartbeat()

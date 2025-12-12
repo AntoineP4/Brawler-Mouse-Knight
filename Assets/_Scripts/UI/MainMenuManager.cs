@@ -203,6 +203,9 @@ namespace StarterAssets
             if (lowHpManager == null)
                 lowHpManager = FindFirstObjectByType<LowHPPostProcessManager>();
 
+            if (lowHpManager != null)
+                lowHpManager.DisableAutoActivate();
+
             if (thirdPersonController != null && _playerAnimator == null)
                 _playerAnimator = thirdPersonController.GetComponent<Animator>();
 
@@ -582,7 +585,7 @@ namespace StarterAssets
             }
 
             if (lowHpManager != null)
-                lowHpManager.ActivateLowHpSystem();
+                lowHpManager.ActivateLowHpSystemAfterDelay(startLockDuration);
 
             if (_moveAction != null) _moveAction.Disable();
             if (_pauseAction != null) _pauseAction.Disable();
