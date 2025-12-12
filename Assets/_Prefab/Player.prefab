@@ -1640,8 +1640,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 705
   CinemachineCameraTarget: {fileID: 8482298066804321058}
-  TopClamp: 50
-  BottomClamp: 10
+  TopClamp: 80
+  BottomClamp: -25
   CameraAngleOverride: 0
   LockCameraPosition: 0
   LookSensitivity: 1
@@ -1966,8 +1966,18 @@ MonoBehaviour:
       tag damage","value":{"$content":["ennemy_attack"],"$type":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[System.String,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"is
+      invicible","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"mesh","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"nb
+      clignotement","value":{"$content":3,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"current
+      clignotement","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"time
+      invicible","value":{"$content":0.5,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
+    _objectReferences:
+    - {fileID: 2603095959404488197}
 --- !u!114 &6809806756402130492
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3259,6 +3269,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mouse_Knight
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f01d930f22bcdfb4897aef03919d53db, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1846256759547140760, guid: f01d930f22bcdfb4897aef03919d53db, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.113294914
@@ -3831,6 +3845,11 @@ PrefabInstance:
       addedObject: {fileID: 8566340169341775442}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f01d930f22bcdfb4897aef03919d53db, type: 3}
+--- !u!1 &2603095959404488197 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f01d930f22bcdfb4897aef03919d53db, type: 3}
+  m_PrefabInstance: {fileID: 2945745764380449620}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3417068108597132479 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f01d930f22bcdfb4897aef03919d53db, type: 3}

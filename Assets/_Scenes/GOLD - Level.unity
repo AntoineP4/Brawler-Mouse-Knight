@@ -44528,21 +44528,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 763706090787269186, guid: 3578114ef6531344ea6b50613af00142, type: 3}
-      propertyPath: TopClamp
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 763706090787269186, guid: 3578114ef6531344ea6b50613af00142, type: 3}
-      propertyPath: BottomClamp
-      value: -25
-      objectReference: {fileID: 0}
-    - target: {fileID: 763706090787269186, guid: 3578114ef6531344ea6b50613af00142, type: 3}
-      propertyPath: GroundLayers.m_Bits
-      value: 705
-      objectReference: {fileID: 0}
-    - target: {fileID: 763706090787269186, guid: 3578114ef6531344ea6b50613af00142, type: 3}
-      propertyPath: MaxTerrainSlopeAngle
-      value: 74
+    - target: {fileID: 2305071959269750051, guid: 3578114ef6531344ea6b50613af00142, type: 3}
+      propertyPath: _data._json
+      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"list
+        tag damage","value":{"$content":["ennemy_attack"],"$type":"System.Collections.Generic.List`1[[System.String,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[System.String,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]],
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"is
+        invicible","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"mesh","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"nb
+        clignotement","value":{"$content":3,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"current
+        clignotement","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"time
+        invicible","value":{"$content":0.5,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 3208009593650552148, guid: 3578114ef6531344ea6b50613af00142, type: 3}
       propertyPath: m_LocalPosition.x
@@ -44583,10 +44584,6 @@ PrefabInstance:
     - target: {fileID: 3208009593650552148, guid: 3578114ef6531344ea6b50613af00142, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5749960313374974293, guid: 3578114ef6531344ea6b50613af00142, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8025475783741466956, guid: 3578114ef6531344ea6b50613af00142, type: 3}
       propertyPath: m_Name
