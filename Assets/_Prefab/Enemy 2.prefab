@@ -465,6 +465,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5018093238616496694}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4400166644671392426}
   m_SourcePrefab: {fileID: 100100000, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
 --- !u!1 &4697397498096136819 stripped
 GameObject:
@@ -607,6 +610,37 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4400166644671392426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4697397498096136819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 361943151
+      Data2: 1094543086
+      Data3: -1928600422
+      Data4: 846736804
+    Path: event:/SFX/Enemies/Gollum/G_attack
+  Event: 
+  EventPlayTrigger: 0
+  EventStopTrigger: 0
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!4 &6072056509212324074 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1852576806548013000, guid: 1d9bab9d5df893945af032af20f1e587, type: 3}
