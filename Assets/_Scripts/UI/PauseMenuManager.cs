@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using FMODUnity;
 
 namespace StarterAssets
 {
@@ -60,6 +61,12 @@ namespace StarterAssets
         [SerializeField] private float unselectedScaleMultiplier = 0.97f;
         [SerializeField] private float scaleLerpSpeed = 12f;
 
+        [Header("FMOD")]
+        [SerializeField] private EventReference uiExitEvent;
+        [SerializeField] private EventReference uiOpenEvent;
+        [SerializeField] private EventReference uiScrollEvent;
+        [SerializeField] private EventReference uiSelectEvent;
+
         private PlayerInput _playerInput;
         private InputAction _pauseAction;
         private InputAction _jumpAction;
@@ -88,6 +95,9 @@ namespace StarterAssets
         private Selectable[] _allSelectables;
         private Transform[] _selectableTransforms;
         private Vector3[] _selectableBaseScales;
+
+        private GameObject _lastSelectedObject;
+        private bool _suppressNextSelectSound;
 
         private void Awake()
         {
@@ -212,6 +222,12 @@ namespace StarterAssets
 
             if (rumbleToggle != null)
                 rumbleToggle.onValueChanged.AddListener(OnRumbleChanged);
+
+            if (masterVolumeSlider != null)
+                masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
+
+            if (musicVolumeSlider != null)
+                musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
         }
 
         private void OnDisable()
@@ -236,6 +252,12 @@ namespace StarterAssets
 
             if (rumbleToggle != null)
                 rumbleToggle.onValueChanged.RemoveListener(OnRumbleChanged);
+
+            if (masterVolumeSlider != null)
+                masterVolumeSlider.onValueChanged.RemoveListener(OnMasterVolumeChanged);
+
+            if (musicVolumeSlider != null)
+                musicVolumeSlider.onValueChanged.RemoveListener(OnMusicVolumeChanged);
         }
 
         private void Update()
@@ -258,11 +280,42 @@ namespace StarterAssets
             if (_pendingSelection != null && EventSystem.current != null)
             {
                 EventSystem.current.SetSelectedGameObject(null);
+                _suppressNextSelectSound = true;
                 EventSystem.current.SetSelectedGameObject(_pendingSelection);
                 _pendingSelection = null;
             }
 
             UpdateSelectionJuice();
+        }
+
+        private void PlayUIExit()
+        {
+            if (!uiExitEvent.IsNull)
+                RuntimeManager.PlayOneShot(uiExitEvent);
+        }
+
+        private void PlayUIOpen()
+        {
+            if (!uiOpenEvent.IsNull)
+                RuntimeManager.PlayOneShot(uiOpenEvent);
+        }
+
+        private void PlayUIScroll()
+        {
+            if (!uiScrollEvent.IsNull)
+                RuntimeManager.PlayOneShot(uiScrollEvent);
+        }
+
+        private void PlayUISelect()
+        {
+            if (!uiSelectEvent.IsNull)
+                RuntimeManager.PlayOneShot(uiSelectEvent);
+        }
+
+        private void StopAllFMODAudio()
+        {
+            var masterBus = RuntimeManager.GetBus("bus:/");
+            masterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         }
 
         private void UpdateSelectionJuice()
@@ -273,6 +326,22 @@ namespace StarterAssets
             GameObject selected = null;
             if (EventSystem.current != null)
                 selected = EventSystem.current.currentSelectedGameObject;
+
+            if (selected != _lastSelectedObject)
+            {
+                if (selected != null)
+                {
+                    if (_suppressNextSelectSound)
+                    {
+                        _suppressNextSelectSound = false;
+                    }
+                    else
+                    {
+                        PlayUISelect();
+                    }
+                }
+                _lastSelectedObject = selected;
+            }
 
             float dt = Time.unscaledDeltaTime;
             float lerpFactor = 1f - Mathf.Exp(-scaleLerpSpeed * dt);
@@ -374,6 +443,7 @@ namespace StarterAssets
                 pauseMenuRoot.SetActive(true);
 
             ShowPausePanelOnPause();
+            PlayUIOpen();
 
             if (pauseMenuRootCanvasGroup == null && pauseMenuRoot != null)
                 pauseMenuRootCanvasGroup = pauseMenuRoot.GetComponent<CanvasGroup>();
@@ -395,6 +465,8 @@ namespace StarterAssets
 
         private void ResumeGameCore()
         {
+            PlayUIExit();
+
             _isPaused = false;
             Time.timeScale = 1f;
 
@@ -764,21 +836,25 @@ namespace StarterAssets
 
         public void OnOptionsButton()
         {
+            PlayUIOpen();
             ShowOptionsPanel();
         }
 
         public void OnQuitButton()
         {
+            PlayUIOpen();
             ShowQuitConfirmPanel();
         }
 
         public void OnOptionsBackButton()
         {
+            PlayUIExit();
             ShowPausePanel(pauseOptionsButton != null ? pauseOptionsButton.gameObject : null);
         }
 
         public void OnQuitNoButton()
         {
+            PlayUIExit();
             ShowPausePanel(pauseQuitButton != null ? pauseQuitButton.gameObject : null);
         }
 
@@ -786,6 +862,8 @@ namespace StarterAssets
         {
             _isPaused = false;
             Time.timeScale = 1f;
+
+            StopAllFMODAudio();
 
             if (pauseMenuRoot != null)
                 pauseMenuRoot.SetActive(false);
@@ -806,20 +884,20 @@ namespace StarterAssets
                 float sliderValue = Mathf.InverseLerp(LookSensMin, LookSensMax, sens);
                 sensitivitySlider.minValue = 0f;
                 sensitivitySlider.maxValue = 1f;
-                sensitivitySlider.value = sliderValue;
+                sensitivitySlider.SetValueWithoutNotify(sliderValue);
             }
 
             if (invertYToggle != null && _thirdPersonController != null)
-                invertYToggle.isOn = _thirdPersonController.InvertY;
+                invertYToggle.SetIsOnWithoutNotify(_thirdPersonController.InvertY);
 
             if (autoCamToggle != null && _thirdPersonController != null)
-                autoCamToggle.isOn = _thirdPersonController.AutoCamGlobal;
+                autoCamToggle.SetIsOnWithoutNotify(_thirdPersonController.AutoCamGlobal);
 
             if (attackOnJumpToggle != null && _pogoAbility != null)
-                attackOnJumpToggle.isOn = _pogoAbility.AttackOnJump;
+                attackOnJumpToggle.SetIsOnWithoutNotify(_pogoAbility.AttackOnJump);
 
             if (rumbleToggle != null)
-                rumbleToggle.isOn = GameRumbleSettings.RumbleEnabled;
+                rumbleToggle.SetIsOnWithoutNotify(GameRumbleSettings.RumbleEnabled);
         }
 
         private void OnSensitivityChanged(float value)
@@ -829,6 +907,8 @@ namespace StarterAssets
 
             if (_thirdPersonController != null)
                 _thirdPersonController.LookSensitivity = Mathf.Lerp(LookSensMin, LookSensMax, value);
+
+            PlayUIScroll();
         }
 
         private void OnInvertYChanged(bool isOn)
@@ -838,6 +918,8 @@ namespace StarterAssets
 
             if (_thirdPersonController != null)
                 _thirdPersonController.InvertY = isOn;
+
+            PlayUIScroll();
         }
 
         private void OnAutoCamChanged(bool isOn)
@@ -847,6 +929,8 @@ namespace StarterAssets
 
             if (_thirdPersonController != null)
                 _thirdPersonController.AutoCamGlobal = isOn;
+
+            PlayUIScroll();
         }
 
         private void OnAttackOnJumpChanged(bool isOn)
@@ -856,11 +940,24 @@ namespace StarterAssets
 
             if (_pogoAbility != null)
                 _pogoAbility.AttackOnJump = isOn;
+
+            PlayUIScroll();
         }
 
         private void OnRumbleChanged(bool isOn)
         {
             GameRumbleSettings.SetRumbleEnabled(isOn);
+            PlayUIScroll();
+        }
+
+        private void OnMasterVolumeChanged(float value)
+        {
+            PlayUIScroll();
+        }
+
+        private void OnMusicVolumeChanged(float value)
+        {
+            PlayUIScroll();
         }
     }
 }

@@ -3984,9 +3984,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8921465766746655048}
-        m_TargetAssemblyTypeName: StarterAssets.PauseMenuManager, Assembly-CSharp
-        m_MethodName: OnQuitNoButton
+      - m_Target: {fileID: 5858851480760925261}
+        m_TargetAssemblyTypeName: StarterAssets.MainMenuManager, Assembly-CSharp
+        m_MethodName: OnMainQuitNoClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6240,9 +6240,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8921465766746655048}
-        m_TargetAssemblyTypeName: StarterAssets.PauseMenuManager, Assembly-CSharp
-        m_MethodName: OnQuitYesButton
+      - m_Target: {fileID: 5858851480760925261}
+        m_TargetAssemblyTypeName: StarterAssets.MainMenuManager, Assembly-CSharp
+        m_MethodName: OnMainQuitYesClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6947,9 +6947,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8921465766746655048}
-        m_TargetAssemblyTypeName: StarterAssets.PauseMenuManager, Assembly-CSharp
-        m_MethodName: OnOptionsBackButton
+      - m_Target: {fileID: 5858851480760925261}
+        m_TargetAssemblyTypeName: StarterAssets.MainMenuManager, Assembly-CSharp
+        m_MethodName: OnMainOptionsBackClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9048,9 +9048,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 8921465766746655048}
-        m_TargetAssemblyTypeName: StarterAssets.PauseMenuManager, Assembly-CSharp
-        m_MethodName: OnQuitNoButton
+      - m_Target: {fileID: 5858851480760925261}
+        m_TargetAssemblyTypeName: StarterAssets.MainMenuManager, Assembly-CSharp
+        m_MethodName: OnMainCreditsBackClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10038,6 +10038,10 @@ MonoBehaviour:
   healColor: {r: 0, g: 1, b: 0, a: 1}
   damageColor: {r: 1, g: 0, b: 0, a: 1}
   barPopScale: 1.12
+  lowHPHeartIndex: 0
+  lowHPPulseScale: 0.8
+  lowHPPulseBeatDuration: 0.18
+  lowHPPulsePauseDuration: 0.35
 --- !u!1 &4415861368952427551
 GameObject:
   m_ObjectHideFlags: 0
@@ -16056,6 +16060,34 @@ MonoBehaviour:
   selectedScaleMultiplier: 1.06
   unselectedScaleMultiplier: 0.97
   scaleLerpSpeed: 12
+  uiExitEvent:
+    Guid:
+      Data1: -1704402166
+      Data2: 1219214997
+      Data3: -1877548878
+      Data4: 1995938284
+    Path: event:/Menu/Exit
+  uiOpenEvent:
+    Guid:
+      Data1: -2001133003
+      Data2: 1258130512
+      Data3: 2092466104
+      Data4: 2026869386
+    Path: event:/Menu/Open
+  uiScrollEvent:
+    Guid:
+      Data1: 1652528106
+      Data2: 1113835640
+      Data3: -1887322717
+      Data4: -1637738918
+    Path: event:/Menu/Scroll
+  uiSelectEvent:
+    Guid:
+      Data1: -1179952222
+      Data2: 1229892766
+      Data3: 597534353
+      Data4: 1309349552
+    Path: event:/Menu/Select
 --- !u!1 &6740303973101827847
 GameObject:
   m_ObjectHideFlags: 0
@@ -21208,6 +21240,42 @@ MonoBehaviour:
   selectedScaleMultiplier: 1.06
   unselectedScaleMultiplier: 0.97
   scaleLerpSpeed: 12
+  openingMusic:
+    Guid:
+      Data1: 984473137
+      Data2: 1144717898
+      Data3: 1249478804
+      Data4: 880948401
+    Path: event:/Musics/Opening
+  uiExitEvent:
+    Guid:
+      Data1: -1704402166
+      Data2: 1219214997
+      Data3: -1877548878
+      Data4: 1995938284
+    Path: event:/Menu/Exit
+  uiOpenEvent:
+    Guid:
+      Data1: -2001133003
+      Data2: 1258130512
+      Data3: 2092466104
+      Data4: 2026869386
+    Path: event:/Menu/Open
+  uiScrollEvent:
+    Guid:
+      Data1: 1652528106
+      Data2: 1113835640
+      Data3: -1887322717
+      Data4: -1637738918
+    Path: event:/Menu/Scroll
+  uiSelectEvent:
+    Guid:
+      Data1: -1179952222
+      Data2: 1229892766
+      Data3: 597534353
+      Data4: 1309349552
+    Path: event:/Menu/Select
+  pauseMenuManager: {fileID: 8921465766746655048}
 --- !u!1 &9080912588657370765
 GameObject:
   m_ObjectHideFlags: 0

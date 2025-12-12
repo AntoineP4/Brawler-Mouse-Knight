@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{a2d1687b-87d5-4fb9-8eda-321654ee3291}">
+		<property name="name">
+			<value>Gollum size</value>
+		</property>
+		<relationship name="folder">
+			<destination>{28d7e34b-a457-4f13-911f-4622a0318e78}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{7ca92ecc-9f3e-45fc-9b8c-99b4fa30ea6b}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{7ca92ecc-9f3e-45fc-9b8c-99b4fa30ea6b}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>3</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

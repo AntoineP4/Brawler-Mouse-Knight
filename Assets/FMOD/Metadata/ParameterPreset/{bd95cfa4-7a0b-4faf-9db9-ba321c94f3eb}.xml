@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{bd95cfa4-7a0b-4faf-9db9-ba321c94f3eb}">
+		<property name="name">
+			<value>Cage Slow mo count</value>
+		</property>
+		<relationship name="folder">
+			<destination>{28d7e34b-a457-4f13-911f-4622a0318e78}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{dca86ecf-b2d8-468a-9ac1-3df4f82932c7}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{dca86ecf-b2d8-468a-9ac1-3df4f82932c7}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>2</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

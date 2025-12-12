@@ -22,6 +22,12 @@ public class LifeBarFeedbacks : MonoBehaviour
     [Header("Bar Pop")]
     public float barPopScale = 1.12f;
 
+    [Header("Low HP Pulse")]
+    public int lowHPHeartIndex = 0;
+    public float lowHPPulseScale = 0.8f;
+    public float lowHPPulseBeatDuration = 0.18f;
+    public float lowHPPulsePauseDuration = 0.35f;
+
     Image barImage;
     Color barOriginalColor;
     Vector3 barOriginalScale;
@@ -29,6 +35,11 @@ public class LifeBarFeedbacks : MonoBehaviour
     int lastHP = -1;
     Coroutine barFlashRoutine;
     Coroutine barPopRoutine;
+
+    Coroutine pulseRoutine;
+    bool isPulsing = false;
+    RectTransform lowHPHeart;
+    Vector3 lowHPHeartOriginalScale;
 
     void Awake()
     {
@@ -40,11 +51,15 @@ public class LifeBarFeedbacks : MonoBehaviour
 
         if (hearts == null || hearts.Length == 0)
             hearts = GetComponentsInChildren<Image>(true);
+
+        InitLowHPHeart();
     }
 
     void Start()
     {
         lastHP = GetCurrentHP();
+        if (lastHP == 1)
+            StartPulse();
     }
 
     void Update()
@@ -67,6 +82,11 @@ public class LifeBarFeedbacks : MonoBehaviour
             FlashBar(damageColor);
             PopBar();
         }
+
+        if (hp == 1 && !isPulsing)
+            StartPulse();
+        else if (hp != 1 && isPulsing)
+            StopPulse();
 
         lastHP = hp;
     }
@@ -249,5 +269,122 @@ public class LifeBarFeedbacks : MonoBehaviour
         }
 
         transform.localScale = start;
+    }
+
+    void InitLowHPHeart()
+    {
+        if (hearts != null && hearts.Length > 0)
+        {
+            int index = Mathf.Clamp(lowHPHeartIndex, 0, hearts.Length - 1);
+            lowHPHeart = hearts[index] != null ? hearts[index].rectTransform : null;
+            if (lowHPHeart != null)
+                lowHPHeartOriginalScale = lowHPHeart.localScale;
+        }
+    }
+
+    void StartPulse()
+    {
+        if (lowHPHeart == null)
+            InitLowHPHeart();
+
+        if (lowHPHeart == null)
+            return;
+
+        if (pulseRoutine != null)
+            StopCoroutine(pulseRoutine);
+
+        lowHPHeartOriginalScale = lowHPHeart.localScale;
+        pulseRoutine = StartCoroutine(LowHPPulseRoutine());
+        isPulsing = true;
+    }
+
+    void StopPulse()
+    {
+        if (pulseRoutine != null)
+            StopCoroutine(pulseRoutine);
+
+        if (lowHPHeart != null)
+            lowHPHeart.localScale = lowHPHeartOriginalScale;
+
+        isPulsing = false;
+    }
+
+    IEnumerator LowHPPulseRoutine()
+    {
+        float baseDuration = Mathf.Max(0.01f, lowHPPulseBeatDuration);
+        float interBeatDelay = baseDuration * 0.35f;
+
+        while (true)
+        {
+            if (lowHPHeart == null)
+                yield break;
+
+            Vector3 baseScale = lowHPHeartOriginalScale;
+
+            float minScale = lowHPPulseScale;
+            float maxScale = 1f + (1f - minScale) * 0.35f;
+            float secondMinScale = Mathf.Lerp(1f, minScale, 0.5f);
+
+            float t = 0f;
+            while (t < baseDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                float n = Mathf.Clamp01(t / baseDuration);
+                float eased = 1f - Mathf.Cos(n * Mathf.PI * 0.5f);
+                float s = Mathf.Lerp(1f, minScale, eased);
+                lowHPHeart.localScale = baseScale * s;
+                yield return null;
+            }
+
+            t = 0f;
+            float upDuration = baseDuration * 0.6f;
+            while (t < upDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                float n = Mathf.Clamp01(t / upDuration);
+                float eased = 1f - Mathf.Cos(n * Mathf.PI * 0.5f);
+                float s = Mathf.Lerp(minScale, maxScale, eased);
+                lowHPHeart.localScale = baseScale * s;
+                yield return null;
+            }
+
+            t = 0f;
+            float relaxDuration = baseDuration * 0.4f;
+            while (t < relaxDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                float n = Mathf.Clamp01(t / relaxDuration);
+                float eased = 1f - Mathf.Cos(n * Mathf.PI * 0.5f);
+                float s = Mathf.Lerp(maxScale, 1f, eased);
+                lowHPHeart.localScale = baseScale * s;
+                yield return null;
+            }
+
+            yield return new WaitForSecondsRealtime(interBeatDelay);
+
+            t = 0f;
+            while (t < baseDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                float n = Mathf.Clamp01(t / baseDuration);
+                float eased = 1f - Mathf.Cos(n * Mathf.PI * 0.5f);
+                float s = Mathf.Lerp(1f, secondMinScale, eased);
+                lowHPHeart.localScale = baseScale * s;
+                yield return null;
+            }
+
+            t = 0f;
+            while (t < baseDuration)
+            {
+                t += Time.unscaledDeltaTime;
+                float n = Mathf.Clamp01(t / baseDuration);
+                float eased = 1f - Mathf.Cos(n * Mathf.PI * 0.5f);
+                float s = Mathf.Lerp(secondMinScale, 1f, eased);
+                lowHPHeart.localScale = baseScale * s;
+                yield return null;
+            }
+
+            yield return new WaitForSecondsRealtime(lowHPPulsePauseDuration);
+        }
     }
 }

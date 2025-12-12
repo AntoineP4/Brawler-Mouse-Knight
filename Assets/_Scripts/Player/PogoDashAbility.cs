@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
+using FMODUnity;
 
 namespace StarterAssets
 {
@@ -44,6 +45,7 @@ namespace StarterAssets
         public LayerMask enemyLayers;
         [FormerlySerializedAs("nonPushableEnemyLayers")]
         public LayerMask mushroomLayers;
+        public LayerMask pogoniLayers;
         public LayerMask cageLayers;
 
         [Header("Enemy Knockback")]
@@ -86,6 +88,13 @@ namespace StarterAssets
 
         [Header("Cage Candle")]
         [SerializeField] private GameObject candleToDisable;
+
+        [Header("FMOD")]
+        [SerializeField] private EventReference cageMusicEvent;
+        [SerializeField] private EventReference dashSfxEvent;
+        [SerializeField] private EventReference pogoMushroomSfxEvent;
+        [SerializeField] private EventReference pogoPogoniSfxEvent;
+        [SerializeField] private EventReference pogoCageSfxEvent;
 
         public bool IsDashing { get; private set; }
 
@@ -131,6 +140,8 @@ namespace StarterAssets
         float currentPogoCheckAhead;
 
         bool cageFirstPogoDone;
+        bool cageMusicStarted;
+        int cageHitCount = 0;
 
         public bool AttackOnJump
         {
@@ -294,6 +305,22 @@ namespace StarterAssets
                         if (cagePogoTutorial != null)
                             cagePogoTutorial.OnPogoPerformed();
                     }
+                    else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider pogoniCol, pogoniLayers, QueryTriggerInteraction.Ignore) ||
+                             TryGetPogoHitDown(postCenter, castDownDist, out pogoniCol, pogoniLayers, QueryTriggerInteraction.Ignore))
+                    {
+                        ApplyDamage(pogoniCol, FIXED_POGO_DAMAGE);
+                        CustomEvent.Trigger(pogoniCol.gameObject, "OnHitReceived");
+                        if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
+                        TriggerScreenShake();
+                        TriggerPogoRumble();
+                        PlayPogoPogoniSfx();
+                        StopDashInternal(false);
+                        ctrl.Bounce(pogoBounceMushroomHeight);
+                        airDashAvailable = true;
+
+                        if (cagePogoTutorial != null)
+                            cagePogoTutorial.OnPogoPerformed();
+                    }
                     else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider npCol2, mushroomLayers, QueryTriggerInteraction.Ignore) ||
                              TryGetPogoHitDown(postCenter, castDownDist, out npCol2, mushroomLayers, QueryTriggerInteraction.Ignore))
                     {
@@ -302,6 +329,7 @@ namespace StarterAssets
                         if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                         TriggerScreenShake();
                         TriggerPogoRumble();
+                        PlayPogoMushroomSfx();
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceMushroomHeight);
                         airDashAvailable = true;
@@ -321,6 +349,7 @@ namespace StarterAssets
                         StartCoroutine(ShakeCageRoutine(cageTr, cageShakeDuration, cageShakeAmplitude));
                         TriggerScreenShake();
                         TriggerPogoRumble();
+                        PlayPogoCageSfx();
                         SpawnPogoVfx(cageCol2);
                         ctrl.Bounce(pogoBounceCageHeight);
                         airDashAvailable = true;
@@ -347,6 +376,8 @@ namespace StarterAssets
 
                             if (cagePogoTutorial != null)
                                 cagePogoTutorial.OnCageBroken();
+
+                            PlayCageMusic();
                         }
 
                         if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
@@ -360,6 +391,48 @@ namespace StarterAssets
                     }
                 }
             }
+        }
+
+        void PlayCageMusic()
+        {
+            if (cageMusicStarted) return;
+            if (cageMusicEvent.IsNull) return;
+
+            var instance = RuntimeManager.CreateInstance(cageMusicEvent);
+            instance.start();
+            instance.release();
+            cageMusicStarted = true;
+        }
+
+        void PlayDashSfx()
+        {
+            if (dashSfxEvent.IsNull) return;
+            RuntimeManager.PlayOneShot(dashSfxEvent, transform.position);
+        }
+
+        void PlayPogoMushroomSfx()
+        {
+            if (pogoMushroomSfxEvent.IsNull) return;
+            RuntimeManager.PlayOneShot(pogoMushroomSfxEvent, transform.position);
+        }
+
+        void PlayPogoPogoniSfx()
+        {
+            if (pogoPogoniSfxEvent.IsNull) return;
+            RuntimeManager.PlayOneShot(pogoPogoniSfxEvent, transform.position);
+        }
+
+        void PlayPogoCageSfx()
+        {
+            if (pogoCageSfxEvent.IsNull) return;
+
+            //Porlbeme de count de la cage demander aux MS
+            cageHitCount = Mathf.Clamp(cageHitCount + 1, 0, 3);
+
+            var instance = RuntimeManager.CreateInstance(pogoCageSfxEvent);
+            instance.setParameterByName("Cage hit count", cageHitCount);
+            instance.start();
+            instance.release();
         }
 
         void StartDashForward()
@@ -382,6 +455,8 @@ namespace StarterAssets
 
             if (anim != null && dashHash != 0)
                 anim.CrossFadeInFixedTime(dashHash, 0.05f, 0, 0f);
+
+            PlayDashSfx();
         }
 
         void StartPogoDown()

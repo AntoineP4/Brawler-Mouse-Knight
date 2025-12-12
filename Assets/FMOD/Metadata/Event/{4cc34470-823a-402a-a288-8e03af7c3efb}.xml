@@ -33,7 +33,7 @@
 			<destination>{0a5069f5-d814-4209-b8f9-c4685d1019c3}</destination>
 		</relationship>
 		<relationship name="banks">
-			<destination>{c2304cca-970b-43a3-b73b-3415b2e2807d}</destination>
+			<destination>{1c16fa8b-e995-41f8-baff-bdca33032d1f}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixer" id="{936ffff0-759f-4a1f-abb5-6721e1bdfda7}">
@@ -118,10 +118,10 @@
 	<object class="MixerBusPanner" id="{ef2bdb25-1c16-442f-94f6-860bfa290f91}" />
 	<object class="SingleSound" id="{dd1bbbd4-c7c6-47cc-bbad-a75e67678449}">
 		<property name="length">
-			<value>117</value>
+			<value>195</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{55008e36-9e3d-4f74-a460-cc06761a5829}</destination>
+			<destination>{b58a2d00-fd54-4e41-9c59-c39898f15ce5}</destination>
 		</relationship>
 	</object>
 	<object class="TransitionSourceSound" id="{0e784ee2-0a9b-43a7-85af-d1ca3fd7da04}">
@@ -170,10 +170,10 @@
 	</object>
 	<object class="LoopRegion" id="{68172ad9-9071-43b9-9256-6bb26ba11aec}">
 		<property name="position">
-			<value>0</value>
+			<value>3</value>
 		</property>
 		<property name="length">
-			<value>108</value>
+			<value>192</value>
 		</property>
 		<relationship name="timeline">
 			<destination>{0a5069f5-d814-4209-b8f9-c4685d1019c3}</destination>
