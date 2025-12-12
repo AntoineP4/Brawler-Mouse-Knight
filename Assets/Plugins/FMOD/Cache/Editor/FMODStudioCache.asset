@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9102675709957848637
+--- !u!114 &-8930908040112153093
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFXs/Footsteps
+  m_Name: event:/SFX/Enemies/Gollum/G_footsteps
   m_EditorClassIdentifier: 
-  Path: event:/SFXs/Footsteps
+  Path: event:/SFX/Enemies/Gollum/G_footsteps
   Guid:
-    Data1: 1507586635
-    Data2: 1275618492
-    Data3: 843367318
-    Data4: -617506243
+    Data1: 1998603882
+    Data2: 1178900975
+    Data3: -364042356
+    Data4: 767177031
   Banks:
-  - {fileID: -1187502192736260583}
+  - {fileID: 3870447489898266223}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 8991252669772926348}
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
---- !u!114 &-8534892975868963621
+  Length: 638
+--- !u!114 &-8721455169382395221
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,23 +38,104 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFXs/Pogo
+  m_Name: event:/SFX/Player/Player_health_regen
   m_EditorClassIdentifier: 
-  Path: event:/SFXs/Pogo
+  Path: event:/SFX/Player/Player_health_regen
   Guid:
-    Data1: -295615328
-    Data2: 1093554589
-    Data3: -1245215086
-    Data4: -689794711
+    Data1: -917322016
+    Data2: 1271270403
+    Data3: 525272197
+    Data4: -656191583
   Banks:
-  - {fileID: -1187502192736260583}
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1378
+--- !u!114 &-8480809115029076859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Knight/Knight_footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Knight/Knight_footsteps
+  Guid:
+    Data1: -1757391601
+    Data2: 1154786879
+    Data3: -918332487
+    Data4: 2051442782
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 400
+--- !u!114 &-7657548964528297576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Menu/Open
+  m_EditorClassIdentifier: 
+  Path: event:/Menu/Open
+  Guid:
+    Data1: -2001133003
+    Data2: 1258130512
+    Data3: 2092466104
+    Data4: 2026869386
+  Banks:
+  - {fileID: 3870447489898266223}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 295
+--- !u!114 &-7635756820510565592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Mage_commun/Mage_pogo
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Mage_commun/Mage_pogo
+  Guid:
+    Data1: 80426987
+    Data2: 1333612473
+    Data3: -1570980936
+    Data4: -2013635141
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 574
 --- !u!114 &-7495179517482950798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,10 +151,85 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639010025777948418
+  lastModified: 639010985909248481
   FileSizes:
   - Name: Desktop
-    Value: 1194
+    Value: 2358
+  Exists: 1
+--- !u!114 &-7489611766875229053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Knight/Knight_pogo
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Knight/Knight_pogo
+  Guid:
+    Data1: -1204466832
+    Data2: 1258238886
+    Data3: 296277438
+    Data4: -820296488
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 587
+--- !u!114 &-6961433983634938231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Cage_slowmo/Cage Slow mo count
+  m_EditorClassIdentifier: 
+  Name: Cage Slow mo count
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 3539847716
+    data2: 1098506007
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-6645381243365866189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Player_jump/Jump repeat
+  m_EditorClassIdentifier: 
+  Name: Jump repeat
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 986254586
+    data2: 537831420
+  Type: 1
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &-5280935835851456453
 MonoBehaviour:
@@ -93,7 +250,7 @@ MonoBehaviour:
     Data3: -144397655
     Data4: 669980845
   Banks:
-  - {fileID: -1187502192736260583}
+  - {fileID: 6084994527752790307}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -102,6 +259,84 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 135428
+--- !u!114 &-4545317294909741591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Mage_commun/Mage_footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Mage_commun/Mage_footsteps
+  Guid:
+    Data1: -1970716532
+    Data2: 1105265427
+    Data3: 1027027886
+    Data4: 1939831817
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 503
+--- !u!114 &-4294837108922472376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/G_attack/Gollum size
+  m_EditorClassIdentifier: 
+  Name: Gollum size
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3284793599
+    data2: 3143416167
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &-3832062938974159224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Player_dash
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Player_dash
+  Guid:
+    Data1: 11390204
+    Data2: 1076279682
+    Data3: 1088318109
+    Data4: -1663375648
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 614
 --- !u!114 &-3305944187092947679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,15 +356,15 @@ MonoBehaviour:
     Data3: 59672738
     Data4: -79790929
   Banks:
-  - {fileID: -1187502192736260583}
+  - {fileID: 6084994527752790307}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 117000
---- !u!114 &-1449920804130752121
+  Length: 195000
+--- !u!114 &-2341003760305596170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -139,23 +374,78 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFXs/Character_Talk
+  m_Name: event:/Musics/Credits
   m_EditorClassIdentifier: 
-  Path: event:/SFXs/Character_Talk
+  Path: event:/Musics/Credits
   Guid:
-    Data1: -487613436
-    Data2: 1321411202
-    Data3: -1890050412
-    Data4: -759350168
+    Data1: 2036323816
+    Data2: 1198176795
+    Data3: -1013199697
+    Data4: -1698564945
   Banks:
-  - {fileID: -1187502192736260583}
+  - {fileID: 6084994527752790307}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 181714
+--- !u!114 &-2310731932360795725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Player_jump
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Player_jump
+  Guid:
+    Data1: -1377639759
+    Data2: 1154091446
+    Data3: -1094461027
+    Data4: -1220570354
+  Banks:
+  - {fileID: 3870447489898266223}
   IsStream: 0
   Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -6645381243365866189}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 283
+--- !u!114 &-1269712543925391541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Gollum/G_pogo
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Gollum/G_pogo
+  Guid:
+    Data1: -421983712
+    Data2: 1281489349
+    Data3: 1473588639
+    Data4: -290592792
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 824
 --- !u!114 &-1187502192736260583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,11 +461,38 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639010025777913046
+  lastModified: 639010985909233429
   FileSizes:
   - Name: Desktop
-    Value: 6657536
+    Value: 1074
   Exists: 1
+--- !u!114 &-294945091148864106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Menu/Exit
+  m_EditorClassIdentifier: 
+  Path: event:/Menu/Exit
+  Guid:
+    Data1: -1704402166
+    Data2: 1219214997
+    Data3: -1877548878
+    Data4: 1995938284
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 398
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,16 +515,35 @@ MonoBehaviour:
   - {fileID: -5280935835851456453}
   - {fileID: -3305944187092947679}
   - {fileID: 3717069827505323809}
-  - {fileID: -1449920804130752121}
-  - {fileID: -9102675709957848637}
-  - {fileID: -8534892975868963621}
+  - {fileID: -294945091148864106}
+  - {fileID: -8480809115029076859}
+  - {fileID: 2432006450509014526}
+  - {fileID: 6654163601672985622}
+  - {fileID: 7304445726615672172}
+  - {fileID: -1269712543925391541}
+  - {fileID: 7605733502870323606}
+  - {fileID: -7657548964528297576}
+  - {fileID: -8930908040112153093}
+  - {fileID: 3672496043704315648}
+  - {fileID: -7489611766875229053}
+  - {fileID: -4545317294909741591}
+  - {fileID: 161969642687367943}
+  - {fileID: 5825249540537011380}
+  - {fileID: -2310731932360795725}
+  - {fileID: 6491681666664527122}
+  - {fileID: 1315861206136484152}
+  - {fileID: -8721455169382395221}
+  - {fileID: 4140987636068079520}
+  - {fileID: -7635756820510565592}
+  - {fileID: -3832062938974159224}
+  - {fileID: -2341003760305596170}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1187502192736260583}
   StringsBanks:
   - {fileID: -7495179517482950798}
   cacheVersion: 131857
-  cacheTime: 639010025777973884
+  cacheTime: 639010987529638563
   SerializableEventsDict:
   - key: event:/Musics/Opening
     index: 0
@@ -217,12 +553,158 @@ MonoBehaviour:
     index: 2
   - key: event:/Musics/Village
     index: 3
-  - key: event:/SFXs/Character_Talk
+  - key: event:/Menu/Exit
     index: 4
-  - key: event:/SFXs/Footsteps
+  - key: event:/SFX/Enemies/Knight/Knight_footsteps
     index: 5
-  - key: event:/SFXs/Pogo
+  - key: event:/SFX/Player/Player_lowhealth
     index: 6
+  - key: event:/SFX/Tutorial/Cage_slowmo
+    index: 7
+  - key: event:/SFX/Enemies/Knight/Knight_attack
+    index: 8
+  - key: event:/SFX/Enemies/Gollum/G_pogo
+    index: 9
+  - key: event:/SFX/Tutorial/Cage_hits
+    index: 10
+  - key: event:/Menu/Open
+    index: 11
+  - key: event:/SFX/Enemies/Gollum/G_footsteps
+    index: 12
+  - key: event:/SFX/Enemies/Gollum/G_attack
+    index: 13
+  - key: event:/SFX/Enemies/Knight/Knight_pogo
+    index: 14
+  - key: event:/SFX/Enemies/Mage_commun/Mage_footsteps
+    index: 15
+  - key: event:/SFX/Player/Champi_bounce
+    index: 16
+  - key: event:/Menu/Select
+    index: 17
+  - key: event:/SFX/Player/Player_jump
+    index: 18
+  - key: event:/SFX/Enemies/Gollum/G_death
+    index: 19
+  - key: event:/SFX/Player/Player_footsteps
+    index: 20
+  - key: event:/SFX/Player/Player_health_regen
+    index: 21
+  - key: event:/Menu/Scroll
+    index: 22
+  - key: event:/SFX/Enemies/Mage_commun/Mage_pogo
+    index: 23
+  - key: event:/SFX/Player/Player_dash
+    index: 24
+--- !u!114 &161969642687367943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Champi_bounce
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Champi_bounce
+  Guid:
+    Data1: -1531566434
+    Data2: 1264460745
+    Data3: 970249099
+    Data4: 1631901741
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 4566847053194587186}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 485
+--- !u!114 &1315861206136484152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Player_footsteps
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Player_footsteps
+  Guid:
+    Data1: -438620192
+    Data2: 1194950395
+    Data3: -260135505
+    Data4: -328498931
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 256
+--- !u!114 &2432006450509014526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Player/Player_lowhealth
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Player/Player_lowhealth
+  Guid:
+    Data1: -552714986
+    Data2: 1147254057
+    Data3: 1354808738
+    Data4: -740582516
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2929
+--- !u!114 &3672496043704315648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Gollum/G_attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Gollum/G_attack
+  Guid:
+    Data1: 361943151
+    Data2: 1094543086
+    Data3: -1928600422
+    Data4: 846736804
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -4294837108922472376}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1986
 --- !u!114 &3717069827505323809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +724,7 @@ MonoBehaviour:
     Data3: 1547072698
     Data4: 233633470
   Banks:
-  - {fileID: -1187502192736260583}
+  - {fileID: 6084994527752790307}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -265,10 +747,61 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFXs.bank
   Name: SFXs
   StudioPath: bank:/SFXs
-  lastModified: 639010025777973884
+  lastModified: 639010978986495066
   FileSizes:
   - Name: Desktop
-    Value: 506
+    Value: 287392
+  Exists: 1
+--- !u!114 &4140987636068079520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Menu/Scroll
+  m_EditorClassIdentifier: 
+  Path: event:/Menu/Scroll
+  Guid:
+    Data1: 1652528106
+    Data2: 1113835640
+    Data3: -1887322717
+    Data4: -1637738918
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 210
+--- !u!114 &4566847053194587186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Champi_bounce/Champi_Size
+  m_EditorClassIdentifier: 
+  Name: Champi_Size
+  StudioPath: 
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 2830714726
+    data2: 2995753694
+  Type: 0
+  IsGlobal: 0
+  Labels: []
   Exists: 1
 --- !u!114 &5168298624964499940
 MonoBehaviour:
@@ -289,7 +822,7 @@ MonoBehaviour:
     Data3: 1249478804
     Data4: 880948401
   Banks:
-  - {fileID: -1187502192736260583}
+  - {fileID: 6084994527752790307}
   IsStream: 1
   Is3D: 0
   IsOneShot: 0
@@ -297,6 +830,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 138000
+--- !u!114 &5825249540537011380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Menu/Select
+  m_EditorClassIdentifier: 
+  Path: event:/Menu/Select
+  Guid:
+    Data1: -1179952222
+    Data2: 1229892766
+    Data3: 597534353
+    Data4: 1309349552
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 508
 --- !u!114 &6084994527752790307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,11 +872,145 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Musics.bank
   Name: Musics
   StudioPath: bank:/Musics
-  lastModified: 639010025777958425
+  lastModified: 639010987529638563
   FileSizes:
   - Name: Desktop
-    Value: 506
+    Value: 9739552
   Exists: 1
+--- !u!114 &6143845027313047627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Cage_hits/Cage hit count
+  m_EditorClassIdentifier: 
+  Name: Cage hit count
+  StudioPath: 
+  Min: 0
+  Max: 3
+  Default: 0
+  ID:
+    data1: 1772071824
+    data2: 4283731102
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &6491681666664527122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Gollum/G_death
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Gollum/G_death
+  Guid:
+    Data1: -1327275063
+    Data2: 1099895299
+    Data3: -2019259749
+    Data4: 358859541
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1380
+--- !u!114 &6654163601672985622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tutorial/Cage_slowmo
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tutorial/Cage_slowmo
+  Guid:
+    Data1: -658222310
+    Data2: 1229432012
+    Data3: 1632891554
+    Data4: 1813718424
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: -6961433983634938231}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2415
+--- !u!114 &7304445726615672172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Knight/Knight_attack
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Knight/Knight_attack
+  Guid:
+    Data1: -1842117092
+    Data2: 1278066470
+    Data3: 1852387508
+    Data4: 1335362541
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 541
+--- !u!114 &7605733502870323606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Tutorial/Cage_hits
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Tutorial/Cage_hits
+  Guid:
+    Data1: -700449241
+    Data2: 1167421414
+    Data3: -67367540
+    Data4: 1930206275
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 6143845027313047627}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1652
 --- !u!114 &8091813571171023559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +1032,30 @@ MonoBehaviour:
     data1: 4245117358
     data2: 3767812354
   Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
+--- !u!114 &8991252669772926348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/G_footsteps/Gollum size
+  m_EditorClassIdentifier: 
+  Name: Gollum size
+  StudioPath: 
+  Min: 0
+  Max: 2
+  Default: 0
+  ID:
+    data1: 3284793599
+    data2: 3143416167
+  Type: 1
   IsGlobal: 0
   Labels: []
   Exists: 1

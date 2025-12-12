@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{db87c8ed-04b2-4cc0-961b-69656f54ee10}">
+		<property name="name">
+			<value>Champi_Size</value>
+		</property>
+		<relationship name="folder">
+			<destination>{28d7e34b-a457-4f13-911f-4622a0318e78}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{31e67beb-795f-4e4f-ba36-7e18a407a1bc}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{31e67beb-795f-4e4f-ba36-7e18a407a1bc}">
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
