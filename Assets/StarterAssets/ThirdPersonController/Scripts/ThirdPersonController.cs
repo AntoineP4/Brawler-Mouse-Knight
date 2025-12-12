@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -74,6 +76,10 @@ namespace StarterAssets
         [Header("Cage Pogo Tutorial")]
         public CagePogoTutorial cagePogoTutorial;
 
+        [Header("FMOD")]
+        [SerializeField] private EventReference jumpSfxEvent;
+        [SerializeField] private float jumpSfxCooldown = 0.4444f;
+
         float _cinemachineTargetYaw;
         float _cinemachineTargetPitch;
 
@@ -130,6 +136,9 @@ namespace StarterAssets
 
         AutoCamProfile _pendingProfile;
         bool _hasPendingProfile;
+
+        int _jumpRepeatIndex = 0;
+        float _lastJumpSfxTime = -999f;
 
         public bool IsMovementLockedByCage
         {
@@ -485,6 +494,18 @@ namespace StarterAssets
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);
+                    }
+
+                    if (!jumpSfxEvent.IsNull && Time.time - _lastJumpSfxTime >= jumpSfxCooldown)
+                    {
+                        EventInstance jumpInstance = RuntimeManager.CreateInstance(jumpSfxEvent);
+                        jumpInstance.setParameterByName("Jump repeat", _jumpRepeatIndex);
+                        jumpInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+                        jumpInstance.start();
+                        jumpInstance.release();
+
+                        _jumpRepeatIndex = (_jumpRepeatIndex + 1) % 3;
+                        _lastJumpSfxTime = Time.time;
                     }
                 }
 

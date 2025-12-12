@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using FMODUnity;
 
 namespace StarterAssets
 {
@@ -97,6 +98,18 @@ namespace StarterAssets
         [SerializeField] private float unselectedScaleMultiplier = 0.97f;
         [SerializeField] private float scaleLerpSpeed = 12f;
 
+        [Header("FMOD")]
+        [SerializeField] private EventReference openingMusic;
+        [SerializeField] private EventReference uiExitEvent;
+        [SerializeField] private EventReference uiOpenEvent;
+        [SerializeField] private EventReference uiScrollEvent;
+        [SerializeField] private EventReference uiSelectEvent;
+
+        [Header("Other UI Managers")]
+        [SerializeField] private PauseMenuManager pauseMenuManager;
+
+        private FMOD.Studio.EventInstance openingMusicInstance;
+
         private PlayerInput _playerInput;
         private InputAction _moveAction;
         private InputAction _lookAction;
@@ -149,8 +162,16 @@ namespace StarterAssets
         private Transform[] _selectableTransforms;
         private Vector3[] _selectableBaseScales;
 
+        private GameObject _lastSelectedObject;
+        private bool _suppressNextSelectSound;
+
+        private float _lastUIExitTime = -1f;
+
         private void Awake()
         {
+            if (pauseMenuManager != null)
+                pauseMenuManager.gameObject.SetActive(false);
+
             if (gameplayUIRoot != null)
                 gameplayUIRoot.SetActive(false);
 
@@ -272,15 +293,12 @@ namespace StarterAssets
             if (menuCamera != null)
                 menuCamera.Priority = 20;
 
+            RefreshMainOptionsUI();
+
             if (startButton != null) startButton.onClick.AddListener(OnStartClicked);
             if (optionsButton != null) optionsButton.onClick.AddListener(OnOptionsClicked);
             if (creditsButton != null) creditsButton.onClick.AddListener(OnCreditsClicked);
             if (quitButton != null) quitButton.onClick.AddListener(OnQuitClicked);
-
-            if (mainOptionsBackButton != null) mainOptionsBackButton.onClick.AddListener(OnMainOptionsBackClicked);
-            if (mainQuitNoButton != null) mainQuitNoButton.onClick.AddListener(OnMainQuitNoClicked);
-            if (mainQuitYesButton != null) mainQuitYesButton.onClick.AddListener(OnMainQuitYesClicked);
-            if (mainCreditsBackButton != null) mainCreditsBackButton.onClick.AddListener(OnMainCreditsBackClicked);
 
             if (mainSensitivitySlider != null) mainSensitivitySlider.onValueChanged.AddListener(OnMainSensitivityChanged);
             if (mainInvertYToggle != null) mainInvertYToggle.onValueChanged.AddListener(OnMainInvertYChanged);
@@ -288,10 +306,11 @@ namespace StarterAssets
             if (mainAttackOnJumpToggle != null) mainAttackOnJumpToggle.onValueChanged.AddListener(OnMainAttackOnJumpChanged);
             if (mainRumbleToggle != null) mainRumbleToggle.onValueChanged.AddListener(OnMainRumbleChanged);
 
-            RefreshMainOptionsUI();
-
             if (EventSystem.current != null && firstMainButton != null)
+            {
+                _suppressNextSelectSound = true;
                 EventSystem.current.SetSelectedGameObject(firstMainButton.gameObject);
+            }
 
             if (enableMenuLoopAnimation && !_gameStarted && !_menuLoopAlreadyPlayed && _playerAnimator != null && !string.IsNullOrEmpty(menuLoopBoolName))
                 _playerAnimator.SetBool(menuLoopBoolName, true);
@@ -317,6 +336,15 @@ namespace StarterAssets
             }
         }
 
+        private void Start()
+        {
+            if (!openingMusic.IsNull)
+            {
+                openingMusicInstance = RuntimeManager.CreateInstance(openingMusic);
+                openingMusicInstance.start();
+            }
+        }
+
         private void OnDestroy()
         {
             if (startButton != null) startButton.onClick.RemoveListener(OnStartClicked);
@@ -324,16 +352,54 @@ namespace StarterAssets
             if (creditsButton != null) creditsButton.onClick.RemoveListener(OnCreditsClicked);
             if (quitButton != null) quitButton.onClick.RemoveListener(OnQuitClicked);
 
-            if (mainOptionsBackButton != null) mainOptionsBackButton.onClick.RemoveListener(OnMainOptionsBackClicked);
-            if (mainQuitNoButton != null) mainQuitNoButton.onClick.RemoveListener(OnMainQuitNoClicked);
-            if (mainQuitYesButton != null) mainQuitYesButton.onClick.RemoveListener(OnMainQuitYesClicked);
-            if (mainCreditsBackButton != null) mainCreditsBackButton.onClick.RemoveListener(OnMainCreditsBackClicked);
-
             if (mainSensitivitySlider != null) mainSensitivitySlider.onValueChanged.RemoveListener(OnMainSensitivityChanged);
             if (mainInvertYToggle != null) mainInvertYToggle.onValueChanged.RemoveListener(OnMainInvertYChanged);
             if (mainAutoCamToggle != null) mainAutoCamToggle.onValueChanged.RemoveListener(OnMainAutoCamChanged);
             if (mainAttackOnJumpToggle != null) mainAttackOnJumpToggle.onValueChanged.RemoveListener(OnMainAttackOnJumpChanged);
             if (mainRumbleToggle != null) mainRumbleToggle.onValueChanged.RemoveListener(OnMainRumbleChanged);
+
+            StopOpeningMusic();
+        }
+
+        private void StopOpeningMusic()
+        {
+            if (openingMusicInstance.isValid())
+            {
+                openingMusicInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                openingMusicInstance.release();
+                openingMusicInstance.clearHandle();
+            }
+        }
+
+        private void PlayUIExit()
+        {
+            if (uiExitEvent.IsNull)
+                return;
+
+            float t = Time.unscaledTime;
+            if (t - _lastUIExitTime < 0.02f)
+                return;
+
+            _lastUIExitTime = t;
+            RuntimeManager.PlayOneShot(uiExitEvent);
+        }
+
+        private void PlayUIOpen()
+        {
+            if (!uiOpenEvent.IsNull)
+                RuntimeManager.PlayOneShot(uiOpenEvent);
+        }
+
+        private void PlayUIScroll()
+        {
+            if (!uiScrollEvent.IsNull)
+                RuntimeManager.PlayOneShot(uiScrollEvent);
+        }
+
+        private void PlayUISelect()
+        {
+            if (!uiSelectEvent.IsNull)
+                RuntimeManager.PlayOneShot(uiSelectEvent);
         }
 
         private bool BackPressedThisFrame()
@@ -362,6 +428,7 @@ namespace StarterAssets
                     EventSystem.current.currentSelectedGameObject == null &&
                     firstMainQuitConfirmButton != null)
                 {
+                    _suppressNextSelectSound = true;
                     EventSystem.current.SetSelectedGameObject(firstMainQuitConfirmButton.gameObject);
                 }
 
@@ -374,6 +441,7 @@ namespace StarterAssets
                     EventSystem.current.currentSelectedGameObject == null &&
                     firstMainOptionsButton != null)
                 {
+                    _suppressNextSelectSound = true;
                     EventSystem.current.SetSelectedGameObject(firstMainOptionsButton.gameObject);
                 }
 
@@ -386,6 +454,7 @@ namespace StarterAssets
                     EventSystem.current.currentSelectedGameObject == null &&
                     firstMainCreditsButton != null)
                 {
+                    _suppressNextSelectSound = true;
                     EventSystem.current.SetSelectedGameObject(firstMainCreditsButton.gameObject);
                 }
 
@@ -398,6 +467,7 @@ namespace StarterAssets
                     EventSystem.current.currentSelectedGameObject == null &&
                     firstMainButton != null)
                 {
+                    _suppressNextSelectSound = true;
                     EventSystem.current.SetSelectedGameObject(firstMainButton.gameObject);
                 }
             }
@@ -405,6 +475,7 @@ namespace StarterAssets
             if (_pendingSelection != null)
             {
                 EventSystem.current.SetSelectedGameObject(null);
+                _suppressNextSelectSound = true;
                 EventSystem.current.SetSelectedGameObject(_pendingSelection);
                 _pendingSelection = null;
             }
@@ -427,6 +498,22 @@ namespace StarterAssets
             GameObject selected = null;
             if (EventSystem.current != null)
                 selected = EventSystem.current.currentSelectedGameObject;
+
+            if (selected != _lastSelectedObject)
+            {
+                if (selected != null)
+                {
+                    if (_suppressNextSelectSound)
+                    {
+                        _suppressNextSelectSound = false;
+                    }
+                    else
+                    {
+                        PlayUISelect();
+                    }
+                }
+                _lastSelectedObject = selected;
+            }
 
             float dt = Time.unscaledDeltaTime;
             float lerpFactor = 1f - Mathf.Exp(-scaleLerpSpeed * dt);
@@ -467,6 +554,11 @@ namespace StarterAssets
         {
             if (_gameStarted) return;
             _gameStarted = true;
+
+            if (pauseMenuManager != null)
+                pauseMenuManager.gameObject.SetActive(true);
+
+            StopOpeningMusic();
 
             if (enableMenuLoopAnimation && _playerAnimator != null && !string.IsNullOrEmpty(menuLoopBoolName))
             {
@@ -764,6 +856,8 @@ namespace StarterAssets
 
         private void OnOptionsClicked()
         {
+            PlayUIOpen();
+
             TransitionToPanel(
                 mainOptionsPanel,
                 mainOptionsPanelCanvasGroup,
@@ -774,8 +868,10 @@ namespace StarterAssets
             );
         }
 
-        private void OnCreditsClicked()
+        public void OnCreditsClicked()
         {
+            PlayUIOpen();
+
             TransitionToPanel(
                 mainCreditsPanel,
                 mainCreditsPanelCanvasGroup,
@@ -786,8 +882,10 @@ namespace StarterAssets
             );
         }
 
-        private void OnQuitClicked()
+        public void OnQuitClicked()
         {
+            PlayUIOpen();
+
             TransitionToPanel(
                 mainQuitConfirmPanel,
                 mainQuitConfirmPanelCanvasGroup,
@@ -798,8 +896,11 @@ namespace StarterAssets
             );
         }
 
-        private void OnMainOptionsBackClicked()
+        public void OnMainOptionsBackClicked()
         {
+            _suppressNextSelectSound = true;
+            PlayUIExit();
+
             TransitionToPanel(
                 mainPanel,
                 mainPanelCanvasGroup,
@@ -810,8 +911,11 @@ namespace StarterAssets
             );
         }
 
-        private void OnMainQuitNoClicked()
+        public void OnMainQuitNoClicked()
         {
+            _suppressNextSelectSound = true;
+            PlayUIExit();
+
             TransitionToPanel(
                 mainPanel,
                 mainPanelCanvasGroup,
@@ -822,8 +926,10 @@ namespace StarterAssets
             );
         }
 
-        private void OnMainQuitYesClicked()
+        public void OnMainQuitYesClicked()
         {
+            StopOpeningMusic();
+
 #if UNITY_EDITOR
             UnityEditor.EditorApplication.isPlaying = false;
 #else
@@ -831,8 +937,11 @@ namespace StarterAssets
 #endif
         }
 
-        private void OnMainCreditsBackClicked()
+        public void OnMainCreditsBackClicked()
         {
+            _suppressNextSelectSound = true;
+            PlayUIExit();
+
             TransitionToPanel(
                 mainPanel,
                 mainPanelCanvasGroup,
@@ -851,49 +960,54 @@ namespace StarterAssets
                 float sliderValue = Mathf.InverseLerp(LookSensMin, LookSensMax, sens);
                 mainSensitivitySlider.minValue = 0f;
                 mainSensitivitySlider.maxValue = 1f;
-                mainSensitivitySlider.value = sliderValue;
+                mainSensitivitySlider.SetValueWithoutNotify(sliderValue);
             }
 
             if (thirdPersonController != null && mainInvertYToggle != null)
-                mainInvertYToggle.isOn = thirdPersonController.InvertY;
+                mainInvertYToggle.SetIsOnWithoutNotify(thirdPersonController.InvertY);
 
             if (thirdPersonController != null && mainAutoCamToggle != null)
-                mainAutoCamToggle.isOn = thirdPersonController.AutoCamGlobal;
+                mainAutoCamToggle.SetIsOnWithoutNotify(thirdPersonController.AutoCamGlobal);
 
             if (pogoDashAbility != null && mainAttackOnJumpToggle != null)
-                mainAttackOnJumpToggle.isOn = pogoDashAbility.AttackOnJump;
+                mainAttackOnJumpToggle.SetIsOnWithoutNotify(pogoDashAbility.AttackOnJump);
 
             if (mainRumbleToggle != null)
-                mainRumbleToggle.isOn = GameRumbleSettings.RumbleEnabled;
+                mainRumbleToggle.SetIsOnWithoutNotify(GameRumbleSettings.RumbleEnabled);
         }
 
         private void OnMainSensitivityChanged(float value)
         {
             if (thirdPersonController == null || mainSensitivitySlider == null) return;
             thirdPersonController.LookSensitivity = Mathf.Lerp(LookSensMin, LookSensMax, value);
+            PlayUIScroll();
         }
 
         private void OnMainInvertYChanged(bool isOn)
         {
             if (thirdPersonController == null) return;
             thirdPersonController.InvertY = isOn;
+            PlayUIScroll();
         }
 
         private void OnMainAutoCamChanged(bool isOn)
         {
             if (thirdPersonController == null) return;
             thirdPersonController.AutoCamGlobal = isOn;
+            PlayUIScroll();
         }
 
         private void OnMainAttackOnJumpChanged(bool isOn)
         {
             if (pogoDashAbility == null) return;
             pogoDashAbility.AttackOnJump = isOn;
+            PlayUIScroll();
         }
 
         private void OnMainRumbleChanged(bool isOn)
         {
             GameRumbleSettings.SetRumbleEnabled(isOn);
+            PlayUIScroll();
         }
 
         private void ApplyMenuVisualOverrides()

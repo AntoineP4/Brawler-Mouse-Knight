@@ -504,8 +504,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 11.085632
+  m_Center: {x: -0.000000002577277, y: 0, z: 1.0856323}
 --- !u!114 &7055929821910672994
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b75d2268fe3534d8fc424d27885d79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 16d00361bfd825c4eadb09f557315b36, type: 2}
+  dialogue: {fileID: 11400000, guid: 152c4d61bc842f640a67fb2138f1049e, type: 2}
   animator: {fileID: 8922427951348126611}
   talkingBoolName: IsTalking
   talkVariantParamName: TalkVariant

@@ -1659,6 +1659,14 @@ MonoBehaviour:
   CanMove: 1
   LockGravityExternally: 0
   cagePogoTutorial: {fileID: 5749960313374974293}
+  jumpSfxEvent:
+    Guid:
+      Data1: -1377639759
+      Data2: 1154091446
+      Data3: -1094461027
+      Data4: -1220570354
+    Path: event:/SFX/Player/Player_jump
+  jumpSfxCooldown: 0.4444
 --- !u!114 &7227052806779097505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1833,6 +1841,9 @@ MonoBehaviour:
   mushroomLayers:
     serializedVersion: 2
     m_Bits: 64
+  pogoniLayers:
+    serializedVersion: 2
+    m_Bits: 2048
   cageLayers:
     serializedVersion: 2
     m_Bits: 128
@@ -1861,6 +1872,41 @@ MonoBehaviour:
   cageBreakVfxYOffset: 1
   cagePogoTutorial: {fileID: 5749960313374974293}
   candleToDisable: {fileID: 0}
+  cageMusicEvent:
+    Guid:
+      Data1: 1287865456
+      Data2: 1076527674
+      Data3: 59672738
+      Data4: -79790929
+    Path: event:/Musics/Prison
+  dashSfxEvent:
+    Guid:
+      Data1: 11390204
+      Data2: 1076279682
+      Data3: 1088318109
+      Data4: -1663375648
+    Path: event:/SFX/Player/Player_dash
+  pogoMushroomSfxEvent:
+    Guid:
+      Data1: -1531566434
+      Data2: 1264460745
+      Data3: 970249099
+      Data4: 1631901741
+    Path: event:/SFX/Player/Champi_bounce
+  pogoPogoniSfxEvent:
+    Guid:
+      Data1: -917322016
+      Data2: 1271270403
+      Data3: 525272197
+      Data4: -656191583
+    Path: event:/SFX/Player/Player_health_regen
+  pogoCageSfxEvent:
+    Guid:
+      Data1: -700449241
+      Data2: 1167421414
+      Data3: -67367540
+      Data4: 1930206275
+    Path: event:/SFX/Tutorial/Cage_hits
   pogoOnXLayout: 0
 --- !u!114 &5749960313374974293
 MonoBehaviour:
@@ -1896,6 +1942,13 @@ MonoBehaviour:
   secondTutorialShowTrigger: {fileID: 0}
   secondTutorialHideTrigger: {fileID: 0}
   secondTutorialFadeDuration: 0.8
+  slowmoSfx:
+    Guid:
+      Data1: -658222310
+      Data2: 1229432012
+      Data3: 1632891554
+      Data4: 1813718424
+    Path: event:/SFX/Tutorial/Cage_slowmo
 --- !u!114 &2305071959269750051
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,6 +3,8 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using Unity.VisualScripting;
 using System.Collections;
+using FMODUnity;
+using FMOD.Studio;
 
 public class LowHPPostProcessManager : MonoBehaviour
 {
@@ -26,6 +28,9 @@ public class LowHPPostProcessManager : MonoBehaviour
     [SerializeField] private float damageFlashIntensityMultiplier = 1.22f;
     [SerializeField] private Color damageFlashColor = new Color(0f, 0f, 0f, 0.65f);
 
+    [Header("FMOD")]
+    [SerializeField] private EventReference lowHpHeartbeatEvent;
+
     private Vignette vignette;
     private Coroutine fadeRoutine;
     private Coroutine damageFlashRoutine;
@@ -39,6 +44,9 @@ public class LowHPPostProcessManager : MonoBehaviour
     private float heartbeatTimer;
 
     private bool systemActive = false;
+
+    private EventInstance lowHpHeartbeatInstance;
+    private bool lowHpHeartbeatPlaying = false;
 
     private void Start()
     {
@@ -56,8 +64,6 @@ public class LowHPPostProcessManager : MonoBehaviour
         {
             lastHP = currentHP;
         }
-
-        ActivateLowHpSystem();
     }
 
     private void Update()
@@ -113,6 +119,11 @@ public class LowHPPostProcessManager : MonoBehaviour
         vignette.color.value = currentColor;
     }
 
+    private void OnDestroy()
+    {
+        StopLowHpHeartbeat();
+    }
+
     private void RefreshVignetteReference()
     {
         if (vignette != null) return;
@@ -157,8 +168,18 @@ public class LowHPPostProcessManager : MonoBehaviour
     {
         if (vignette == null) return;
 
+        bool wasLowHp = isLowHpState;
         isLowHpState = isLowHP;
         heartbeatTimer = 0f;
+
+        if (!wasLowHp && isLowHpState)
+        {
+            StartLowHpHeartbeat();
+        }
+        else if (wasLowHp && !isLowHpState)
+        {
+            StopLowHpHeartbeat();
+        }
 
         if (fadeRoutine != null)
             StopCoroutine(fadeRoutine);
@@ -247,5 +268,28 @@ public class LowHPPostProcessManager : MonoBehaviour
             bool low = currentHP == 1;
             SetLowHP(low, activationFadeDuration);
         }
+    }
+
+    private void StartLowHpHeartbeat()
+    {
+        if (lowHpHeartbeatPlaying) return;
+        if (lowHpHeartbeatEvent.IsNull) return;
+
+        lowHpHeartbeatInstance = RuntimeManager.CreateInstance(lowHpHeartbeatEvent);
+        lowHpHeartbeatInstance.start();
+        lowHpHeartbeatPlaying = true;
+    }
+
+    private void StopLowHpHeartbeat()
+    {
+        if (!lowHpHeartbeatPlaying) return;
+
+        if (lowHpHeartbeatInstance.isValid())
+        {
+            lowHpHeartbeatInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            lowHpHeartbeatInstance.release();
+        }
+
+        lowHpHeartbeatPlaying = false;
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 namespace StarterAssets
 {
@@ -41,6 +43,9 @@ namespace StarterAssets
         public Collider secondTutorialHideTrigger;
         public float secondTutorialFadeDuration = 0.5f;
 
+        [Header("FMOD Slowmo SFX")]
+        public EventReference slowmoSfx;
+
         int pogoCount = 0;
         bool waitingForApex = false;
         bool cageBroken = false;
@@ -67,6 +72,8 @@ namespace StarterAssets
         Coroutine secondTutorialFadeRoutine;
         bool secondTutorialConsumed = false;
 
+        EventInstance slowmoInstance;
+
         void Start()
         {
             if (pogoCheckmark != null)
@@ -88,6 +95,16 @@ namespace StarterAssets
                 secondTutorialCanvasGroup.alpha = 0f;
                 if (secondTutorialRoot != null)
                     secondTutorialRoot.gameObject.SetActive(false);
+            }
+        }
+
+        void OnDestroy()
+        {
+            if (slowmoInstance.isValid())
+            {
+                slowmoInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                slowmoInstance.release();
+                slowmoInstance = default;
             }
         }
 
@@ -238,6 +255,19 @@ namespace StarterAssets
             if (slowInRoutine != null)
                 StopCoroutine(slowInRoutine);
 
+            if (!slowmoSfx.IsNull)
+            {
+                if (slowmoInstance.isValid())
+                {
+                    slowmoInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                    slowmoInstance.release();
+                    slowmoInstance = default;
+                }
+
+                slowmoInstance = RuntimeManager.CreateInstance(slowmoSfx);
+                slowmoInstance.start();
+            }
+
             slowInRoutine = StartCoroutine(SlowInRoutine());
         }
 
@@ -283,15 +313,19 @@ namespace StarterAssets
                 slowInRoutine = null;
             }
 
-            if (!isSlowmoActive && Mathf.Approximately(Time.timeScale, originalTimeScale))
-                return;
-
             float targetScale = originalTimeScale <= 0f ? 1f : originalTimeScale;
             float baseFixed = originalFixedDeltaTime <= 0f ? 0.02f : originalFixedDeltaTime;
 
             Time.timeScale = targetScale;
             Time.fixedDeltaTime = baseFixed;
             isSlowmoActive = false;
+
+            if (slowmoInstance.isValid())
+            {
+                slowmoInstance.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                slowmoInstance.release();
+                slowmoInstance = default;
+            }
         }
 
         void StartCheckSequence()
