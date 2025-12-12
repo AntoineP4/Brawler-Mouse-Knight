@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{7c1d61b2-f441-4724-8bb7-dad6e5b17b8e}">
 		<property name="assetPath">
-			<value>Menu_exit.ogg</value>
+			<value>SFX/Menu_exit.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

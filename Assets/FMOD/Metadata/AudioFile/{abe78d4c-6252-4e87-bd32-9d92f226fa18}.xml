@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{abe78d4c-6252-4e87-bd32-9d92f226fa18}">
 		<property name="assetPath">
-			<value>Cage_Hit_04.ogg</value>
+			<value>SFX/Cage_Hit_04.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{abb3e904-eff8-4346-99da-59a54872bdc9}">
 		<property name="assetPath">
-			<value>Cage_slowmo_02.ogg</value>
+			<value>SFX/Cage_slowmo_02.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

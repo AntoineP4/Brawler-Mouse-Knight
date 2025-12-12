@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{e0c6089a-711c-4990-adde-1bccb71afd47}">
 		<property name="assetPath">
-			<value>Player_low_health.ogg</value>
+			<value>SFX/Player_low_health.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{2050e896-fe97-4727-b33f-b8e64743cb6c}">
 		<property name="assetPath">
-			<value>Knight_pogo.ogg</value>
+			<value>SFX/Knight_pogo.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

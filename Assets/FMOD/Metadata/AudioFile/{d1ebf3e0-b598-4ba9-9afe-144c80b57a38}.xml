@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{d1ebf3e0-b598-4ba9-9afe-144c80b57a38}">
 		<property name="assetPath">
-			<value>Champi_bounce_03.ogg</value>
+			<value>SFX/Champi_bounce_03.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

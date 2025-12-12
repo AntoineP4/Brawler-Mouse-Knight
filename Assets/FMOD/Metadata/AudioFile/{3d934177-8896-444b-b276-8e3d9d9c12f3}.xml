@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{3d934177-8896-444b-b276-8e3d9d9c12f3}">
 		<property name="assetPath">
-			<value>G_DEATH.ogg</value>
+			<value>SFX/G_DEATH.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

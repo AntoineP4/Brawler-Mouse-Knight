@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.03.00">
 	<object class="AudioFile" id="{faf9cfa4-f41b-49c8-8ab0-166182e21fc0}">
 		<property name="assetPath">
-			<value>Mage_pogo.ogg</value>
+			<value>SFX/Mage_pogo.ogg</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>
