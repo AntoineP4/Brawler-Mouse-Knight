@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/FMOD/Assets/Musiques/End Credits.ogg.meta
-guid: 2bf7aa7f4a4b60540b42d76ff1167411
-========
-guid: 58aea26e3a16d9d4c988eaa6558dfdad
->>>>>>>> Arthur:Assets/FMOD/Assets/Cage_Hit_01.ogg.meta
+guid: f11f9b096940a014781d91cffe423864
 AudioImporter:
   externalObjects: {}
   serializedVersion: 8
