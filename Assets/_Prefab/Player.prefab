@@ -1612,19 +1612,6 @@ MonoBehaviour:
   SprintSpeed: 6
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
-  LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
-  FootstepAudioClips:
-  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
-  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
-  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
-  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
-  - {fileID: 8300000, guid: 14e8a8d2158bec840b56c54f5266e692, type: 3}
-  - {fileID: 8300000, guid: 29841e7d5bbfb5b419c9ad16ca8bc4c1, type: 3}
-  - {fileID: 8300000, guid: dd1af302b8902684d9381de1f2d3a5af, type: 3}
-  - {fileID: 8300000, guid: 67c8b33e424ccdc4486edf538ab91c5a, type: 3}
-  - {fileID: 8300000, guid: 274649b0e221539409070ebf6c18918b, type: 3}
-  - {fileID: 8300000, guid: a3194b8bbc96ef84fab1f98f4b7dae3e, type: 3}
-  FootstepAudioVolume: 0
   JumpHeight: 4.444
   Gravity: -44.44
   CageJumpHeight: 2.7
@@ -1667,6 +1654,16 @@ MonoBehaviour:
       Data4: -1220570354
     Path: event:/SFX/Player/Player_jump
   jumpSfxCooldown: 0.4444
+  footstepSfxEvent:
+    Guid:
+      Data1: -438620192
+      Data2: 1194950395
+      Data3: -260135505
+      Data4: -328498931
+    Path: event:/SFX/Player/Player_footsteps
+  footstepSfxCooldown: 0.06
+  footstepMinHorizontalSpeed: 0.2
+  landFootstepCooldown: 0
 --- !u!114 &7227052806779097505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,6 +1904,27 @@ MonoBehaviour:
       Data3: -67367540
       Data4: 1930206275
     Path: event:/SFX/Tutorial/Cage_hits
+  pogoKnightSfxEvent:
+    Guid:
+      Data1: -1204466832
+      Data2: 1258238886
+      Data3: 296277438
+      Data4: -820296488
+    Path: event:/SFX/Enemies/Knight/Knight_pogo
+  pogoMageSfxEvent:
+    Guid:
+      Data1: 80426987
+      Data2: 1333612473
+      Data3: -1570980936
+      Data4: -2013635141
+    Path: event:/SFX/Enemies/Mage_commun/Mage_pogo
+  pogoGolemSfxEvent:
+    Guid:
+      Data1: -421983712
+      Data2: 1281489349
+      Data3: 1473588639
+      Data4: -290592792
+    Path: event:/SFX/Enemies/Gollum/G_pogo
   pogoOnXLayout: 0
 --- !u!114 &5749960313374974293
 MonoBehaviour:

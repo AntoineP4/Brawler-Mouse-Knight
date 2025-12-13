@@ -95,6 +95,9 @@ namespace StarterAssets
         [SerializeField] private EventReference pogoMushroomSfxEvent;
         [SerializeField] private EventReference pogoPogoniSfxEvent;
         [SerializeField] private EventReference pogoCageSfxEvent;
+        [SerializeField] private EventReference pogoKnightSfxEvent;
+        [SerializeField] private EventReference pogoMageSfxEvent;
+        [SerializeField] private EventReference pogoGolemSfxEvent;
 
         public bool IsDashing { get; private set; }
 
@@ -142,6 +145,11 @@ namespace StarterAssets
         bool cageFirstPogoDone;
         bool cageMusicStarted;
         int cageHitCount = 0;
+
+        const string CHAMPI_SIZE_PARAM = "Champi_Size";
+        const string TAG_MUSHROOM_PETIT = "Mushroom - Petit";
+        const string TAG_MUSHROOM_GRAND = "Mushroom - Grand";
+        const string TAG_MUSHROOM_ENORME = "Mushroom - Enorme";
 
         public bool AttackOnJump
         {
@@ -298,6 +306,7 @@ namespace StarterAssets
                         TriggerScreenShake();
                         TriggerPogoRumble();
                         SpawnPogoVfx(enemyCol2);
+                        PlayPogoEnemySfx3D(enemyCol2);
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceHeight);
                         airDashAvailable = true;
@@ -313,7 +322,7 @@ namespace StarterAssets
                         if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                         TriggerScreenShake();
                         TriggerPogoRumble();
-                        PlayPogoPogoniSfx();
+                        PlayPogoPogoniSfx3D(pogoniCol);
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceMushroomHeight);
                         airDashAvailable = true;
@@ -329,7 +338,7 @@ namespace StarterAssets
                         if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
                         TriggerScreenShake();
                         TriggerPogoRumble();
-                        PlayPogoMushroomSfx();
+                        PlayPogoMushroomSfx(npCol2);
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceMushroomHeight);
                         airDashAvailable = true;
@@ -349,7 +358,7 @@ namespace StarterAssets
                         StartCoroutine(ShakeCageRoutine(cageTr, cageShakeDuration, cageShakeAmplitude));
                         TriggerScreenShake();
                         TriggerPogoRumble();
-                        PlayPogoCageSfx();
+                        PlayPogoCageSfx3D(cageCol2);
                         SpawnPogoVfx(cageCol2);
                         ctrl.Bounce(pogoBounceCageHeight);
                         airDashAvailable = true;
@@ -407,29 +416,88 @@ namespace StarterAssets
         void PlayDashSfx()
         {
             if (dashSfxEvent.IsNull) return;
-            RuntimeManager.PlayOneShot(dashSfxEvent, transform.position);
+            RuntimeManager.PlayOneShot(dashSfxEvent);
         }
 
-        void PlayPogoMushroomSfx()
+        Vector3 GetImpactPoint(Collider col)
+        {
+            Vector3 origin = cc != null ? cc.bounds.center : transform.position;
+            if (col == null) return origin;
+            return col.ClosestPoint(origin);
+        }
+
+        float GetChampiSizeFromTag(Collider col)
+        {
+            if (col == null) return 0f;
+            var go = col.attachedRigidbody ? col.attachedRigidbody.gameObject : col.gameObject;
+
+            if (go != null)
+            {
+                if (go.CompareTag(TAG_MUSHROOM_PETIT)) return 0f;
+                if (go.CompareTag(TAG_MUSHROOM_GRAND)) return 0.4444f;
+                if (go.CompareTag(TAG_MUSHROOM_ENORME)) return 1f;
+            }
+
+            return 0f;
+        }
+
+        void PlayPogoMushroomSfx(Collider mushroomCol)
         {
             if (pogoMushroomSfxEvent.IsNull) return;
-            RuntimeManager.PlayOneShot(pogoMushroomSfxEvent, transform.position);
+
+            float champiSize = GetChampiSizeFromTag(mushroomCol);
+            Vector3 pos = GetImpactPoint(mushroomCol);
+
+            var instance = RuntimeManager.CreateInstance(pogoMushroomSfxEvent);
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
+            instance.setParameterByName(CHAMPI_SIZE_PARAM, champiSize);
+            instance.start();
+            instance.release();
         }
 
-        void PlayPogoPogoniSfx()
+        void PlayPogoPogoniSfx3D(Collider pogoniCol)
         {
             if (pogoPogoniSfxEvent.IsNull) return;
-            RuntimeManager.PlayOneShot(pogoPogoniSfxEvent, transform.position);
+            Vector3 pos = GetImpactPoint(pogoniCol);
+            RuntimeManager.PlayOneShot(pogoPogoniSfxEvent, pos);
         }
 
-        void PlayPogoCageSfx()
+        void PlayPogoEnemySfx3D(Collider enemyCol)
+        {
+            if (enemyCol == null) return;
+
+            Vector3 pos = GetImpactPoint(enemyCol);
+
+            if (enemyCol.gameObject.CompareTag("Knight"))
+            {
+                if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
+                return;
+            }
+
+            if (enemyCol.gameObject.CompareTag("Mage"))
+            {
+                if (!pogoMageSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoMageSfxEvent, pos);
+                return;
+            }
+
+            if (enemyCol.gameObject.CompareTag("Golem"))
+            {
+                if (!pogoGolemSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoGolemSfxEvent, pos);
+                return;
+            }
+        }
+
+        void PlayPogoCageSfx3D(Collider cageCol)
         {
             if (pogoCageSfxEvent.IsNull) return;
 
             //Porlbeme de count de la cage demander aux MS
             cageHitCount = Mathf.Clamp(cageHitCount + 1, 0, 3);
 
+            Vector3 pos = GetImpactPoint(cageCol);
+
             var instance = RuntimeManager.CreateInstance(pogoCageSfxEvent);
+            instance.set3DAttributes(RuntimeUtils.To3DAttributes(pos));
             instance.setParameterByName("Cage hit count", cageHitCount);
             instance.start();
             instance.release();

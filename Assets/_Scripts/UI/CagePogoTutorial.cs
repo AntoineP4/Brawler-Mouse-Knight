@@ -46,6 +46,9 @@ namespace StarterAssets
         [Header("FMOD Slowmo SFX")]
         public EventReference slowmoSfx;
 
+        [Header("FMOD Slowmo Parameter")]
+        public string slowmoCountParameterName = "Cage Slow mo count";
+
         int pogoCount = 0;
         bool waitingForApex = false;
         bool cageBroken = false;
@@ -73,6 +76,8 @@ namespace StarterAssets
         bool secondTutorialConsumed = false;
 
         EventInstance slowmoInstance;
+
+        int slowmoTriggerCount = 0;
 
         void Start()
         {
@@ -265,6 +270,13 @@ namespace StarterAssets
                 }
 
                 slowmoInstance = RuntimeManager.CreateInstance(slowmoSfx);
+
+                float paramValue = (slowmoTriggerCount == 0) ? 0f : 1f;
+                slowmoTriggerCount++;
+
+                if (!string.IsNullOrEmpty(slowmoCountParameterName))
+                    slowmoInstance.setParameterByName(slowmoCountParameterName, paramValue);
+
                 slowmoInstance.start();
             }
 
