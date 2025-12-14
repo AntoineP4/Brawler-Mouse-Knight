@@ -4,7 +4,11 @@ using FMOD.Studio;
 
 public class MusicTriggerOnExit : MonoBehaviour
 {
+    [Header("Music")]
+    [SerializeField] private bool disableMusic = false;
     [SerializeField] private EventReference musicEvent;
+
+    [Header("Other")]
     [SerializeField] private GameObject childToActivate;
 
     private bool hasTriggered;
@@ -18,7 +22,8 @@ public class MusicTriggerOnExit : MonoBehaviour
 
         hasTriggered = true;
 
-        PlayMusic();
+        if (!disableMusic)
+            PlayMusic();
 
         if (childToActivate != null)
             childToActivate.SetActive(true);
@@ -26,6 +31,7 @@ public class MusicTriggerOnExit : MonoBehaviour
 
     public void PlayMusic()
     {
+        if (disableMusic) return;
         if (isPlaying) return;
         if (musicEvent.IsNull) return;
 
@@ -37,16 +43,19 @@ public class MusicTriggerOnExit : MonoBehaviour
 
     public void StopMusic()
     {
+        if (disableMusic) return;
         StopMusicFade();
     }
 
     public void StopMusicFade()
     {
+        if (disableMusic) return;
         StopInternal(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
     }
 
     public void StopMusicImmediate()
     {
+        if (disableMusic) return;
         StopInternal(FMOD.Studio.STOP_MODE.IMMEDIATE);
     }
 
@@ -65,7 +74,9 @@ public class MusicTriggerOnExit : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (disableMusic) return;
         if (!musicInstance.isValid()) return;
+
         musicInstance.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         musicInstance.release();
     }
