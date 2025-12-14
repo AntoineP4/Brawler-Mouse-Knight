@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="ParameterPreset" id="{215f19f4-505a-4bb8-95d8-05c0b5558949}">
+		<property name="name">
+			<value>numPogo</value>
+		</property>
+		<relationship name="folder">
+			<destination>{28d7e34b-a457-4f13-911f-4622a0318e78}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{4efc494b-05e1-4738-a913-e21152c5b061}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{4efc494b-05e1-4738-a913-e21152c5b061}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>6</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>
