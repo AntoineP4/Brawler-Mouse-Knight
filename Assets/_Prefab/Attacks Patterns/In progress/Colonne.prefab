@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ac26e7f318b2bc44dba5dc1ddfa2bce2, type: 2}
+  - {fileID: 2100000, guid: 8f9eeb2e886dc6749b02f8894e07fc69, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 4101723564699457143}
   - component: {fileID: 2760997917280318039}
   - component: {fileID: 8656261937037601656}
+  - component: {fileID: 5471462254471208495}
   m_Layer: 0
   m_Name: Colonne
   m_TagString: Untagged
@@ -156,7 +157,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 04e53c9edcc61bc4fa427de1eef45a9a, type: 2}
+  - {fileID: 2100000, guid: 5e66c6ddc6b05224385edbd9d7b290b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -219,6 +220,23 @@ MonoBehaviour:
     _json: '{"nest":{"source":"Macro","macro":0,"embed":null}}'
     _objectReferences:
     - {fileID: 11400000, guid: 9cc6099150a5430408f42a1760ca1686, type: 2}
+--- !u!114 &5471462254471208495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5294735158103687634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23afb4b17d4746940886d1b31cd1577e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetScale: 1
+  tolerance: 0.02
+  zoneRenderer: {fileID: 4101723564699457143}
+  fillRenderer: {fileID: 7918775239243696117}
+  hitDuration: 0.12
 --- !u!1 &7182524337971848971
 GameObject:
   m_ObjectHideFlags: 0

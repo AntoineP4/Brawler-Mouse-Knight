@@ -15407,7 +15407,9 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -129777,7 +129779,9 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -137448,7 +137452,9 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -163460,6 +163466,10 @@ PrefabInstance:
       propertyPath: menuDecalProjectorObject
       value: 
       objectReference: {fileID: 1858222520}
+    - target: {fileID: 5858851480760925261, guid: 5f254722ebe9eae4894b314862051820, type: 3}
+      propertyPath: debugResetAllSettingsToDefaults
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8255434277626934078, guid: 5f254722ebe9eae4894b314862051820, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -163500,9 +163510,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 9054385236767595438, guid: 5f254722ebe9eae4894b314862051820, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 8921465766746655048, guid: 5f254722ebe9eae4894b314862051820, type: 3}
+      propertyPath: debugResetAllSettingsToDefaults
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -164221,6 +164231,8 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Tuto
       Scene","value":{"$content":true,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Boss
+      Scene","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 3893294198393172114}
@@ -166301,6 +166313,26 @@ PrefabInstance:
       propertyPath: fadeCanvasGroup
       value: 
       objectReference: {fileID: 2055303820}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Path
+      value: event:/Musics/Prison
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data1
+      value: 1287865456
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data2
+      value: 1076527674
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data3
+      value: 59672738
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data4
+      value: -79790929
+      objectReference: {fileID: 0}
     - target: {fileID: 7626774940143899241, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
       propertyPath: m_Enabled
       value: 0

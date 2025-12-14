@@ -5,12 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/_Scenes/ALPHA.unity
-    guid: a14b3296565b6164196b9c87931d3692
-  - enabled: 0
-    path: Assets/_Scenes/Antoine.unity
-    guid: 9baf7042a0ba7334bb4cdd8e3e196cca
   - enabled: 1
     path: Assets/_Scenes/GOLD - Tuto.unity
     guid: 4f4af6c236fc5e54aa9105a398cbd9ee

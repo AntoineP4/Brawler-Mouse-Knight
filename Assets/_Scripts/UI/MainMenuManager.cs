@@ -6,7 +6,9 @@ using UnityEngine.UI;
 using Cinemachine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using FMODUnity;
+using FMOD.Studio;
 
 namespace StarterAssets
 {
@@ -44,6 +46,10 @@ namespace StarterAssets
         [Header("Options - Navigation")]
         [SerializeField] private Button firstMainOptionsButton;
         [SerializeField] private Button mainOptionsBackButton;
+
+        [Header("Options - Audio (FMOD VCA)")]
+        [SerializeField] private Slider masterVolumeSlider;
+        [SerializeField] private Slider musicVolumeSlider;
 
         [Header("Options - Gameplay & Camera")]
         [SerializeField] private Slider mainSensitivitySlider;
@@ -108,6 +114,9 @@ namespace StarterAssets
         [Header("Other UI Managers")]
         [SerializeField] private PauseMenuManager pauseMenuManager;
 
+        [Header("DEBUG")]
+        [SerializeField] private bool debugResetAllSettingsToDefaults;
+
         private FMOD.Studio.EventInstance openingMusicInstance;
 
         private PlayerInput _playerInput;
@@ -132,6 +141,14 @@ namespace StarterAssets
 
         private const float LookSensMin = 0.5f;
         private const float LookSensMax = 1.5f;
+
+        private const float DefaultSensitivity = 1f;
+        private const bool DefaultInvertY = false;
+        private const bool DefaultAutoCam = true;
+        private const bool DefaultAttackOnJump = false;
+        private const bool DefaultRumble = true;
+        private const float DefaultMusicVol = 1f;
+        private const float DefaultSfxVol = 1f;
 
         private Animator _playerAnimator;
         private bool _menuLoopAlreadyPlayed = false;
@@ -166,6 +183,83 @@ namespace StarterAssets
         private bool _suppressNextSelectSound;
 
         private float _lastUIExitTime = -1f;
+
+        private const string MusicVcaPath = "vca:/MUSICS";
+        private const string SfxVcaPath = "vca:/SFXs";
+        private const string PrefKeyMusicVol = "FMOD_MusicVCA_Volume";
+        private const string PrefKeySfxVol = "FMOD_SfxVCA_Volume";
+
+        private const string PrefKeySensitivity = "LookSensitivity";
+        private const string PrefKeyInvertY = "InvertY";
+        private const string PrefKeyAutoCam = "AutoCamGlobal";
+        private const string PrefKeyAttackOnJump = "AttackOnJump";
+        private const string PrefKeyRumble = "RumbleEnabled";
+
+        private VCA _musicVca;
+        private VCA _sfxVca;
+        private bool _vcaReady;
+
+        private Coroutine _rumblePulseCoroutine;
+
+        private void EnsureAttackOnJumpDefaultOff()
+        {
+            if (!PlayerPrefs.HasKey(PrefKeyAttackOnJump))
+                PlayerPrefs.SetInt(PrefKeyAttackOnJump, 0);
+        }
+
+        private void SetupVCA()
+        {
+            try
+            {
+                _musicVca = RuntimeManager.GetVCA(MusicVcaPath);
+                _sfxVca = RuntimeManager.GetVCA(SfxVcaPath);
+                _vcaReady = true;
+            }
+            catch
+            {
+                _vcaReady = false;
+            }
+        }
+
+        private float GetSavedMusicVolume01()
+        {
+            return Mathf.Clamp01(PlayerPrefs.GetFloat(PrefKeyMusicVol, 1f));
+        }
+
+        private float GetSavedSfxVolume01()
+        {
+            return Mathf.Clamp01(PlayerPrefs.GetFloat(PrefKeySfxVol, 1f));
+        }
+
+        private void ApplySavedVcaVolumes()
+        {
+            if (!_vcaReady) return;
+            _musicVca.setVolume(GetSavedMusicVolume01());
+            _sfxVca.setVolume(GetSavedSfxVolume01());
+        }
+
+        private void ApplySavedSettingsToComponents()
+        {
+            EnsureAttackOnJumpDefaultOff();
+
+            if (thirdPersonController == null)
+                thirdPersonController = FindFirstObjectByType<ThirdPersonController>();
+            if (pogoDashAbility == null)
+                pogoDashAbility = FindFirstObjectByType<PogoDashAbility>();
+
+            if (thirdPersonController != null)
+            {
+                if (PlayerPrefs.HasKey(PrefKeySensitivity))
+                    thirdPersonController.LookSensitivity = PlayerPrefs.GetFloat(PrefKeySensitivity);
+                if (PlayerPrefs.HasKey(PrefKeyInvertY))
+                    thirdPersonController.InvertY = PlayerPrefs.GetInt(PrefKeyInvertY, 0) == 1;
+                if (PlayerPrefs.HasKey(PrefKeyAutoCam))
+                    thirdPersonController.AutoCamGlobal = PlayerPrefs.GetInt(PrefKeyAutoCam, 1) == 1;
+            }
+
+            if (pogoDashAbility != null)
+                pogoDashAbility.AttackOnJump = PlayerPrefs.GetInt(PrefKeyAttackOnJump, 0) == 1;
+        }
 
         private void Awake()
         {
@@ -220,6 +314,10 @@ namespace StarterAssets
                 _pogoAction = actions.FindAction("Pogo", false);
                 _backAction = actions.FindAction("Back", false);
             }
+
+            SetupVCA();
+            ApplySavedVcaVolumes();
+            ApplySavedSettingsToComponents();
 
             if (thirdPersonController != null)
                 thirdPersonController.CanMove = false;
@@ -303,6 +401,9 @@ namespace StarterAssets
             if (creditsButton != null) creditsButton.onClick.AddListener(OnCreditsClicked);
             if (quitButton != null) quitButton.onClick.AddListener(OnQuitClicked);
 
+            if (masterVolumeSlider != null) masterVolumeSlider.onValueChanged.AddListener(OnSfxVolumeChanged);
+            if (musicVolumeSlider != null) musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeChanged);
+
             if (mainSensitivitySlider != null) mainSensitivitySlider.onValueChanged.AddListener(OnMainSensitivityChanged);
             if (mainInvertYToggle != null) mainInvertYToggle.onValueChanged.AddListener(OnMainInvertYChanged);
             if (mainAutoCamToggle != null) mainAutoCamToggle.onValueChanged.AddListener(OnMainAutoCamChanged);
@@ -354,6 +455,9 @@ namespace StarterAssets
             if (optionsButton != null) optionsButton.onClick.RemoveListener(OnOptionsClicked);
             if (creditsButton != null) creditsButton.onClick.RemoveListener(OnCreditsClicked);
             if (quitButton != null) quitButton.onClick.RemoveListener(OnQuitClicked);
+
+            if (masterVolumeSlider != null) masterVolumeSlider.onValueChanged.RemoveListener(OnSfxVolumeChanged);
+            if (musicVolumeSlider != null) musicVolumeSlider.onValueChanged.RemoveListener(OnMusicVolumeChanged);
 
             if (mainSensitivitySlider != null) mainSensitivitySlider.onValueChanged.RemoveListener(OnMainSensitivityChanged);
             if (mainInvertYToggle != null) mainInvertYToggle.onValueChanged.RemoveListener(OnMainInvertYChanged);
@@ -417,6 +521,12 @@ namespace StarterAssets
 
         private void Update()
         {
+            if (debugResetAllSettingsToDefaults)
+            {
+                debugResetAllSettingsToDefaults = false;
+                ResetAllSettingsToDefaults();
+            }
+
             if (_gameStarted) return;
             if (EventSystem.current == null) return;
 
@@ -484,6 +594,27 @@ namespace StarterAssets
             }
 
             UpdateSelectionJuice();
+        }
+
+        private void ResetAllSettingsToDefaults()
+        {
+            PlayerPrefs.SetFloat(PrefKeySensitivity, DefaultSensitivity);
+            PlayerPrefs.SetInt(PrefKeyInvertY, DefaultInvertY ? 1 : 0);
+            PlayerPrefs.SetInt(PrefKeyAutoCam, DefaultAutoCam ? 1 : 0);
+            PlayerPrefs.SetInt(PrefKeyAttackOnJump, DefaultAttackOnJump ? 1 : 0);
+            PlayerPrefs.SetInt(PrefKeyRumble, DefaultRumble ? 1 : 0);
+
+            PlayerPrefs.SetFloat(PrefKeyMusicVol, DefaultMusicVol);
+            PlayerPrefs.SetFloat(PrefKeySfxVol, DefaultSfxVol);
+
+            PlayerPrefs.Save();
+
+            GameRumbleSettings.SetRumbleEnabled(DefaultRumble);
+
+            SetupVCA();
+            ApplySavedVcaVolumes();
+            ApplySavedSettingsToComponents();
+            RefreshMainOptionsUI();
         }
 
         private void QueueSelection(GameObject target)
@@ -571,6 +702,8 @@ namespace StarterAssets
 
             if (menuCamera != null)
                 menuCamera.Priority = 0;
+
+            ApplySavedSettingsToComponents();
 
             if (thirdPersonController != null)
                 thirdPersonController.CanMove = true;
@@ -960,29 +1093,63 @@ namespace StarterAssets
             if (thirdPersonController != null && mainSensitivitySlider != null)
             {
                 float sens = thirdPersonController.LookSensitivity;
+                if (PlayerPrefs.HasKey(PrefKeySensitivity))
+                    sens = PlayerPrefs.GetFloat(PrefKeySensitivity);
+
                 float sliderValue = Mathf.InverseLerp(LookSensMin, LookSensMax, sens);
                 mainSensitivitySlider.minValue = 0f;
                 mainSensitivitySlider.maxValue = 1f;
                 mainSensitivitySlider.SetValueWithoutNotify(sliderValue);
             }
 
-            if (thirdPersonController != null && mainInvertYToggle != null)
-                mainInvertYToggle.SetIsOnWithoutNotify(thirdPersonController.InvertY);
+            if (mainInvertYToggle != null)
+            {
+                bool v = thirdPersonController != null ? thirdPersonController.InvertY : false;
+                if (PlayerPrefs.HasKey(PrefKeyInvertY))
+                    v = PlayerPrefs.GetInt(PrefKeyInvertY, 0) == 1;
+                mainInvertYToggle.SetIsOnWithoutNotify(v);
+            }
 
-            if (thirdPersonController != null && mainAutoCamToggle != null)
-                mainAutoCamToggle.SetIsOnWithoutNotify(thirdPersonController.AutoCamGlobal);
+            if (mainAutoCamToggle != null)
+            {
+                bool v = thirdPersonController != null ? thirdPersonController.AutoCamGlobal : true;
+                if (PlayerPrefs.HasKey(PrefKeyAutoCam))
+                    v = PlayerPrefs.GetInt(PrefKeyAutoCam, 1) == 1;
+                mainAutoCamToggle.SetIsOnWithoutNotify(v);
+            }
 
-            if (pogoDashAbility != null && mainAttackOnJumpToggle != null)
-                mainAttackOnJumpToggle.SetIsOnWithoutNotify(pogoDashAbility.AttackOnJump);
+            if (mainAttackOnJumpToggle != null)
+            {
+                EnsureAttackOnJumpDefaultOff();
+                bool v = PlayerPrefs.GetInt(PrefKeyAttackOnJump, 0) == 1;
+                mainAttackOnJumpToggle.SetIsOnWithoutNotify(v);
+            }
 
             if (mainRumbleToggle != null)
                 mainRumbleToggle.SetIsOnWithoutNotify(GameRumbleSettings.RumbleEnabled);
+
+            if (masterVolumeSlider != null)
+            {
+                masterVolumeSlider.minValue = 0f;
+                masterVolumeSlider.maxValue = 1f;
+                masterVolumeSlider.SetValueWithoutNotify(GetSavedSfxVolume01());
+            }
+
+            if (musicVolumeSlider != null)
+            {
+                musicVolumeSlider.minValue = 0f;
+                musicVolumeSlider.maxValue = 1f;
+                musicVolumeSlider.SetValueWithoutNotify(GetSavedMusicVolume01());
+            }
         }
 
         private void OnMainSensitivityChanged(float value)
         {
             if (thirdPersonController == null || mainSensitivitySlider == null) return;
-            thirdPersonController.LookSensitivity = Mathf.Lerp(LookSensMin, LookSensMax, value);
+
+            float sens = Mathf.Lerp(LookSensMin, LookSensMax, value);
+            thirdPersonController.LookSensitivity = sens;
+            PlayerPrefs.SetFloat(PrefKeySensitivity, sens);
             PlayUIScroll();
         }
 
@@ -990,6 +1157,7 @@ namespace StarterAssets
         {
             if (thirdPersonController == null) return;
             thirdPersonController.InvertY = isOn;
+            PlayerPrefs.SetInt(PrefKeyInvertY, isOn ? 1 : 0);
             PlayUIScroll();
         }
 
@@ -997,19 +1165,64 @@ namespace StarterAssets
         {
             if (thirdPersonController == null) return;
             thirdPersonController.AutoCamGlobal = isOn;
+            PlayerPrefs.SetInt(PrefKeyAutoCam, isOn ? 1 : 0);
             PlayUIScroll();
         }
 
         private void OnMainAttackOnJumpChanged(bool isOn)
         {
-            if (pogoDashAbility == null) return;
-            pogoDashAbility.AttackOnJump = isOn;
+            PlayerPrefs.SetInt(PrefKeyAttackOnJump, isOn ? 1 : 0);
+            if (pogoDashAbility != null)
+                pogoDashAbility.AttackOnJump = isOn;
             PlayUIScroll();
+        }
+
+        private void TriggerRumbleEnablePulse()
+        {
+            if (Gamepad.current == null) return;
+
+            if (_rumblePulseCoroutine != null)
+                StopCoroutine(_rumblePulseCoroutine);
+
+            _rumblePulseCoroutine = StartCoroutine(RumblePulseRoutine(0.08f, 0.55f, 0.95f));
+        }
+
+        private IEnumerator RumblePulseRoutine(float duration, float low, float high)
+        {
+            var pad = Gamepad.current;
+            if (pad == null)
+            {
+                _rumblePulseCoroutine = null;
+                yield break;
+            }
+
+            pad.SetMotorSpeeds(low, high);
+            yield return new WaitForSecondsRealtime(duration);
+
+            pad.SetMotorSpeeds(0f, 0f);
+            _rumblePulseCoroutine = null;
         }
 
         private void OnMainRumbleChanged(bool isOn)
         {
             GameRumbleSettings.SetRumbleEnabled(isOn);
+            if (isOn) TriggerRumbleEnablePulse();
+            PlayUIScroll();
+        }
+
+        private void OnSfxVolumeChanged(float value)
+        {
+            float v = Mathf.Clamp01(value);
+            PlayerPrefs.SetFloat(PrefKeySfxVol, v);
+            if (_vcaReady) _sfxVca.setVolume(v);
+            PlayUIScroll();
+        }
+
+        private void OnMusicVolumeChanged(float value)
+        {
+            float v = Mathf.Clamp01(value);
+            PlayerPrefs.SetFloat(PrefKeyMusicVol, v);
+            if (_vcaReady) _musicVca.setVolume(v);
             PlayUIScroll();
         }
 
@@ -1111,6 +1324,65 @@ namespace StarterAssets
 
             RenderSettings.ambientLight = targetColor;
             _ambientLerpCoroutine = null;
+        }
+
+        private static class RuntimeSettingsApplier
+        {
+            private static bool _initialized;
+
+            [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+            private static void Init()
+            {
+                if (_initialized) return;
+                _initialized = true;
+
+                if (!PlayerPrefs.HasKey(PrefKeyAttackOnJump))
+                    PlayerPrefs.SetInt(PrefKeyAttackOnJump, 0);
+
+                ApplyAudio();
+                ApplyToSceneObjects();
+                SceneManager.sceneLoaded += OnSceneLoaded;
+            }
+
+            private static void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+            {
+                ApplyAudio();
+                ApplyToSceneObjects();
+            }
+
+            private static void ApplyAudio()
+            {
+                try
+                {
+                    var musicVca = RuntimeManager.GetVCA(MusicVcaPath);
+                    var sfxVca = RuntimeManager.GetVCA(SfxVcaPath);
+
+                    float mv = Mathf.Clamp01(PlayerPrefs.GetFloat(PrefKeyMusicVol, 1f));
+                    float sv = Mathf.Clamp01(PlayerPrefs.GetFloat(PrefKeySfxVol, 1f));
+
+                    musicVca.setVolume(mv);
+                    sfxVca.setVolume(sv);
+                }
+                catch { }
+            }
+
+            private static void ApplyToSceneObjects()
+            {
+                var tpc = Object.FindFirstObjectByType<ThirdPersonController>();
+                if (tpc != null)
+                {
+                    if (PlayerPrefs.HasKey(PrefKeySensitivity))
+                        tpc.LookSensitivity = PlayerPrefs.GetFloat(PrefKeySensitivity);
+                    if (PlayerPrefs.HasKey(PrefKeyInvertY))
+                        tpc.InvertY = PlayerPrefs.GetInt(PrefKeyInvertY, 0) == 1;
+                    if (PlayerPrefs.HasKey(PrefKeyAutoCam))
+                        tpc.AutoCamGlobal = PlayerPrefs.GetInt(PrefKeyAutoCam, 1) == 1;
+                }
+
+                var pda = Object.FindFirstObjectByType<PogoDashAbility>();
+                if (pda != null)
+                    pda.AttackOnJump = PlayerPrefs.GetInt(PrefKeyAttackOnJump, 0) == 1;
+            }
         }
     }
 
