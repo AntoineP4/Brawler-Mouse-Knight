@@ -81,6 +81,8 @@
 		<relationship name="markers">
 			<destination>{5389ac92-b236-4b33-8f18-440bda5b99bb}</destination>
 			<destination>{68172ad9-9071-43b9-9256-6bb26ba11aec}</destination>
+			<destination>{d4c15a36-3091-42fa-813a-1b781bbf05a5}</destination>
+			<destination>{b8f89942-55c4-46cf-889c-c3c8426bde66}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{1aac93f3-13fc-4a60-a2a8-c04c3151f1f8}">
@@ -183,6 +185,34 @@
 		</relationship>
 		<relationship name="transitionTimeline">
 			<destination>{8a5eb729-a14b-4452-982a-196407ea0cba}</destination>
+		</relationship>
+	</object>
+	<object class="NamedMarker" id="{d4c15a36-3091-42fa-813a-1b781bbf05a5}">
+		<property name="position">
+			<value>1.7794289228052471</value>
+		</property>
+		<property name="name">
+			<value>START</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0a5069f5-d814-4209-b8f9-c4685d1019c3}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{4e7f5779-dae0-4b51-934d-09f0668807f9}</destination>
+		</relationship>
+	</object>
+	<object class="TransitionMarker" id="{b8f89942-55c4-46cf-889c-c3c8426bde66}">
+		<property name="position">
+			<value>0</value>
+		</property>
+		<relationship name="timeline">
+			<destination>{0a5069f5-d814-4209-b8f9-c4685d1019c3}</destination>
+		</relationship>
+		<relationship name="markerTrack">
+			<destination>{4e7f5779-dae0-4b51-934d-09f0668807f9}</destination>
+		</relationship>
+		<relationship name="destination">
+			<destination>{d4c15a36-3091-42fa-813a-1b781bbf05a5}</destination>
 		</relationship>
 	</object>
 	<object class="ADSRModulator" id="{9ae6e6d4-9895-4fa9-91cf-4c6c30d9339e}">

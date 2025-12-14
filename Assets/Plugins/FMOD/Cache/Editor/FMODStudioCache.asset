@@ -49,7 +49,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 3870447489898266223}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -82,6 +82,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 400
+--- !u!114 &-8461499295746923191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Mage_commun/Mage_Water
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Mage_commun/Mage_Water
+  Guid:
+    Data1: 200353759
+    Data2: 1305321101
+    Data3: 1448858291
+    Data4: -1842109757
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3750
 --- !u!114 &-7657548964528297576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,10 +178,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639013437942719759
+  lastModified: 639013511469274645
   FileSizes:
   - Name: Desktop
-    Value: 2520
+    Value: 2602
   Exists: 1
 --- !u!114 &-7489611766875229053
 MonoBehaviour:
@@ -336,7 +363,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 575
+  Length: 815
 --- !u!114 &-3305944187092947679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +391,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 195000
+--- !u!114 &-2933572329983147041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/Enemies/Mage_commun/Mage_fire
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/Enemies/Mage_commun/Mage_fire
+  Guid:
+    Data1: 1952901368
+    Data2: 1223320435
+    Data3: -1184616531
+    Data4: 1246360037
+  Banks:
+  - {fileID: 3870447489898266223}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 3886
 --- !u!114 &-2341003760305596170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +515,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639013437942719759
+  lastModified: 639013511469269305
   FileSizes:
   - Name: Desktop
     Value: 1798
@@ -537,13 +591,15 @@ MonoBehaviour:
   - {fileID: -7635756820510565592}
   - {fileID: -3832062938974159224}
   - {fileID: -2341003760305596170}
+  - {fileID: -8461499295746923191}
+  - {fileID: -2933572329983147041}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1187502192736260583}
   StringsBanks:
   - {fileID: -7495179517482950798}
   cacheVersion: 131857
-  cacheTime: 639013491063045634
+  cacheTime: 639013512939013653
   SerializableEventsDict:
   - key: event:/Musics/Opening
     index: 0
@@ -597,6 +653,10 @@ MonoBehaviour:
     index: 24
   - key: event:/Musics/Credits
     index: 25
+  - key: event:/SFX/Enemies/Mage_commun/Mage_Water
+    index: 26
+  - key: event:/SFX/Enemies/Mage_commun/Mage_fire
+    index: 27
 --- !u!114 &161969642687367943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,10 +809,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFXs.bank
   Name: SFXs
   StudioPath: bank:/SFXs
-  lastModified: 639013491063045634
+  lastModified: 639013512939013653
   FileSizes:
   - Name: Desktop
-    Value: 287520
+    Value: 399776
   Exists: 1
 --- !u!114 &4140987636068079520
 MonoBehaviour:
@@ -874,10 +934,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Musics.bank
   Name: Musics
   StudioPath: bank:/Musics
-  lastModified: 639013437943435205
+  lastModified: 639013512639342248
   FileSizes:
   - Name: Desktop
-    Value: 11713088
+    Value: 11713184
   Exists: 1
 --- !u!114 &6143845027313047627
 MonoBehaviour:
