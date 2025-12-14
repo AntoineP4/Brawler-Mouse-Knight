@@ -169,6 +169,9 @@ namespace StarterAssets
         const string TAG_ENEMY_MAGE = "Mage";
         const string TAG_ENEMY_GOLEM = "Golem";
 
+        const string ENEMY_PITCH_PARAM = "pitch";
+        int enemyPogoPitch = 0;
+
         public bool AttackOnJump
         {
             get => !pogoOnXLayout;
@@ -218,6 +221,10 @@ namespace StarterAssets
             airTime = 0f;
             pogoSystemArmed = false;
             dashStartedInAir = false;
+            enemyPogoPitch = 0;
+
+            TrySetGlobalPitch(0);
+
             if (ctrl != null) ctrl.LockGravityExternally = false;
 
             currentPogoDownSpeed = pogoDownSpeed;
@@ -254,6 +261,8 @@ namespace StarterAssets
             {
                 airDashAvailable = true;
                 pogoCooldownTimer = 0f;
+                enemyPogoPitch = 0;
+                TrySetGlobalPitch(0);
                 SetTrailEmission(false);
             }
 
@@ -332,7 +341,7 @@ namespace StarterAssets
                             cagePogoTutorial.OnPogoPerformed();
                     }
                     else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider enemyCol2, enemyLayers, QueryTriggerInteraction.Collide) ||
-                        TryGetPogoHitDown(postCenter, castDownDist, out enemyCol2, enemyLayers, QueryTriggerInteraction.Collide))
+                             TryGetPogoHitDown(postCenter, castDownDist, out enemyCol2, enemyLayers, QueryTriggerInteraction.Collide))
                     {
                         ApplyDamage(enemyCol2, FIXED_POGO_DAMAGE);
                         ApplyEnemyKnockbackConstrained(enemyCol2);
@@ -340,7 +349,11 @@ namespace StarterAssets
                         TriggerScreenShake();
                         TriggerPogoRumble();
                         SpawnPogoVfx(enemyCol2);
+
+                        enemyPogoPitch = Mathf.Clamp(enemyPogoPitch + 1, 0, 5);
+                        TrySetGlobalPitch(enemyPogoPitch);
                         PlayPogoEnemySfx3D(enemyCol2);
+
                         StopDashInternal(false);
                         ctrl.Bounce(pogoBounceHeight);
                         airDashAvailable = true;
@@ -436,6 +449,15 @@ namespace StarterAssets
             }
         }
 
+        void TrySetGlobalPitch(int value)
+        {
+            try
+            {
+                RuntimeManager.StudioSystem.setParameterByName(ENEMY_PITCH_PARAM, value);
+            }
+            catch { }
+        }
+
         void PlayCageMusic()
         {
             if (cageMusicStarted) return;
@@ -507,28 +529,18 @@ namespace StarterAssets
 
             GameObject root = tr.root != null ? tr.root.gameObject : tr.gameObject;
 
+            EventReference chosen = pogoKnightSfxEvent;
+
             if (root.CompareTag(TAG_ENEMY_MAGE))
-            {
-                if (!pogoMageSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoMageSfxEvent, pos);
-                else if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
-                return;
-            }
+                chosen = !pogoMageSfxEvent.IsNull ? pogoMageSfxEvent : pogoKnightSfxEvent;
+            else if (root.CompareTag(TAG_ENEMY_GOLEM))
+                chosen = !pogoGolemSfxEvent.IsNull ? pogoGolemSfxEvent : pogoKnightSfxEvent;
+            else if (root.CompareTag(TAG_ENEMY_KNIGHT))
+                chosen = pogoKnightSfxEvent;
 
-            if (root.CompareTag(TAG_ENEMY_GOLEM))
-            {
-                if (!pogoGolemSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoGolemSfxEvent, pos);
-                else if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
-                return;
-            }
+            if (chosen.IsNull) return;
 
-            if (root.CompareTag(TAG_ENEMY_KNIGHT))
-            {
-                if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
-                return;
-            }
-
-            if (!pogoKnightSfxEvent.IsNull)
-                RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
+            RuntimeManager.PlayOneShot(chosen, pos);
         }
 
         void PlayPogoCageSfx3D(Collider cageCol)
