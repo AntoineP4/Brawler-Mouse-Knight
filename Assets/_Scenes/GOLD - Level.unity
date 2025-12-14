@@ -90695,6 +90695,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7055929821910672994, guid: 3dfdf051d689b024ea3824d0af114c07, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: e2a3c660c0e893b4aaedb959e15c9c03, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -155244,6 +155248,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6669079051628329315, guid: 3dfdf051d689b024ea3824d0af114c07, type: 3}
+      propertyPath: m_Radius
+      value: 15.772329
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669079051628329315, guid: 3dfdf051d689b024ea3824d0af114c07, type: 3}
+      propertyPath: m_Center.x
+      value: 0.000011556931
+      objectReference: {fileID: 0}
+    - target: {fileID: 6669079051628329315, guid: 3dfdf051d689b024ea3824d0af114c07, type: 3}
+      propertyPath: m_Center.z
+      value: 5.772331
+      objectReference: {fileID: 0}
+    - target: {fileID: 7055929821910672994, guid: 3dfdf051d689b024ea3824d0af114c07, type: 3}
+      propertyPath: dialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: edc1c3debbc0c1c47968c965c110b5a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
