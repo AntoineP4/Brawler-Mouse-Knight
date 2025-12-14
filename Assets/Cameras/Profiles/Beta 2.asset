@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Beta 2
   m_EditorClassIdentifier: 
   TopClamp: 60
-  BottomClamp: -35
-  AutoCamTopClamp: 70
-  AutoCamBottomClamp: -30
+  BottomClamp: 10
+  AutoCamTopClamp: 60
+  AutoCamBottomClamp: 10
   AutoCam: 0
   AirTiltSpeedUp: 70
   AirTiltSpeedDown: 44.44

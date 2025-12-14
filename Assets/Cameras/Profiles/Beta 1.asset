@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TopClamp: 50
   BottomClamp: -35
-  AutoCamTopClamp: 70
-  AutoCamBottomClamp: -30
+  AutoCamTopClamp: 50
+  AutoCamBottomClamp: -35
   AutoCam: 0
   AirTiltSpeedUp: 70
   AirTiltSpeedDown: 44.44
