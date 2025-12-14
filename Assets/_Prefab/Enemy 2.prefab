@@ -632,11 +632,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: 200353759
+      Data2: 1305321101
+      Data3: 1448858291
+      Data4: -1842109757
+    Path: event:/SFX/Enemies/Mage_commun/Mage_Water
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
