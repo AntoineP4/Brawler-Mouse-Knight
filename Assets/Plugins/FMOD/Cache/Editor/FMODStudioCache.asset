@@ -132,7 +132,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 3349845745485919396}
   MinDistance: 1
   MaxDistance: 20
   Length: 574
@@ -151,10 +152,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639012449696688197
+  lastModified: 639012761341792780
   FileSizes:
   - Name: Desktop
-    Value: 2358
+    Value: 2468
   Exists: 1
 --- !u!114 &-7489611766875229053
 MonoBehaviour:
@@ -231,6 +232,30 @@ MonoBehaviour:
   IsGlobal: 0
   Labels: []
   Exists: 1
+--- !u!114 &-5906275503568611197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/G_pogo/numPogo
+  m_EditorClassIdentifier: 
+  Name: numPogo
+  StudioPath: 
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 653559375
+    data2: 1549321385
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &-5280935835851456453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -258,7 +283,7 @@ MonoBehaviour:
   - {fileID: 8091813571171023559}
   MinDistance: 1
   MaxDistance: 20
-  Length: 135428
+  Length: 145769
 --- !u!114 &-4545317294909741591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +467,8 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: -5906275503568611197}
   MinDistance: 1
   MaxDistance: 20
   Length: 824
@@ -461,10 +487,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639012449696688197
+  lastModified: 639012761341782695
   FileSizes:
   - Name: Desktop
-    Value: 1074
+    Value: 1378
   Exists: 1
 --- !u!114 &-294945091148864106
 MonoBehaviour:
@@ -543,7 +569,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -7495179517482950798}
   cacheVersion: 131857
-  cacheTime: 639012449697488317
+  cacheTime: 639012761342507817
   SerializableEventsDict:
   - key: event:/Musics/Opening
     index: 0
@@ -674,11 +700,35 @@ MonoBehaviour:
   - {fileID: 3870447489898266223}
   IsStream: 0
   Is3D: 0
-  IsOneShot: 1
+  IsOneShot: 0
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
   Length: 2929
+--- !u!114 &3349845745485919396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Mage_pogo/numPogo
+  m_EditorClassIdentifier: 
+  Name: numPogo
+  StudioPath: 
+  Min: 0
+  Max: 5
+  Default: 0
+  ID:
+    data1: 653559375
+    data2: 1549321385
+  Type: 1
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &3672496043704315648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -749,10 +799,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/SFXs.bank
   Name: SFXs
   StudioPath: bank:/SFXs
-  lastModified: 639012449697488317
+  lastModified: 639012761342507817
   FileSizes:
   - Name: Desktop
-    Value: 287392
+    Value: 288576
   Exists: 1
 --- !u!114 &4140987636068079520
 MonoBehaviour:
@@ -874,10 +924,10 @@ MonoBehaviour:
   Path: Assets/FMOD/Build/Desktop/Musics.bank
   Name: Musics
   StudioPath: bank:/Musics
-  lastModified: 639012449697457726
+  lastModified: 639012761342487814
   FileSizes:
   - Name: Desktop
-    Value: 9739552
+    Value: 11713376
   Exists: 1
 --- !u!114 &6143845027313047627
 MonoBehaviour:
