@@ -1689,11 +1689,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1327275063
-      Data2: 1099895299
-      Data3: -2019259749
-      Data4: 358859541
-    Path: event:/SFX/Enemies/Gollum/G_death
+      Data1: -1842117092
+      Data2: 1278066470
+      Data3: 1852387508
+      Data4: 1335362541
+    Path: event:/SFX/Enemies/Knight/Knight_attack
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0

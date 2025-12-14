@@ -632,11 +632,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: 361943151
-      Data2: 1094543086
-      Data3: -1928600422
-      Data4: 846736804
-    Path: event:/SFX/Enemies/Gollum/G_attack
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
@@ -663,11 +663,11 @@ MonoBehaviour:
   CollisionTag: 
   EventReference:
     Guid:
-      Data1: -1327275063
-      Data2: 1099895299
-      Data3: -2019259749
-      Data4: 358859541
-    Path: event:/SFX/Enemies/Gollum/G_death
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
   Event: 
   EventPlayTrigger: 0
   EventStopTrigger: 0
