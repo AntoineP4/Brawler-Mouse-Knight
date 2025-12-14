@@ -5,7 +5,7 @@
 			<value>Player_health_regen</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{a649342c-5259-44ba-9dcc-eb22ae373220}</destination>
@@ -113,7 +113,6 @@
 	<object class="MixerBusEffectChain" id="{71fa63c3-f69b-4768-9bcc-e21622518d8e}">
 		<relationship name="effects">
 			<destination>{805d9522-dbe1-4c57-8cf3-4f3e5247c6ac}</destination>
-			<destination>{bb1a75c5-6425-4e02-aef8-f78256a657c1}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{3a6cdc2e-61e3-441d-af58-7a54b98e4e37}" />
@@ -125,6 +124,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{cfde5290-a328-41ef-addb-a40014369e6c}" />
 	<object class="MixerBusFader" id="{805d9522-dbe1-4c57-8cf3-4f3e5247c6ac}" />
-	<object class="SpatialiserEffect" id="{bb1a75c5-6425-4e02-aef8-f78256a657c1}" />
 	<object class="MixerBusFader" id="{0404f0ad-ae38-4dd4-9dd2-ca7f99235cdf}" />
 </objects>

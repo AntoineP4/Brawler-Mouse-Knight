@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{dbd73642-1dd1-4381-a62f-3e3fc2a3e538}">
+		<property name="assetPath">
+			<value>ESM_MVG_fx_movement_one_shot_slow_dash_3_cloak_armed_whoosh_hard.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.67200000000000004</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5060d065-311c-4a08-a115-94b52a308316}</destination>
+		</relationship>
+	</object>
+</objects>
