@@ -20843,6 +20843,54 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.02, y: 0.019999996, z: 0.0002000037}
   m_Center: {x: 0, y: 0, z: -0.000000001968146}
+--- !u!1 &127586507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 127586509}
+  - component: {fileID: 127586508}
+  m_Layer: 0
+  m_Name: '[Debug] Scene loader (ultime recourd)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &127586508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127586507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f3480bb60196641a32e3d0ecfaf36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneA: GOLD - Tuto
+  sceneB: GOLD - Level
+  sceneC: Village Test ASSET
+  sceneD: BETA - Boss
+--- !u!4 &127586509
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127586507}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -37.284225, y: 17.121695, z: -170.15881}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &127933853 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 41de9f9789ee332438d55f1343a195ea, type: 3}
@@ -387256,6 +387304,7 @@ SceneRoots:
   - {fileID: 1990563949}
   - {fileID: 853691912}
   - {fileID: 2146125696}
+  - {fileID: 127586509}
   - {fileID: 1367410657}
   - {fileID: 1781219285}
   - {fileID: 1589803176}
