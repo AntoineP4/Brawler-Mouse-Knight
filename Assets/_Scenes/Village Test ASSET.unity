@@ -15,9 +15,9 @@ RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 10
   m_Fog: 1
-  m_FogColor: {r: 0.42745098, g: 0.5764706, b: 0.7490196, a: 1}
+  m_FogColor: {r: 0.20392157, g: 0.3137255, b: 0.43529412, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.009
+  m_FogDensity: 0.003
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.15325737, g: 0.7924528, b: 0.7300672, a: 1}
@@ -368956,6 +368956,8 @@ SceneRoots:
   - {fileID: 148693180}
   - {fileID: 1144720990}
   - {fileID: 413178861}
+  - {fileID: 3313597072308607241}
+  - {fileID: 166038133}
   - {fileID: 1990563949}
   - {fileID: 853691912}
   - {fileID: 2146125696}
@@ -369019,5 +369021,3 @@ SceneRoots:
   - {fileID: 1609210945}
   - {fileID: 116454940}
   - {fileID: 1520415685}
-  - {fileID: 3313597072308607241}
-  - {fileID: 166038133}
