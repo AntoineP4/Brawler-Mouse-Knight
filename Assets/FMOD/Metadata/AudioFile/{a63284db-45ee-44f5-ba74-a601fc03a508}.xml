@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{a63284db-45ee-44f5-ba74-a601fc03a508}">
+		<property name="assetPath">
+			<value>ESM_GCPO_vocals_male_pain_hurt_ouch.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.6923125</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{5060d065-311c-4a08-a115-94b52a308316}</destination>
+		</relationship>
+	</object>
+</objects>
