@@ -28,6 +28,9 @@ namespace StarterAssets
         public float pogoBounceHeight = 4f;
         public float pogoBounceMushroomHeight = 8f;
 
+        [Header("Boss")]
+        public float pogoBounceBossHeight = 4f;
+
         [Header("Cage Pogo Overrides")]
         public float pogoBounceCageHeight = 4f;
         public float pogoDownSpeedCage = 18f;
@@ -43,6 +46,7 @@ namespace StarterAssets
 
         [Header("Hit Detection")]
         public LayerMask enemyLayers;
+        public LayerMask bossLayers;
         [FormerlySerializedAs("nonPushableEnemyLayers")]
         public LayerMask mushroomLayers;
         public LayerMask pogoniLayers;
@@ -63,6 +67,11 @@ namespace StarterAssets
         public float shakeAmplitude = 0.12f;
         public float shakeFrequency = 28f;
 
+        [Header("Boss Screen Shake")]
+        public float bossShakeDuration = 0.10f;
+        public float bossShakeAmplitude = 0.16f;
+        public float bossShakeFrequency = 28f;
+
         [Header("Cage")]
         public int cagePogosToBreak = 3;
         public float cageShakeDuration = 0.12f;
@@ -74,6 +83,11 @@ namespace StarterAssets
         public float pogoRumbleLow = 0.4f;
         public float pogoRumbleHigh = 0.8f;
         public float pogoRumbleDuration = 0.12f;
+
+        [Header("Boss Rumble")]
+        public float bossPogoRumbleLow = 0.55f;
+        public float bossPogoRumbleHigh = 1.0f;
+        public float bossPogoRumbleDuration = 0.14f;
 
         [Header("Dash / Pogo Trail")]
         [SerializeField] private GameObject trailRoot;
@@ -297,7 +311,23 @@ namespace StarterAssets
                 {
                     float castDownDist = Mathf.Max(currentPogoCheckAhead, stepDist);
 
-                    if (TryGetPogoHitSegment(preCenter, postCenter, out Collider enemyCol2, enemyLayers, QueryTriggerInteraction.Collide) ||
+                    if (TryGetPogoHitSegment(preCenter, postCenter, out Collider bossCol, bossLayers, QueryTriggerInteraction.Collide) ||
+                        TryGetPogoHitDown(postCenter, castDownDist, out bossCol, bossLayers, QueryTriggerInteraction.Collide))
+                    {
+                        ApplyDamage(bossCol, FIXED_POGO_DAMAGE);
+                        if (anim != null && pogoHitHash != 0) anim.CrossFadeInFixedTime(pogoHitAnimState, 0.05f, 0, 0f);
+                        TriggerBossScreenShake();
+                        TriggerBossPogoRumble();
+                        SpawnPogoVfx(bossCol);
+                        PlayPogoEnemySfx3D(bossCol);
+                        StopDashInternal(false);
+                        ctrl.Bounce(pogoBounceBossHeight);
+                        airDashAvailable = true;
+
+                        if (cagePogoTutorial != null)
+                            cagePogoTutorial.OnPogoPerformed();
+                    }
+                    else if (TryGetPogoHitSegment(preCenter, postCenter, out Collider enemyCol2, enemyLayers, QueryTriggerInteraction.Collide) ||
                         TryGetPogoHitDown(postCenter, castDownDist, out enemyCol2, enemyLayers, QueryTriggerInteraction.Collide))
                     {
                         ApplyDamage(enemyCol2, FIXED_POGO_DAMAGE);
@@ -468,30 +498,14 @@ namespace StarterAssets
 
             Vector3 pos = GetImpactPoint(enemyCol);
 
-            if (enemyCol.gameObject.CompareTag("Knight"))
-            {
-                if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
-                return;
-            }
-
-            if (enemyCol.gameObject.CompareTag("Mage"))
-            {
-                if (!pogoMageSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoMageSfxEvent, pos);
-                return;
-            }
-
-            if (enemyCol.gameObject.CompareTag("Golem"))
-            {
-                if (!pogoGolemSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoGolemSfxEvent, pos);
-                return;
-            }
+            if (!pogoKnightSfxEvent.IsNull)
+                RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
         }
 
         void PlayPogoCageSfx3D(Collider cageCol)
         {
             if (pogoCageSfxEvent.IsNull) return;
 
-            //Porlbeme de count de la cage demander aux MS
             cageHitCount = Mathf.Clamp(cageHitCount + 1, 0, 3);
 
             Vector3 pos = GetImpactPoint(cageCol);
@@ -837,7 +851,14 @@ namespace StarterAssets
         {
             if (!enableScreenShake || camTarget == null) return;
             if (shakeCo != null) StopCoroutine(shakeCo);
-            shakeCo = StartCoroutine(ShakeRoutine());
+            shakeCo = StartCoroutine(ShakeRoutine(shakeDuration, shakeAmplitude));
+        }
+
+        void TriggerBossScreenShake()
+        {
+            if (!enableScreenShake || camTarget == null) return;
+            if (shakeCo != null) StopCoroutine(shakeCo);
+            shakeCo = StartCoroutine(ShakeRoutine(bossShakeDuration, bossShakeAmplitude));
         }
 
         void TriggerPogoRumble()
@@ -852,15 +873,27 @@ namespace StarterAssets
 #endif
         }
 
-        IEnumerator ShakeRoutine()
+        void TriggerBossPogoRumble()
+        {
+#if ENABLE_INPUT_SYSTEM
+            if (!enableRumble) return;
+            if (!GameRumbleSettings.RumbleEnabled) return;
+            var gamepad = Gamepad.current;
+            if (gamepad == null) return;
+            if (rumbleCo != null) StopCoroutine(rumbleCo);
+            rumbleCo = StartCoroutine(RumbleRoutine(bossPogoRumbleLow, bossPogoRumbleHigh, bossPogoRumbleDuration));
+#endif
+        }
+
+        IEnumerator ShakeRoutine(float duration, float amplitude)
         {
             float t = 0f;
             Vector3 basePos = camTargetBaseLocalPos;
 
-            while (t < shakeDuration)
+            while (t < duration)
             {
-                float decay = 1f - (t / Mathf.Max(0.0001f, shakeDuration));
-                float amp = shakeAmplitude * decay;
+                float decay = 1f - (t / Mathf.Max(0.0001f, duration));
+                float amp = amplitude * decay;
 
                 Vector3 jitter = new Vector3(
                     Random.value * 2f - 1f,
