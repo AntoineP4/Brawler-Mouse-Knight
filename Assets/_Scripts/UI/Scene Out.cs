@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using FMODUnity;
+using FMOD.Studio;
 
 public class SceneTransitioner : MonoBehaviour
 {
@@ -31,6 +33,10 @@ public class SceneTransitioner : MonoBehaviour
         }
 
         fadeCanvasGroup.alpha = 1f;
+
+        Bus masterBus;
+        RuntimeManager.StudioSystem.getBus("bus:/", out masterBus);
+        masterBus.stopAllEvents(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
 
         SceneManager.LoadScene(sceneToLoad);
     }
