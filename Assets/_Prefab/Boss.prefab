@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8233707704988101788}
   - component: {fileID: 9017575291077913091}
   - component: {fileID: 2520396502078413508}
+  - component: {fileID: 7359105198492191080}
   m_Layer: 3
   m_Name: Boss
   m_TagString: Untagged
@@ -152,6 +153,8 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Is
       vulnerable","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"mesh","value":{"$content":73,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"text
+      fin","value":{"$content":74,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 7972412514107675265, guid: 9f41826545acbb944a49bc5e90c89024, type: 3}
@@ -228,6 +231,7 @@ MonoBehaviour:
     - {fileID: 5157968820538104995}
     - {fileID: 6965828412522659344}
     - {fileID: 3774864484731366418}
+    - {fileID: 0}
 --- !u!114 &8233707704988101788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +291,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 3
   m_Center: {x: 0, y: 5, z: 0}
+--- !u!114 &7359105198492191080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2117537414961771269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da502b725fe25884893582a008008988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeCanvasGroup: {fileID: 0}
+  fadeOutDuration: 3
+  blackScreenDuration: 11
+  fadeInDuration: 1
+  deathAnimationName: Death
+  deathEndEventName: DeathReload
 --- !u!1 &3016303429433021184
 GameObject:
   m_ObjectHideFlags: 0
