@@ -41393,6 +41393,13 @@ MonoBehaviour:
       Data3: 1354808738
       Data4: -740582516
     Path: event:/SFX/Player/Player_lowhealth
+  damageTakenEvent:
+    Guid:
+      Data1: -1739448932
+      Data2: 1179154077
+      Data3: -369800285
+      Data4: -792593757
+    Path: event:/SFX/Player/Player_Hit
   autoActivateOnStart: 1
 --- !u!114 &1073995226
 MonoBehaviour:

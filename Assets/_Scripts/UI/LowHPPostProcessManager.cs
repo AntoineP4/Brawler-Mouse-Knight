@@ -31,6 +31,7 @@ public class LowHPPostProcessManager : MonoBehaviour
 
     [Header("FMOD")]
     [SerializeField] private EventReference lowHpHeartbeatEvent;
+    [SerializeField] private EventReference damageTakenEvent;
 
     [Header("Auto")]
     [SerializeField] private bool autoActivateOnStart = true;
@@ -108,6 +109,9 @@ public class LowHPPostProcessManager : MonoBehaviour
 
                 if (lostHP)
                 {
+                    if (!damageTakenEvent.IsNull)
+                        RuntimeManager.PlayOneShot(damageTakenEvent, transform.position);
+
                     if (damageFlashRoutine != null)
                         StopCoroutine(damageFlashRoutine);
 

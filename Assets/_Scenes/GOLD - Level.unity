@@ -517439,8 +517439,28 @@ PrefabInstance:
     m_TransformParent: {fileID: 2146125696}
     m_Modifications:
     - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: damageTakenEvent.Path
+      value: event:/SFX/Player/Player_Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
       propertyPath: lowHpHeartbeatEvent.Path
       value: event:/SFX/Player/Player_lowhealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: damageTakenEvent.Guid.Data1
+      value: -1739448932
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: damageTakenEvent.Guid.Data2
+      value: 1179154077
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: damageTakenEvent.Guid.Data3
+      value: -369800285
+      objectReference: {fileID: 0}
+    - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
+      propertyPath: damageTakenEvent.Guid.Data4
+      value: -792593757
       objectReference: {fileID: 0}
     - target: {fileID: 2878306682728382743, guid: b4054f4dbcc57bf4fa5f9ece7e80ebed, type: 3}
       propertyPath: lowHpHeartbeatEvent.Guid.Data1
