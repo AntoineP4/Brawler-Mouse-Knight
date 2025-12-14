@@ -27544,7 +27544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3531443593620371819, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.143
+      value: 5.52
       objectReference: {fileID: 0}
     - target: {fileID: 3531443593620371819, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -52648,6 +52648,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: _data._json
+      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"index","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"list
+        of enemy","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Is
+        on start","value":{"$content":true,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"time
+        before spawn","value":{"$content":0.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Has
+        particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
+        arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":2.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: _data._objectReferences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: '_data._objectReferences.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1462669205}
     - target: {fileID: 6339620471134512226, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: m_Name
       value: Spawner (1)
@@ -52660,6 +52687,11 @@ PrefabInstance:
 --- !u!4 &306546820 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+  m_PrefabInstance: {fileID: 306546819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &306546821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6339620471134512226, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
   m_PrefabInstance: {fileID: 306546819}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &306606429
@@ -53952,7 +53984,11 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":16.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -65269,7 +65305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5775194529688900050, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_Size.x
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5775194529688900050, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_Size.y
@@ -65285,7 +65321,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -188.50781
+      value: -206.51
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalRotation.w
@@ -70425,7 +70461,11 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":32.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":24.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -129273,7 +129313,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -92.851776
+      value: -92.9
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalRotation.w
@@ -153842,13 +153882,14 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 400535898}
+  - {fileID: 1134468728}
+  - {fileID: 306546820}
   - {fileID: 1530997046}
   - {fileID: 315281803}
   - {fileID: 1916146646}
   - {fileID: 960121024}
   - {fileID: 896078759}
-  - {fileID: 1134468728}
-  - {fileID: 306546820}
+  - {fileID: 1157511389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &894547171
@@ -154102,7 +154143,11 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":16.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -154124,6 +154169,11 @@ PrefabInstance:
 --- !u!4 &896078759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+  m_PrefabInstance: {fileID: 896078758}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &896078760 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6339620471134512226, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
   m_PrefabInstance: {fileID: 896078758}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &896420289
@@ -166852,7 +166902,11 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":16.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -193403,6 +193457,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: _data._json
+      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"index","value":{"$content":0,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"list
+        of enemy","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Is
+        on start","value":{"$content":true,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"time
+        before spawn","value":{"$content":0.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Has
+        particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
+        arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":2.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: _data._objectReferences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: '_data._objectReferences.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1462669205}
     - target: {fileID: 6339620471134512226, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: m_Name
       value: Spawner
@@ -193415,6 +193496,11 @@ PrefabInstance:
 --- !u!4 &1134468728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+  m_PrefabInstance: {fileID: 1134468727}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1134468729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6339620471134512226, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
   m_PrefabInstance: {fileID: 1134468727}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1134821870
@@ -197233,6 +197319,100 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 88282d081ce25c14dbe23105bb0d8587, type: 3}
   m_PrefabInstance: {fileID: 1156490624}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1157511388
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 894397927}
+    m_Modifications:
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 75.037224
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 67.38985
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -125.64206
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: _data._json
+      value: '{"declarations":{"Kind":"Object","collection":{"$content":[{"name":"index","value":{"$content":4,"$type":"System.Int32"},"typeHandle":{"Identification":"System.Int32,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"list
+        of enemy","value":null,"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Is
+        on start","value":{"$content":true,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"time
+        before spawn","value":{"$content":0.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Has
+        particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
+        arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":14.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":8.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: _data._objectReferences.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: '_data._objectReferences.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1423317429}
+    - target: {fileID: 6339620471134512226, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+      propertyPath: m_Name
+      value: Spawner
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+--- !u!4 &1157511389 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2597536987880611424, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+  m_PrefabInstance: {fileID: 1157511388}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1157511390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6339620471134512226, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
+  m_PrefabInstance: {fileID: 1157511388}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1157535509
 PrefabInstance:
@@ -253086,6 +253266,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7005663208629355943, guid: 830de266cbedd3c46ab118fa20c637d0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7631676378708075379, guid: 830de266cbedd3c46ab118fa20c637d0, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -263822,7 +264006,11 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":16.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":12.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -271354,14 +271542,16 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[UnityEngine.Transform,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"list
-      of spawn","value":{"$content":[5,6,7,8,null,null,9,null,null],"$type":"System.Collections.Generic.List`1[[UnityEngine.GameObject,
+      of spawn","value":{"$content":[5,6,7,8,9,10,11,12,13],"$type":"System.Collections.Generic.List`1[[UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"},"typeHandle":{"Identification":"System.Collections.Generic.List`1[[UnityEngine.GameObject,
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Tuto
       Scene","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Music
-      launcher","value":{"$content":10,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+      launcher","value":{"$content":14,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
+      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Boss
+      Scene","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
     - {fileID: 3893294198393172114}
     - {fileID: 1566741743}
@@ -271369,10 +271559,14 @@ MonoBehaviour:
     - {fileID: 748882208}
     - {fileID: 375623278}
     - {fileID: 400535897}
+    - {fileID: 1134468729}
+    - {fileID: 306546821}
     - {fileID: 1530997047}
     - {fileID: 315281804}
     - {fileID: 1916146647}
     - {fileID: 960121025}
+    - {fileID: 896078760}
+    - {fileID: 1157511390}
     - {fileID: 1694819737}
 --- !u!1001 &1582949766
 PrefabInstance:
@@ -277634,63 +277828,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3382833951190731271, guid: e1513f689d919e94289a484110d8b110, type: 3}
---- !u!1001 &1609210945
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3845440503457761880, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_Name
-      value: Enemy 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -9.367097
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 16.420002
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -171.7733
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.9772171
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.2122422
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 335.492
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989623815189599972, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5bce7ec60bde979458e167a2e7241114, type: 3}
 --- !u!1001 &1609362790
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -331979,7 +332116,11 @@ PrefabInstance:
         particles","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
         mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"my
         arena","value":{"$content":0,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
+        UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"range
+        detection","value":{"$content":18.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"range
+        attack","value":{"$content":14.0,"$type":"System.Single"},"typeHandle":{"Identification":"System.Single,
+        mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
       objectReference: {fileID: 0}
     - target: {fileID: 5525336064274294115, guid: 8b5f70a26d347b34db5d08fb375c11cc, type: 3}
       propertyPath: _data._objectReferences.Array.size
@@ -357558,23 +357699,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5775194529688900050, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_Size.x
-      value: 6
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5775194529688900050, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_Size.y
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.4694977
+      value: 4.35
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 18.866938
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.615444
+      value: -39.64
       objectReference: {fileID: 0}
     - target: {fileID: 7461944400963283519, guid: 50e5d8c1017a33240aaee09d47d73346, type: 3}
       propertyPath: m_LocalRotation.w
@@ -369018,6 +369159,5 @@ SceneRoots:
   - {fileID: 1006649389}
   - {fileID: 1191346573}
   - {fileID: 1004735051}
-  - {fileID: 1609210945}
   - {fileID: 116454940}
   - {fileID: 1520415685}
