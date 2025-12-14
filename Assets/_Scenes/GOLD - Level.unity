@@ -262907,9 +262907,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2021132340731991474, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
+      propertyPath: disableMusic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3531443593620371819, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.98
+      value: 1.24
       objectReference: {fileID: 0}
     - target: {fileID: 3531443593620371819, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -276302,11 +276306,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1177254831}
   m_Mesh: {fileID: 2035459121320728119, guid: 703d5bf9d795a1643b9024382d95c5ec, type: 3}
---- !u!1 &1177760553 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9187509516752754490, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
-  m_PrefabInstance: {fileID: 1350785391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1178086736
 GameObject:
   m_ObjectHideFlags: 0
@@ -315586,15 +315585,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1746445408801095578, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 438.5414
+      value: 439.32
       objectReference: {fileID: 0}
     - target: {fileID: 1746445408801095578, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 269.207
+      value: 263.94
       objectReference: {fileID: 0}
     - target: {fileID: 1746445408801095578, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 313.4326
+      value: 311.37
       objectReference: {fileID: 0}
     - target: {fileID: 1746445408801095578, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -318584,7 +318583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1384273911800417399, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 114.03
+      value: 128.99
       objectReference: {fileID: 0}
     - target: {fileID: 1384273911800417399, guid: 54df1d2a132508542abfb50ad959a72f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -516274,9 +516273,7 @@ MonoBehaviour:
       UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]],
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Tuto
       Scene","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
-      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Music
-      launcher","value":{"$content":18,"$type":"UnityEngine.Object"},"typeHandle":{"Identification":"UnityEngine.GameObject,
-      UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null","$version":"A"},"$version":"A"},{"name":"Boss
+      mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"},{"name":"Boss
       Scene","value":{"$content":false,"$type":"System.Boolean"},"typeHandle":{"Identification":"System.Boolean,
       mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089","$version":"A"},"$version":"A"}],"$version":"A"},"$version":"A"}}'
     _objectReferences:
@@ -516298,7 +516295,6 @@ MonoBehaviour:
     - {fileID: 384810832}
     - {fileID: 185997731}
     - {fileID: 1418759883}
-    - {fileID: 1177760553}
 --- !u!1 &3844557665681252971
 GameObject:
   m_ObjectHideFlags: 0
