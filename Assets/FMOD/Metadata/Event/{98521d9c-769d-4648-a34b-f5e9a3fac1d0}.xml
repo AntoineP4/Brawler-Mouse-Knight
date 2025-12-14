@@ -103,7 +103,7 @@
 			<value>1.1875</value>
 		</property>
 		<property name="pitch">
-			<value>5</value>
+			<value>11.5</value>
 		</property>
 		<relationship name="sounds">
 			<destination>{ff3e6a83-86b0-4185-94fa-e0ca07a3f741}</destination>
