@@ -163500,6 +163500,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9054385236767595438, guid: 5f254722ebe9eae4894b314862051820, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -165438,6 +165442,7 @@ MonoBehaviour:
       Data3: 1354808738
       Data4: -740582516
     Path: event:/SFX/Player/Player_lowhealth
+  autoActivateOnStart: 1
 --- !u!33 &6607383665179368797
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -166296,6 +166301,26 @@ PrefabInstance:
       propertyPath: fadeCanvasGroup
       value: 
       objectReference: {fileID: 2055303820}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Path
+      value: event:/Musics/Prison
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data1
+      value: 1287865456
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data2
+      value: 1076527674
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data3
+      value: 59672738
+      objectReference: {fileID: 0}
+    - target: {fileID: 5345778021671646332, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
+      propertyPath: eventToStop.Guid.Data4
+      value: -79790929
+      objectReference: {fileID: 0}
     - target: {fileID: 7626774940143899241, guid: fdccac9fbaf721f48bb94f39eb779a83, type: 3}
       propertyPath: m_Enabled
       value: 0

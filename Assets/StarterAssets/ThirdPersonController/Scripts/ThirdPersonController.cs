@@ -20,10 +20,6 @@ namespace StarterAssets
         [Range(0.0f, 0.3f)] public float RotationSmoothTime = 0.12f;
         public float SpeedChangeRate = 10.0f;
 
-        public AudioClip LandingAudioClip;
-        public AudioClip[] FootstepAudioClips;
-        [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
-
         [Space(10)]
         public float JumpHeight = 1.2f;
         public float Gravity = -15.0f;
@@ -79,6 +75,11 @@ namespace StarterAssets
         [Header("FMOD")]
         [SerializeField] private EventReference jumpSfxEvent;
         [SerializeField] private float jumpSfxCooldown = 0.4444f;
+        [SerializeField] private EventReference footstepSfxEvent;
+        [SerializeField] private float footstepSfxCooldown = 0.06f;
+        [SerializeField] private float footstepMinHorizontalSpeed = 0.2f;
+        [SerializeField] private float landFootstepCooldown = 0.10f;
+        [SerializeField] private float landMinAirTime = 0.06f;
 
         float _cinemachineTargetYaw;
         float _cinemachineTargetPitch;
@@ -140,6 +141,12 @@ namespace StarterAssets
         int _jumpRepeatIndex = 0;
         float _lastJumpSfxTime = -999f;
 
+        float _lastFootstepSfxTime = -999f;
+        float _lastLandSfxTime = -999f;
+
+        float _airTime = 0f;
+        bool _prevGroundedForLand = true;
+
         public bool IsMovementLockedByCage
         {
             get { return _movementLockedByCage; }
@@ -194,14 +201,18 @@ namespace StarterAssets
 
             _currentTopClamp = TopClamp;
             _currentBottomClamp = BottomClamp;
+
+            _prevGroundedForLand = Grounded;
+            _airTime = 0f;
         }
 
         void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
 
-            JumpAndGravity();
             GroundedCheck();
+            HandleLandingSfxFallback();
+            JumpAndGravity();
 
             if (Grounded && _hasPendingProfile)
             {
@@ -234,6 +245,29 @@ namespace StarterAssets
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
             }
+        }
+
+        void HandleLandingSfxFallback()
+        {
+            if (!Grounded)
+            {
+                _airTime += Time.deltaTime;
+            }
+            else
+            {
+                if (!_prevGroundedForLand)
+                {
+                    if (_airTime >= landMinAirTime && Time.time - _lastLandSfxTime >= landFootstepCooldown)
+                    {
+                        TryPlayFootstep(true);
+                        _lastLandSfxTime = Time.time;
+                    }
+                }
+
+                _airTime = 0f;
+            }
+
+            _prevGroundedForLand = Grounded;
         }
 
         void CameraRotation()
@@ -579,34 +613,37 @@ namespace StarterAssets
             return Mathf.Clamp(lfAngle, lfMin, lfMax);
         }
 
-        void OnDrawGizmosSelected()
-        {
-            Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
-            Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
-
-            Gizmos.color = Grounded ? transparentGreen : transparentRed;
-
-            Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
-        }
-
         void OnFootstep(AnimationEvent animationEvent)
         {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                if (FootstepAudioClips.Length > 0)
-                {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
-                    AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
-                }
-            }
+            if (animationEvent.animatorClipInfo.weight <= 0.5f) return;
+            TryPlayFootstep();
         }
 
         void OnLand(AnimationEvent animationEvent)
         {
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
-            {
-                AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
-            }
+            if (animationEvent.animatorClipInfo.weight <= 0.5f) return;
+            if (Time.time - _lastLandSfxTime < landFootstepCooldown) return;
+
+            TryPlayFootstep(true);
+            _lastLandSfxTime = Time.time;
+        }
+
+        void TryPlayFootstep(bool isLand = false)
+        {
+            if (footstepSfxEvent.IsNull) return;
+            if (!Grounded) return;
+
+            float horizontalSpeed = new Vector3(_controller.velocity.x, 0f, _controller.velocity.z).magnitude;
+            if (!isLand && horizontalSpeed < footstepMinHorizontalSpeed) return;
+
+            if (Time.time - _lastFootstepSfxTime < footstepSfxCooldown) return;
+
+            EventInstance stepInstance = RuntimeManager.CreateInstance(footstepSfxEvent);
+            stepInstance.set3DAttributes(RuntimeUtils.To3DAttributes(transform.position));
+            stepInstance.start();
+            stepInstance.release();
+
+            _lastFootstepSfxTime = Time.time;
         }
 
         public void Bounce(float height)

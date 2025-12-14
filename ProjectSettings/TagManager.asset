@@ -7,6 +7,12 @@ TagManager:
   - CinemachineTarget
   - ennemy_attack
   - Spawner Preview
+  - Knight
+  - Mage
+  - Golem
+  - Mushroom - Petit
+  - Mushroom - Grand
+  - Mushroom - Enorme
   layers:
   - Default
   - TransparentFX
