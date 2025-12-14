@@ -34,13 +34,13 @@
 	<object class="Timeline" id="{9660c8af-3430-411f-9409-9e8427d8e03f}" />
 	<object class="SandboxEmitter" id="{c9bef864-0cdb-437e-82bf-eb08b9d9507e}">
 		<property name="positionX">
-			<value>0.249999985</value>
+			<value>-0.225000024</value>
 		</property>
 		<property name="positionZ">
-			<value>0.750000834</value>
+			<value>0.675000846</value>
 		</property>
 		<property name="rotationY">
-			<value>159.898193</value>
+			<value>161.516174</value>
 		</property>
 		<relationship name="event">
 			<destination>{a4b6269e-23c9-4b5e-8bd3-d4392dd84461}</destination>
@@ -48,13 +48,13 @@
 	</object>
 	<object class="SandboxEmitter" id="{4f727eb3-bd53-4447-9366-f5d46e711c43}">
 		<property name="positionX">
-			<value>-6.00000048</value>
+			<value>-0.166369453</value>
 		</property>
 		<property name="positionZ">
-			<value>4.1500001</value>
+			<value>-1.33007753</value>
 		</property>
 		<property name="rotationY">
-			<value>74.7717133</value>
+			<value>167.564178</value>
 		</property>
 		<relationship name="event">
 			<destination>{cd60ba54-29aa-42af-a9aa-64f7ad18ef27}</destination>
@@ -62,10 +62,13 @@
 	</object>
 	<object class="SandboxEmitter" id="{387e21c7-42a6-46e5-96a0-32d09a956507}">
 		<property name="positionX">
-			<value>-3.04999995</value>
+			<value>-1.38829899</value>
 		</property>
 		<property name="positionZ">
-			<value>3.72500014</value>
+			<value>1.81581175</value>
+		</property>
+		<property name="rotationY">
+			<value>164.658997</value>
 		</property>
 		<relationship name="event">
 			<destination>{5f6e0ac3-edb4-45b4-ba74-365cbef6ec0d}</destination>
@@ -147,8 +150,14 @@
 		</relationship>
 	</object>
 	<object class="SandboxEmitter" id="{8e15f1f5-2ab4-45c9-9c54-446a4555c512}">
+		<property name="positionX">
+			<value>-3.25</value>
+		</property>
 		<property name="positionZ">
-			<value>-0.949999988</value>
+			<value>-1.4375</value>
+		</property>
+		<property name="rotationY">
+			<value>-78.5107574</value>
 		</property>
 		<relationship name="event">
 			<destination>{3aadde31-024a-443b-9488-794ab1348234}</destination>
