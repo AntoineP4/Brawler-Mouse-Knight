@@ -165,6 +165,10 @@ namespace StarterAssets
         const string TAG_MUSHROOM_GRAND = "Mushroom - Grand";
         const string TAG_MUSHROOM_ENORME = "Mushroom - Enorme";
 
+        const string TAG_ENEMY_KNIGHT = "Knight";
+        const string TAG_ENEMY_MAGE = "Mage";
+        const string TAG_ENEMY_GOLEM = "Golem";
+
         public bool AttackOnJump
         {
             get => !pogoOnXLayout;
@@ -497,6 +501,31 @@ namespace StarterAssets
             if (enemyCol == null) return;
 
             Vector3 pos = GetImpactPoint(enemyCol);
+
+            Transform tr = enemyCol.attachedRigidbody ? enemyCol.attachedRigidbody.transform : enemyCol.transform;
+            if (tr == null) return;
+
+            GameObject root = tr.root != null ? tr.root.gameObject : tr.gameObject;
+
+            if (root.CompareTag(TAG_ENEMY_MAGE))
+            {
+                if (!pogoMageSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoMageSfxEvent, pos);
+                else if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
+                return;
+            }
+
+            if (root.CompareTag(TAG_ENEMY_GOLEM))
+            {
+                if (!pogoGolemSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoGolemSfxEvent, pos);
+                else if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
+                return;
+            }
+
+            if (root.CompareTag(TAG_ENEMY_KNIGHT))
+            {
+                if (!pogoKnightSfxEvent.IsNull) RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
+                return;
+            }
 
             if (!pogoKnightSfxEvent.IsNull)
                 RuntimeManager.PlayOneShot(pogoKnightSfxEvent, pos);
