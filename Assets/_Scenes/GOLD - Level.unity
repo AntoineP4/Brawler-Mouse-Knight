@@ -74946,6 +74946,54 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311336437}
   m_Mesh: {fileID: 2035459121320728119, guid: 703d5bf9d795a1643b9024382d95c5ec, type: 3}
+--- !u!1 &311682876
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 311682877}
+  - component: {fileID: 311682878}
+  m_Layer: 0
+  m_Name: '[Debug] Scene loader (ultime recourd)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &311682877
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311682876}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -37.284225, y: 17.121695, z: -170.15881}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2146125696}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311682878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311682876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f3480bb60196641a32e3d0ecfaf36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneA: GOLD - Tuto
+  sceneB: GOLD - Level
+  sceneC: Village Test ASSET
+  sceneD: BETA - Boss
 --- !u!1 &311723659
 GameObject:
   m_ObjectHideFlags: 0
@@ -234897,6 +234945,54 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1001227863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1001227865}
+  - component: {fileID: 1001227864}
+  m_Layer: 0
+  m_Name: '[Debug] Scene loader (ultime recourd)'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1001227864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001227863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f3480bb60196641a32e3d0ecfaf36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneA: GOLD - Tuto
+  sceneB: GOLD - Level
+  sceneC: Village Test ASSET
+  sceneD: BETA - Boss
+--- !u!4 &1001227865
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1001227863}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -37.284225, y: 17.121695, z: -170.15881}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1001259198
 GameObject:
   m_ObjectHideFlags: 0
@@ -511226,6 +511322,7 @@ Transform:
   - {fileID: 1140948752}
   - {fileID: 1832563109}
   - {fileID: 6223428538474998532}
+  - {fileID: 311682877}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2147088323
@@ -517190,6 +517287,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5749960313374974293, guid: 3578114ef6531344ea6b50613af00142, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8025475783741466956, guid: 3578114ef6531344ea6b50613af00142, type: 3}
       propertyPath: m_Name
       value: Player
@@ -517555,6 +517656,7 @@ SceneRoots:
   - {fileID: 7513668426994199616}
   - {fileID: 1010972725}
   - {fileID: 2146125696}
+  - {fileID: 1001227865}
   - {fileID: 1038772920125294310}
   - {fileID: 46551254}
   - {fileID: 764938434}
