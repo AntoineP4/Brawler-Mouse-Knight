@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a454b94b8912c26448575eed5ed0a477, type: 3}
-  m_Name: Beta 2
+  m_Name: Beta 3
   m_EditorClassIdentifier: 
-  TopClamp: 40
-  BottomClamp: -28
-  AutoCamTopClamp: 50
-  AutoCamBottomClamp: -35
+  TopClamp: 60
+  BottomClamp: 10
+  AutoCamTopClamp: 60
+  AutoCamBottomClamp: 10
   AutoCam: 0
   AirTiltSpeedUp: 70
   AirTiltSpeedDown: 44.44

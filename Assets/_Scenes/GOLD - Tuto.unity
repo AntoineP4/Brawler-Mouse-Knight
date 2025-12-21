@@ -1500,6 +1500,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1716,6 +1720,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4409,6 +4417,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -7349,6 +7361,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8725,6 +8741,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -9216,6 +9236,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -13791,6 +13815,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -14773,6 +14801,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -15337,6 +15369,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -19570,6 +19606,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23889,6 +23929,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26049,6 +26093,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26710,6 +26758,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -26774,6 +26826,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -27622,6 +27678,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -29871,6 +29931,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -30180,6 +30244,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -32684,6 +32752,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -34852,6 +34924,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -38842,6 +38918,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39539,6 +39619,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10847322, guid: 3c061f6153e0ea04c974559b602d8704, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19819004, guid: 3c061f6153e0ea04c974559b602d8704, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.7
@@ -39762,6 +39846,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -39922,6 +40010,14 @@ PrefabInstance:
     - target: {fileID: 488254, guid: 3033b6e2c5fe4a747a5918bfadbc019a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10809908, guid: 3033b6e2c5fe4a747a5918bfadbc019a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10826270, guid: 3033b6e2c5fe4a747a5918bfadbc019a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -40123,6 +40219,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -41363,6 +41463,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -44028,6 +44132,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -44179,6 +44287,14 @@ PrefabInstance:
     - target: {fileID: 446586, guid: cfd933ac2c858574ba335dccf8a2f6c0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10802828, guid: cfd933ac2c858574ba335dccf8a2f6c0, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10849684, guid: cfd933ac2c858574ba335dccf8a2f6c0, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19812478, guid: cfd933ac2c858574ba335dccf8a2f6c0, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -46762,6 +46878,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -48422,6 +48542,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -49716,6 +49840,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50057,6 +50185,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -50126,6 +50258,10 @@ PrefabInstance:
     - target: {fileID: 428926, guid: 488fb4bf55e88e243a3d0bfaa7e42703, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10852986, guid: 488fb4bf55e88e243a3d0bfaa7e42703, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -51867,6 +52003,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -53254,6 +53394,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -54477,6 +54621,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -55900,6 +56048,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -56102,6 +56254,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.399
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -56568,6 +56724,10 @@ PrefabInstance:
     - target: {fileID: 428926, guid: 488fb4bf55e88e243a3d0bfaa7e42703, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10852986, guid: 488fb4bf55e88e243a3d0bfaa7e42703, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -58146,6 +58306,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -58225,6 +58389,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.399
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -59894,6 +60062,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0.38
       objectReference: {fileID: 0}
+    - target: {fileID: 10810638, guid: 6fb002a65bc74bf46ba6b669a1a59a79, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 105354, guid: 6fb002a65bc74bf46ba6b669a1a59a79, type: 3}
@@ -60252,6 +60424,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -60433,6 +60609,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -60849,6 +61029,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -62231,6 +62415,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -64417,6 +64605,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67397,6 +67589,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10863192, guid: 8375007ef859c184f93134dbe213e44b, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -68200,6 +68396,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -68427,6 +68627,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -69473,6 +69677,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -70986,6 +71194,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -73130,6 +73342,14 @@ PrefabInstance:
     - target: {fileID: 488254, guid: 3033b6e2c5fe4a747a5918bfadbc019a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10809908, guid: 3033b6e2c5fe4a747a5918bfadbc019a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10826270, guid: 3033b6e2c5fe4a747a5918bfadbc019a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -84173,6 +84393,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -84474,6 +84698,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -85596,6 +85824,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -85675,6 +85907,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -86223,6 +86459,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -90147,6 +90387,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -90943,6 +91187,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -91833,6 +92081,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -91912,6 +92164,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -92058,6 +92314,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -94617,6 +94877,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -96719,6 +96983,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.399
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -102649,6 +102917,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -102845,7 +103117,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -103707,6 +103979,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104026,6 +104302,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -104085,6 +104365,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -105603,6 +105887,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -114187,6 +114475,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 19814860, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 19814860, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -116576,6 +116876,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -116867,6 +117171,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -117248,6 +117556,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -118448,6 +118760,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.399
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -119222,6 +119538,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -123515,6 +123835,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.399
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -126323,6 +126647,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.399
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -127550,6 +127878,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -130525,6 +130857,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -132201,6 +132537,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -132499,6 +132839,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -132808,6 +133152,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -133953,6 +134301,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.399
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -134037,6 +134389,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -135356,6 +135712,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -139078,6 +139438,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -140622,6 +140986,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -141206,6 +141574,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -142233,6 +142605,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -144647,6 +145023,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -145004,6 +145384,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -147376,6 +147760,10 @@ PrefabInstance:
     - target: {fileID: 436140, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10876452, guid: 197f1dd69d9d0e345a27bdc2001f4358, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -151160,6 +151548,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
       value: 3
@@ -151239,6 +151631,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -153450,6 +153846,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -155750,6 +156150,10 @@ PrefabInstance:
     - target: {fileID: 430058, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10832028, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 19807906, guid: c1f1c6a173fc5a34aae675702b69445a, type: 3}
       propertyPath: InitialModule.startSizeY.minMaxState
@@ -159749,6 +160153,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -160099,6 +160507,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -161546,6 +161958,10 @@ PrefabInstance:
     - target: {fileID: 491470, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10848866, guid: 77199120630e1734e8e77e3c2f9cf50e, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -163948,6 +164364,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2257883807159497510, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
+      propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257883807159497510, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257883807159497510, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
+      propertyPath: m_BounceIntensity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2257883807159497510, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
+      propertyPath: m_Shadows.m_NearPlane
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2983864704184387438, guid: 1f104796a8c740e4eab0bafbbdff07cd, type: 3}
       propertyPath: m_Name
       value: Cage
@@ -165312,7 +165744,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 2
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
